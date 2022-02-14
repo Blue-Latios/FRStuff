@@ -5,12 +5,12 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   router: {
-	  base: '/wishlist-generator/',
+	  base: '/FRStuff/',
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'wishlist-generator',
+    title: 'FRStuff',
     htmlAttrs: {
       lang: 'en'
     },
