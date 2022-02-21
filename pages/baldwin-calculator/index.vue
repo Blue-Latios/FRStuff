@@ -1,8 +1,10 @@
 <template>
 <div class="container">
+  <div class="text-bold">WIP<br><br><br>
+  </div>
   <div class="text-bold">What is this?<br>
   </div>
-  tl;dr, baldwin info simplified. Unliked the database shortcut,<br>
+  tl;dr, baldwin info simplified. Unlike the database shortcut,<br>
   this tool calculates total basic items, the cost, the exp yielded.<br><br>
   
   <div class="text-bold">How to:<br>

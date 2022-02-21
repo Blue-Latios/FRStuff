@@ -1,8 +1,4 @@
-# wishlist-generator
-
-## Build Setup
-
-```bash
+# FRStuff
 # install dependencies
 $ npm install
 
