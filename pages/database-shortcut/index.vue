@@ -2,14 +2,16 @@
 <div class="container">
   <div class="text-bold">What is this?<br>
   </div>
-  tl;dr, game database info simplified.<br><br>
+  tl;dr, game database info simplified.<br>
+  <b>At present, items included are up to page 5 of the Hibernal Den tasks.</b><br><br>
   
   <div class="text-bold">How to:<br>
   </div>
   
   Enter the item name in the box below.<br>
   You can enter multiple item names by seperating them with linebreaks<br>
-  (the Enter key stuff). Press the Submit button to show results.<br><br>
+  (the Enter key stuff). Press the Submit button to show results. Click<br>
+  on the arrow keys to expand and shrink items.<br><br>
   
   Example input:<br>
   Glass Beaker<br>
@@ -20,15 +22,18 @@
   <b>At present, the items included are focused on Hibernal Den Task<br>
   items.</b> Swipp and Baldwin items coming soon.<br><br>
   
-  Special feature: For Hibernal Den items, you can start input a line with "Hibden:"<br>
+  For Hibernal Den items, you can start input a line with "Hibden:"<br>
   followed by the name of the Hibernal Den Task.<br>
   Hibden:Clay for the Den<br><br>
   
-  Note: Some items, like Broken Bottles, have their full info omitted for ease<br>
-  of use. <b>Chests are mostly RNG so do not try to focus to get an item from chests.</b><br>
+  Notes: Make sure to <b>match capitalization</b> with the Game Database, such as<br>
+  "Clay for the Den" and "Green Ooze". Some items, like Broken Bottles, have their<br>
+  full info omitted for ease of use. <b>Chests are mostly RNG so do not try to focus<br>
+  on getting an item from chests.</b><br>
   *All items in Rusted Treasure Chest are also in Iron Treasure Chest and<br>
   Gilded Decorative Chest, and all items in Iron Treasure Chest are also in Gilded<br>
-  Decorative Chest.<br><br>
+  Decorative Chest.<br>
+  Chests that are unobtainable are excluded. <strike>So is Pinkerton.</strike><br><br>
   
   <textarea v-model="textStuff" placeholder="Enter item name here." style="width:90%;"></textarea><br>
   <button @click="generate">Submit</button>
@@ -53,6 +58,9 @@
 	padding: 5px;
 	font-size: 12px;
 }
+ul {
+	margin-bottom: 0;
+}
 </style>
 
 <script>
@@ -61,6 +69,39 @@ import DATABASE from "@/data/database-shortcut/masterlist.js";
 import MONSTERS from "@/data/database-shortcut/monsters.js";
 import Expandable from "@/components/Expandable.vue";
 
+const articles = ['a', 'an', 'the', 'and', 'of', 'but', 'or', 'for', 'nor', 'with', 'in', 'on', 'at', 'to', 'from', 'by'];
+const unobtainables = [
+	"Randomized Fishpot",
+	"Pretty in Pink",
+	"Dustcarve Worker Cache",
+	"Dustcarve Battle Cache",
+];
+
+function capsFirstText(text) {
+	text = text.toLowerCase().split(/[\s]+/);
+	var n = capsFirstLetter(text[0], true);
+	text.slice(1).forEach(word => {
+		n += " " + capsFirstLetter(word);
+	});
+	return n;
+}
+
+function capsFirstLetter(word, first=false) {
+	if (word.split(/[-]+/)[0] != word) {
+		word = word.split(/[-]+/);
+		var n = capsFirstLetter(word[0], first);
+		word.slice(1).forEach(wordpart => {
+			n += "-" + capsFirstLetter(wordpart);
+		});
+		return n;
+	} else {
+		if (first || !articles.includes(word))
+			return word.charAt(0).toUpperCase() + word.slice(1);
+		else
+			return word;
+	}
+}
+
 function processText(textStuff) {
 	var linesArray = textStuff.split('\n');
 	var s = [];
@@ -68,8 +109,15 @@ function processText(textStuff) {
 	
 	linesArray.forEach(line => {
 		var a = line.trim();
-		s = s.concat(processLine(a) + "<br>");
-		s2 += processLine2(a) + "<br>";
+		if (a.substring(0,7).toLowerCase() === "hibden:") {
+			a = capsFirstText(a.slice(7).trim());
+			s = s.concat(processLine(a, 3) + "<br>");
+			s2 += processLine2(a, 3) + "<br>";
+		} else {
+			a = capsFirstText(a);
+			s = s.concat(processLine(a) + "<br>");
+			s2 += processLine2(a) + "<br>";
+		}
 	});
 	return [s, s2];
 }
@@ -77,17 +125,17 @@ function processText(textStuff) {
 function processLine(line, mode=0) {
 	//mode 1 = swipp
 	//mode 2 = baldwin
+	//mode 3 = hibden title
 	var s = '';
-	if (line.substring(0,7) === "Hibden:") {
-		var t = line.substring(7,line.length).trim();
-		if (HIBDEN[t]) {
-			s += t + "<br><ul>";
-			HIBDEN[t].forEach(thing => {
+	if (mode == 3) {
+		if (HIBDEN[line]) {
+			s += "<b>" + line + "</b><br><ul>";
+			HIBDEN[line].forEach(thing => {
 				s = s.concat("<li>", thing[1], " of ", processLine(thing[0]), "</li>");
 			});
 			return s.concat("</ul>");
 		} else {
-			return s.concat("The task \"<b>" + t + "</b>\" is undefined!<br>");
+			return s.concat("The task \"<b>" + line + "</b>\" is undefined!<br>");
 		}
 	} else {
 		if (!DATABASE[line]) return line.concat(" is not in the database yet!<br>");
@@ -106,11 +154,20 @@ function processLine(line, mode=0) {
 				s += "</ul>";
 			}
 			if (DATABASE[line].containers) {
-				s += "Found in:<br><ul>";
-				DATABASE[line].containers.forEach(item => {
-					s = s.concat("<li>", processLine(item), "</li>");
-				});
-				s += "</ul>";
+				if (DATABASE[line].containers.length == 1) {
+					if (!unobtainables.includes(DATABASE[line].containers[0])) {
+						s += "Found in:<br><ul>";
+						s = s.concat("<li>", processLine(DATABASE[line].containers[0]), "</li>");
+						s += "</ul>";
+					}
+				} else {
+					s += "Found in:<br><ul>";
+					DATABASE[line].containers.forEach(item => {
+						if (!unobtainables.includes(item))
+							s = s.concat("<li>", processLine(item), "</li>");
+					});
+					s += "</ul>";
+				}
 			}
 			if (DATABASE[line].gathering) {
 				s = s.concat(DATABASE[line].gathering.method, " Lv. ",
@@ -125,16 +182,15 @@ function processLine(line, mode=0) {
 				}
 			}
 			if (DATABASE[line].monsters) {
-				s += "Dropped by:<br>";
-				if (DATABASE[line].monsters[0][0].split(" ")[0] == "[C]") {
-					s += DATABASE[line].monsters[0][0].substring(4) + " (" + DATABASE[line].monsters[0][1] + ")<br>";
-				} else {
-					s += "<ul>";
-					DATABASE[line].monsters.forEach(tup => {
+				s += "Dropped by:<br><ul>";
+				
+				DATABASE[line].monsters.forEach(tup => {
+					if (tup[0].split(" ")[0] == "[C]")
+						s += "<li>" + tup[0].substring(4) + " (" + tup[1] + ")</li>";
+					else
 						s += "<li>" + tup[0] + " in " + MONSTERS[tup[0]] + " (" + tup[1] + ")</li>";
-					});
-					s += "</ul>";
-				}
+				});
+				s += "</ul>";
 			}
 			if (DATABASE[line].swap) {
 				if (mode != 1) s += "<i>Swipp Swap</i><br><ul>";
@@ -155,12 +211,12 @@ function processLine(line, mode=0) {
 function processLine2(line, mode=0) {
 	//mode 1 = swipp
 	//mode 2 = baldwin
+	//mode 3 = hibden title
 	var s2 = '';
-	if (line.substring(0,7) === "Hibden:") {
-		var t = line.substring(7,line.length).trim();
-		if (HIBDEN[t]) {
-			s2 += "[size=4][b]" + t + "[/b][/size]<br>[list]"
-			HIBDEN[t].forEach(thing => {
+	if (mode == 3) {
+		if (HIBDEN[line]) {
+			s2 += "[size=4][b]" + line + "[/b][/size]<br>[list]"
+			HIBDEN[line].forEach(thing => {
 				s2 = s2.concat("[*]", thing[1], " of ", processLine2(thing[0]), "<br>");
 			});
 			return s2.concat("[/list]<br>");
@@ -182,11 +238,20 @@ function processLine2(line, mode=0) {
 				s2 += "[/list]";
 			}
 			if (DATABASE[line].containers) {
-				s2 += "Found in:<br>[list]";
-				DATABASE[line].containers.forEach(item => {
-					s2 = s2.concat("[*]", processLine2(item), "<br>");
-				});
-				s2 += "[/list]";
+				if (DATABASE[line].containers.length == 1) {
+					if (!unobtainables.includes(DATABASE[line].containers[0])) {
+						s2 += "Found in:<br>[list]";
+						s2 = s2.concat("[*]", processLine2(DATABASE[line].containers[0]), "<br>");
+						s2 += "[/list]";
+					}
+				} else {
+					s2 += "Found in:<br>[list]";
+					DATABASE[line].containers.forEach(item => {
+						if (!unobtainables.includes(item))
+							s2 = s2.concat("[*]", processLine2(item), "<br>");
+					});
+					s2 += "[/list]";
+				}
 			}
 			if (DATABASE[line].gathering) {
 				s2 = s2.concat(DATABASE[line].gathering.method, " Lv. ",

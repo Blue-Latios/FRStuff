@@ -1,5 +1,5 @@
 <template><div>
-<span @click="() => hidden = !hidden"><b>{{ icon }}</b> {{ name }}</span><br>
+<span @click="() => hidden = !hidden"><b>{{ icon }}</b> <span v-html="name" /></span>
 <span v-if="!hidden" v-html="result" />
 </span>
 </div></template>
@@ -28,7 +28,7 @@ export default {
 		},
 		name() {
 			var processed = this.line.split("<br>");
-			return processed[0];
+			return processed[0] + (processed[1] ? "<br>" : '');
 		},
 	}
 }
