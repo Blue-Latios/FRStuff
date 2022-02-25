@@ -67,6 +67,7 @@ ul {
 import HIBDEN from "@/data/database-shortcut/hibden.js";
 import DATABASE from "@/data/database-shortcut/masterlist.js";
 import MONSTERS from "@/data/database-shortcut/monsters.js";
+import DIGSITE from "@/data/database-shortcut/digsite.js";
 import Expandable from "@/components/Expandable.vue";
 
 const articles = ['a', 'an', 'the', 'and', 'of', 'but', 'or', 'for', 'nor', 'with', 'in', 'on', 'at', 'to', 'from', 'by'];
@@ -140,7 +141,7 @@ function processLine(line, mode=0) {
 	} else {
 		if (!DATABASE[line]) return line.concat(" is not in the database yet!<br>");
 		if (DATABASE[line].id >= 574 && DATABASE[line].id <= 576) s = line; //We ignore chests
-		else if (!DATABASE[line].containers && !DATABASE[line].monsters && !DATABASE[line].gathering && !DATABASE[line].baldwin && !DATABASE[line].swap && !DATABASE[line].marketplace) s = line;
+		else if (!DATABASE[line].containers && !DATABASE[line].monsters && !DATABASE[line].gathering && !DATABASE[line].baldwin && !DATABASE[line].swap && !DATABASE[line].marketplace && !DATABASE[line].digsite) s = line;
 		else {
 			s += line + "<br>";
 			
@@ -203,6 +204,9 @@ function processLine(line, mode=0) {
 			if (DATABASE[line].marketplace) {
 				s += "Purchasable in <i>Marketplace</i> for " + DATABASE[line].marketplace + " treasure<br>";
 			}
+			if (DATABASE[line].digsite) {
+				s += "Diggable in Lv." + DATABASE[line].digsite + " digsite (" + DIGSITE[DATABASE[line].digsite] + ")<br>";
+			}
 		}
 		return s;
 	}
@@ -224,7 +228,7 @@ function processLine2(line, mode=0) {
 	} else {
 		if (!DATABASE[line]) return line.concat(" is not in the database yet!<br>");
 		if (DATABASE[line].id >= 574 && DATABASE[line].id <= 576) s2 = "[gamedb item=" + DATABASE[line].id + "]"; //We ignore chests
-		else if (!DATABASE[line].containers && !DATABASE[line].monsters && !DATABASE[line].gathering && !DATABASE[line].baldwin && !DATABASE[line].swap && !DATABASE[line].marketplace) s2 = "[gamedb item=" + DATABASE[line].id + "]";
+		else if (!DATABASE[line].containers && !DATABASE[line].monsters && !DATABASE[line].gathering && !DATABASE[line].baldwin && !DATABASE[line].swap && !DATABASE[line].marketplace && !DATABASE[line].digsite) s2 = "[gamedb item=" + DATABASE[line].id + "]";
 		else {
 			s2 += "[gamedb item=" + DATABASE[line].id + "]<br>";
 			
@@ -287,6 +291,9 @@ function processLine2(line, mode=0) {
 			}
 			if (DATABASE[line].marketplace) {
 				s2 += "Purchasable in [i]Marketplace[/i] for " + DATABASE[line].marketplace + " treasure<br>";
+			}
+			if (DATABASE[line].digsite) {
+				s2 += "Diggable in Lv." + DATABASE[line].digsite + " digsite (" + DIGSITE[DATABASE[line].digsite] + ")<br>";
 			}
 		}
 		return s2;

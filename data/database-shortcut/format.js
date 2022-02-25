@@ -25,4 +25,5 @@
 	],
 	containers: ["chestA", "chestB"],
 	marketplace: num,
+	digsite: level,
 }
