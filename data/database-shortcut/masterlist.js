@@ -199,9 +199,6 @@ module.exports = {
 			locations: ["All"],
 		},
 	},
-	"Princess Petal Gecko": {id:25402,
-		marketplace: 12500,
-	},
 	"Desert Scrub": {id:80,
 		gathering: {
 			method: "Foraging",
@@ -1016,7 +1013,7 @@ module.exports = {
 			locations: ["Earth", "Lightning", "Shadow"],
 		},
 	},
-	"Petalmane Floron": {id:23885,
+	"Petalmane Floron": {id:23811,
 		marketplace: 20000,
 		containers: ["Iron Treasure Chest"],
 		monsters: [
@@ -1336,11 +1333,6 @@ module.exports = {
 		containers: ["Cranberry Mage Robes", "Iron Treasure Chest"],
 		monsters: [
 			["[C] All Water monsters", "Very Rarely"],
-		],
-	},
-	"Sakura Owlet": {id:5703,
-		monsters: [
-			["Sakura Owl", "Common"],
 		],
 	},
 	"Redwood Kindling": {id:765,
@@ -1903,7 +1895,7 @@ module.exports = {
 			["[C] All monsters in Thunderhead Savanna", "Scarce"],
 		],
 	},
-	"Highfin Sea Serpent": {id:28231,
+	"Highfin Sea Serpent": {id:20146,
 		marketplace: 23500,
 		monsters: [
 			["Highfin Sea Serpent", "Scarce"],
@@ -2791,13 +2783,6 @@ module.exports = {
 			["Copper Ore", 20],
 		],
 	},
-	"Iron Ore": {id:184,
-		gathering: {
-			method: "Digging",
-			level: 1,
-			locations: ["Earth", "Plague", "Wind", "Fire"],
-		},
-	},
 	"Copper Ore": {id:185,
 		gathering: {
 			method: "Digging",
@@ -3246,14 +3231,6 @@ module.exports = {
 				["Purple Ooze", 1],
 				["Rusted Iron Belt Buckle", 5],
 			],
-		},
-	},
-	"Rusted Iron Belt Buckle": {id:1073,
-		containers: ["Rusted Treasure Chest"],
-		gathering: {
-			method: "Scavenging",
-			level: 12,
-			locations: ["Earth", "Plague", "Ice", "Shadow"],
 		},
 	},
 	"Mysterious Relief": {id:10204,
@@ -3962,7 +3939,7 @@ module.exports = {
 			["Scythe Kamaitachi", "Scarce"],
 		],
 	},
-	"Molten Tadpole": {id:1364,
+	"Molten Tadpole": {id:11523,
 		monsters: [
 			["Molten Wartoad", "Common"],
 		],
