@@ -1,5 +1,6 @@
 "Name": {id:number,
 	baldwin: {
+		level: num,
 		yield: num,
 		cost: num,
 		time: num,
@@ -26,4 +27,5 @@
 	containers: ["chestA", "chestB"],
 	marketplace: num,
 	digsite: level,
+	limited: string,
 }
