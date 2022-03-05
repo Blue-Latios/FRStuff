@@ -76,6 +76,7 @@ module.exports = {
 	"Death Seeker": "Harpy's Roost",
 	"Deaths-Head Stag": "Training Fields and Woodland Path",
 	"Deepmine Aardvark": "Forgotten Cave",
+	"Deeprealm Hunter": "Redrock Cove",
 	"Dire Claw": "Forgotten Cave",
 	"Disoriented Spirit": "Ghostlight Ruins",
 	"Djamor Bat": "Forgotten Cave",
