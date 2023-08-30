@@ -1,2 +1,2 @@
-# wishlist-generator
-Attempt at making BBCode for Wishlist
+# FR Stuff
+what it says, for Flight Rising purposes
