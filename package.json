@@ -1,6 +1,6 @@
 {
-  "name": "FRStuff",
-  "version": "1.0.0",
+  "name": "frstuff",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -11,8 +11,21 @@
   "dependencies": {
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
+    "cheerio": "^1.0.0-rc.3",
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7"
+    "moment": "^2.29.4",
+    "nuxt": "^2.16.1"
   },
-  "devDependencies": {}
+  "description": "$ npm install",
+  "main": "nuxt.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blue-Latios/FRStuff.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blue-Latios/FRStuff/issues"
+  },
+  "homepage": "https://github.com/Blue-Latios/FRStuff#readme"
 }
