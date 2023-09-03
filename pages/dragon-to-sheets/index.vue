@@ -4,14 +4,18 @@
   </div>
   Select All on dragon page, copy, paste into box.<br>
   Text comes out, copy that and paste into Google Sheets.<br>
+  Click the "Copy" button to copy the result text.<br><br>
   
   <div class="text-bold">Sheets link:<br>
   </div>
   
   https://docs.google.com/spreadsheets/d/1C_Bsog-brvpPR1ANAhLgegZdtorwwtCUcswm40W7cCc<br><br>
   
-  <textarea v-model="textStuff" placeholder="Copy Paste here." @paste="loadDragon" style="width:90%;"></textarea><br>
-  <textarea v-model="results" placeholder="Results to copy here." disabled style="width:90%;"></textarea><br>
+  <textarea v-model="textStuff" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
+  <textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
+  <button @click="copyText">Copy</button><br><br><br>
+  
+  <div class="footnote" style="font-size: 10px;">Tool inspired by G1 Hoarders Pinglist site.</div>
 </div></template>
 
 <style>
@@ -24,10 +28,8 @@
 	font-weight: bold;
 	font-size: 20px;
 }
-.preformat {
-	white-space: pre-wrap;
-	padding: 5px;
-	font-size: 12px;
+.results {
+	color:#777;
 }
 ul {
 	margin-bottom: 0;
@@ -35,147 +37,77 @@ ul {
 </style>
 
 <script>
-const cheerio = require('cheerio');
-const moment = require('moment');
+const HTMLParser = require('node-html-parser');
 
-function Dragon(data) {
-  return {
-    data,
-    id() {
-      return this.data.id;
-    },
-    name() {
-      return this.data.name;
-    },
-    gender() {
-      return this.data.gender;
-    },
-    breed() {
-      return this.data.breed;
-    },
-    flight() {
-      return this.data.flight;
-    },
-    eyes() {
-      return this.data.eyes;
-    },
-    primaryColor() {
-      return this.data.primaryColor;
-    },
-    primaryGene() {
-      return this.data.primaryGene;
-    },
-    secondaryColor() {
-      return this.data.secondaryColor;
-    },
-    secondaryGene() {
-      return this.data.secondaryGene;
-    },
-    tertiaryColor() {
-      return this.data.tertiaryColor;
-    },
-    tertiaryGene() {
-      return this.data.tertiaryGene;
-    },
-    dateOfBirth() {
-      return this.data.dateOfBirth;
-    },
-    isFirstGen() {
-      return this.data.isFirstGen;
-    },
-    isBred() {
-      return this.data.isBred;
-    },    
-    hasSilhouette() {
-      return this.data.hasSilhouette;
-    },
-    isPermababy() {
-      return this.data.isPermababy;
-    },
-    digits() {
-      return Math.ceil(Math.log(this.data.id) / Math.log(10));
-    },
-  };
-}
-
-function removeAncientBreedDescriptor(gene) {
-	return gene.split(" (")[0];
-}
-
-function importDragonFromDragonBlob($) {
-  const stat = (index, take_first) => {
-    const item = $('.dragon-profile-stat-icon-value')[index];
-    return take_first ? $(item).html().split('<')[0].trim() : $('strong', item).html();
-  };
-
-  const idSelector = $('.dragon-profile-header-number').html();
-  const dragon = Dragon({
-    id: parseInt(idSelector.substr(0, idSelector.length - 1).substr(2)),
-    name: $('.dragon-profile-header-name').html(),
-    gender: $('[data-tooltip-source="#dragon-profile-icon-sex-tooltip"] img').attr('src').search('female') === -1 ? 'Male' : 'Female',
-    isFirstGen: !$('.dragon-profile-lineage-parents a')[0],
-    isBred: !!$('.dragon-profile-lineage-offspring a')[0],
-    hasSilhouette: !!$('[data-tooltip-source="#dragon-profile-icon-silhouette-tooltip"]')[0],
-    isPermababy: !!$('[data-tooltip-source="#dragon-profile-icon-eternal-youth-tooltip"]')[0],
-    isBaby: (stat(4, true) != 'Adult'),
-    primaryColor: stat(0, true),
-    primaryGene: removeAncientBreedDescriptor(stat(0, false)),
-    secondaryColor: stat(1, true),
-    secondaryGene: removeAncientBreedDescriptor(stat(1, false)),
-    tertiaryColor: stat(2, true),
-    tertiaryGene: removeAncientBreedDescriptor(stat(2, false)),
-    breed: stat(4, false),
-    flight: stat(5, true),
-    eyes: stat(5, false),
-    dateOfBirth: moment(stat(3, false), 'MMM DD, YYYY').format('YYYY/MM/DD'),
-    tags: [],
-  });
-
-  return dragon;
-}
-
-function dragonLookup(payload) {
-    try {
-      const $ = cheerio.load(payload);
-      let dragons = [];
-
-      if ($('#error-404')[0]) {
-        return null;
-      } else if ($('meta[property="og:url"]')[0] && $('meta[property="og:url"]').attr('content').substr(0, 37) === 'https://www1.flightrising.com/dragon/') {
-        dragons.push(importDragonFromDragonBlob($));
-      } else if ($('#lair-view-page')[0]) {
-        dragons = dragons.concat(importDragonsFromLairBlob($));
-      } else if ($('.dragon-profile-header-title')[0] && $('.dragon-profile-lineage-offspring')[0]) {
-        dragons.push(importDragonFromDragonBlob($));
-      }  else {
-        return null;
-      }
-
-      return dragons;
-    } catch (e) {}
-
-    return null;
-}
-
-function buildString(dragon) {
-	var str = '';
-	str += dragon.name();
-	str += '\t' + dragon.gender();
-	str += '\t' + dragon.breed();
-	str += '\t' + dragon.primaryColor();
-	str += '\t' + dragon.primaryGene();
-	str += '\t' + dragon.secondaryColor();
-	str += '\t' + dragon.secondaryGene();
-	str += '\t' + dragon.tertiaryColor();
-	str += '\t' + dragon.tertiaryGene();
-	str += '\t' + dragon.flight();
-	str += '\t' + dragon.eyes();
-	str += '\t' + (dragon.isFirstGen() ? '1' : '2+');
-	str += '\t' + (dragon.isPermababy() ? 'Yes' : 'No');
-	str += '\t' + (dragon.hasSilhouette() ? 'Yes' : 'No');
-	str += '\t' + dragon.id();
-	str += '\t' + dragon.dateOfBirth();
-	str += '\t' + (dragon.isBred() ? 'Yes' : 'No');
+function buildString(t) {
+	const r = HTMLParser.parse(t)
+	
+	//data extraction
+	
+	//header
+	let name = r.querySelector("#main-content").text;
+	let id = r.querySelector("#dragon-profile-share").getAttribute("data-id");
+	
+	//icons
+	let gender = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-sex-tooltip"]`).querySelector("img").getAttribute("src").match(/\/([^/]+)\.png$/)[1];
+	gender = gender[0].toUpperCase() + gender.slice(1);
+	
+	let isPermabab = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-eternal-youth-tooltip"]`);
+	isPermabab = (isPermabab ? "Yes" : "No");
+	let isSilhouette = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-silhouette-tooltip"]`);
+	isSilhouette = (isSilhouette ? "Yes" : "No");
+	
+	//Physical Attributes
+	const phys = r.querySelector("#dragon-profile-physical");
+	
+	let measurements = phys.querySelectorAll(".dragon-profile-stat-value");
+	let length = measurements[0].text.slice(0,-2);
+	let wingspan = measurements[1].text.slice(0,-2);
+	let weight = measurements[2].text.slice(0,-3);
+	
+	const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
+	let primaryColor = iconvalues[0].childNodes[0].text.trim();
+	let primaryGene = iconvalues[0].querySelector("strong").text.split(" (")[0]; //split to remove ancient gene variant
+	console.log(primaryColor);
+	let secondaryColor = iconvalues[1].childNodes[0].text.trim();
+	let secondaryGene = iconvalues[1].querySelector("strong").text.split(" (")[0];
+	let tertiaryColor = iconvalues[2].childNodes[0].text.trim();
+	let tertiaryGene = iconvalues[2].querySelector("strong").text.split(" (")[0];
+	
+	let birthdate = iconvalues[3].querySelector("strong").text;
+	let breed = iconvalues[4].querySelector("strong").text;
+	
+	let element = iconvalues[5].childNodes[0].text.trim();
+	let eyes = iconvalues[5].querySelector("strong").text;
+	
+	let gen = r.querySelector(".dragon-profile-lineage-parents").querySelector("em");
+	gen = (gen ? "1" : "2+");
+	let isBred = r.querySelector(".dragon-profile-lineage-offspring").querySelector("em");
+	isBred = (isBred ? "No" : "Yes");
+	
+	
+	//string building
+	let str = '';
+	str += name;
+	str += '\t' + gender;
+	str += '\t' + breed;
+	str += '\t' + primaryColor;
+	str += '\t' + primaryGene;
+	str += '\t' + secondaryColor;
+	str += '\t' + secondaryGene;
+	str += '\t' + tertiaryColor;
+	str += '\t' + tertiaryGene;
+	str += '\t' + element;
+	str += '\t' + eyes;
+	str += '\t' + gen;
+	str += '\t' + isPermabab;
+	str += '\t' + isSilhouette;
+	str += '\t' + id;
+	str += '\t' + birthdate;
+	str += '\t' + isBred;
+	str += '\t' + length;
+	str += '\t' + wingspan;
+	str += '\t' + weight;
 	return str;
 }
 
@@ -192,35 +124,31 @@ export default {
 		};
 	},
 	methods: {
-		loadDragon(e) {
-			this.error = '';
+		htmlPaste(e) {
 			let pastedText = '';
 			try {
-			if (window.clipboardData && window.clipboardData.getData) { // IE
-				pastedText = window.clipboardData.getData('Text');
-			} else if (e.clipboardData && e.clipboardData.getData) {
-				pastedText = e.clipboardData.getData('text/html');
-			}
-			
-			this.processInput(pastedText);
+				if (window.clipboardData && window.clipboardData.getData) { // IE
+					pastedText = window.clipboardData.getData('Text');
+				} else if (e.clipboardData && e.clipboardData.getData) {
+					pastedText = e.clipboardData.getData('text/html');
+				}
+				
+				this.processInput(pastedText);
 			} catch(e) {
-				alert('Error!1');
+				alert('Error! Not valid pasted data.');
 			}
 		},
 		processInput(t) {
-			this.error = '';
 			try {
-				const [dragon] = dragonLookup(t);
-				if (!dragon) {
-					alert('Error!2');
-				} else {
-					//console.log(dragon.id(), t);
-					this.results = buildString(dragon);
-					//console.log('Okay');
-				}
+				this.results = buildString(t);
 			} catch(e) {
-				alert('Error!3');
+				alert('Not valid dragon data?');
 			}
+		},
+		copyText() {
+			this.$refs.res.select();
+			document.execCommand('copy');
+			this.results="Text copied successfully!";
 		}
 	}
 }
