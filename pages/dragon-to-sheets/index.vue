@@ -148,6 +148,7 @@ export default {
 		copyText() {
 			this.$refs.res.select();
 			document.execCommand('copy');
+			this.$refs.res.blur();
 			this.results="Text copied successfully!";
 		}
 	}
