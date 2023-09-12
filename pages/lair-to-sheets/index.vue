@@ -13,9 +13,9 @@
   
   <div class="text-bold">Page Source?<br>
   </div>
-  It's the part of a webpage where all you see is text. On Firefox, right click<br>
-  a blank area of a page, one of the options is "View Page Source". Click it,<br>
-  then select all of the text (Ctrl+A), then copy and paste it into the box.<br><br>
+  It's the part of a webpage where all you see is text. To get there,<br>
+  Add "<b>view-source:</b>" to the start of the URL link. Then select<br>
+  all of the text, then copy and paste it into the box.<br><br>
   
   <textarea v-model="textStuff" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
   <textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
@@ -90,8 +90,6 @@ function buildString(t, i) {
 	let isPermabab = (i.includes("#icon-eternal-youth-tooltip") ? "Yes" : "No");
 	let isSilhouette = (i.includes("#icon-silhouette-tooltip") ? "Yes" : "No");
 	
-	console.log("c OK");
-	
 	//string building
 	let str = '';
 	str += name;
@@ -110,7 +108,7 @@ function buildString(t, i) {
 	str += '\t' + isSilhouette;
 	str += '\t' + id;
 	str += '\t' + level;
-	console.log("passed");
+	//console.log("passed");
 	return str;
 }
 
@@ -127,13 +125,16 @@ function buildStrings(page) {
 	}
 	
 	//get icons data
-	const icons_pattern = /class="lair-page-dragon-tumbnail lair-dragon-tooltip" rel="#dragontip-([^]*?)(class="lair-page-dragon"|class="lair-pagination")/g;
+	const icons_pattern = /class="lair-page-dragon-tumbnail lair-dragon-tooltip" rel="#dragontip-([^]*?)(class="lair-page-dragon"|class="lair-footer")/g;
 	//start string regex is so to get the first part of string is the ID
 	let icons = [];
 	while ((matches = icons_pattern.exec(page)) !== null) {
 		const captureString = matches[1].trim();
 		icons.push(captureString);
 	}
+	
+	console.log(data.length);
+	console.log(icons.length);
 	
 	//sort the icons data
 	function compareStringsByNumber(a, b) {
