@@ -11,5 +11,11 @@
 	<ul>
 		<li><NuxtLink to="/dragon-to-sheets/">Dragon to Sheets</NuxtLink></li>
 	</ul>
+	<ul>
+		<li><NuxtLink to="/lair-to-sheets/">Lair to Sheets</NuxtLink></li>
+	</ul>
+	<ul>
+		<li><NuxtLink to="/history-to-sheets/">Recent History to Sheets</NuxtLink></li>
+	</ul>
 	<NuxtChild />
 </div></template>

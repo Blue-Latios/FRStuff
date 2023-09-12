@@ -40,7 +40,7 @@ ul {
 const HTMLParser = require('node-html-parser');
 
 function buildString(t) {
-	const r = HTMLParser.parse(t)
+	const r = HTMLParser.parse(t);
 	
 	//data extraction
 	
@@ -68,7 +68,6 @@ function buildString(t) {
 	const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
 	let primaryColor = iconvalues[0].childNodes[0].text.trim();
 	let primaryGene = iconvalues[0].querySelector("strong").text.split(" (")[0]; //split to remove ancient gene variant
-	console.log(primaryColor);
 	let secondaryColor = iconvalues[1].childNodes[0].text.trim();
 	let secondaryGene = iconvalues[1].querySelector("strong").text.split(" (")[0];
 	let tertiaryColor = iconvalues[2].childNodes[0].text.trim();
@@ -128,7 +127,8 @@ export default {
 			let pastedText = '';
 			try {
 				if (window.clipboardData && window.clipboardData.getData) { // IE
-					pastedText = window.clipboardData.getData('Text');
+					pastedText = window.clipboardData.getData('Text'); //unresolved
+					alert('May not work in Internet Explorer');
 				} else if (e.clipboardData && e.clipboardData.getData) {
 					pastedText = e.clipboardData.getData('text/html');
 				}
