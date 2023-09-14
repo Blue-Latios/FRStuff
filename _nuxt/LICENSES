@@ -1,4 +1,14 @@
 /*!
+ * Vue.js v2.7.14
+ * (c) 2014-2022 Evan You
+ * Released under the MIT License.
+ */
+
+
+/*! https://mths.be/he v1.2.0 by @mathias | MIT license */
+
+
+/*!
  * BootstrapVue Icons, generated from Bootstrap Icons 1.2.2
  *
  * @link https://icons.getbootstrap.com/
@@ -53,13 +63,3 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-
-/*!
- * Vue.js v2.7.14
- * (c) 2014-2022 Evan You
- * Released under the MIT License.
- */
-
-
-/*! https://mths.be/he v1.2.0 by @mathias | MIT license */
