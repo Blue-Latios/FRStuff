@@ -20,5 +20,8 @@
 	<ul>
 		<li><NuxtLink to="/color-range-finder/">Color Range Finder</NuxtLink></li>
 	</ul>
+	<ul>
+		<li><NuxtLink to="/sheets-columns-sorter/">Sheets Columns Sorter</NuxtLink></li>
+	</ul>
 	<NuxtChild />
 </div></template>
