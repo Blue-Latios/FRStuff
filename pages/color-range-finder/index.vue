@@ -31,7 +31,7 @@
   
   <div class="cols">
 	<div class="col">
-		<label for="prim">Primary Color:</label>
+		<label>Primary Color:</label><br>
 		<select class="colorDropdown" id="prim1" v-model="prim1">
 			<option selected value="-1">-</option>
 			<option v-for="(color, idx) in colors" :value="idx">{{ color }}</option>
@@ -42,7 +42,7 @@
 		</select>
 	</div>
 	<div class="col">
-		<label for="prim">Secondary Color:</label>
+		<label>Secondary Color:</label><br>
 		<select class="colorDropdown" id="sec1" v-model="sec1">
 			<option selected value="-1">-</option>
 			<option v-for="(color, idx) in colors" :value="idx">{{ color }}</option>
@@ -53,7 +53,7 @@
 		</select>
 	</div>
 	<div class="col">
-		<label for="prim">Tertiary Color:</label>
+		<label>Tertiary Color:</label><br>
 		<select class="colorDropdown" id="tert1" v-model="tert1">
 			<option selected value="-1">-</option>
 			<option v-for="(color, idx) in colors" :value="idx">{{ color }}</option>
@@ -68,13 +68,15 @@
   Max distance: 
   <select id="dist" v-model="dist">
 	<option v-for="i in computeRange" :value="i">{{ i }}</option>
-  </select>
+  </select><br>
   <br>
   
   <button @click="generate">Generate</button><br><br>
   <p class="results">{{ results }}</p>
   
-  <div class="footnote" style="font-size: 10px;"><a href="https://www1.flightrising.com/forums/gde/3269795">Referred tool thread</a></div>
+  <hr>
+  <div class="footnote" style="font-size: 10px;"><a href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a><br>
+  Tool by BlueLatios.</div>
 </div></template>
 
 <style>
@@ -246,7 +248,7 @@ export default {
 	},
 	computed: {
 		computeRange() {
-			return Array.from({length: 177}, (_, idx) => idx);
+			return Array.from({length: 264}, (_, idx) => idx);
 		},
 	},
 	methods: {
@@ -277,6 +279,8 @@ export default {
 				rows[i][3] = this.colors.indexOf(rows[i][3]);
 				rows[i][5] = this.colors.indexOf(rows[i][5]);
 				rows[i][7] = this.colors.indexOf(rows[i][7]);
+				//baby
+				rows[i][12] = (rows[i][12] == "Yes" ? 1 : 0)
 			}
 			return rows;
 		},
@@ -285,6 +289,7 @@ export default {
 			//col 1 is isMale
 			//col 2 is breed
 			//col 3, 5, 7 are prim, sec, and tert
+			//col 12 is baby?
 			//col 14 is ID
 			let pairs = [];
 			
@@ -292,8 +297,10 @@ export default {
 			let males = [];
 			let females = [];
 			for (let i = 0; i < data.length; i++) {
-				if (data[i][1] == 1) males.push(data[i]);
-				else females.push(data[i]);
+				if (data[i][12] == 0) {
+					if (data[i][1] == 1) males.push(data[i]);
+					else females.push(data[i]); //if (data[i][1] == 0)
+				}
 			}
 			
 			//dragon pairing typical search

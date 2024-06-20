@@ -20,8 +20,10 @@
   <textarea v-model="textStuff" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
   <textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
   <button @click="copyText">Copy</button><br><br><br>
-  
-  <div class="footnote" style="font-size: 10px;"><a href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a></div>
+
+  <hr>
+  <div class="footnote" style="font-size: 10px;"><a href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a><br>
+  Tool by BlueLatios.</div>
 </div></template>
 
 <style>

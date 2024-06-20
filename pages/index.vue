@@ -26,5 +26,8 @@
 	<ul>
 		<li><NuxtLink to="/gene-format-updater/">Gene Format Updater</NuxtLink></li>
 	</ul>
+	<ul>
+		<li><NuxtLink to="/predict-lite/">Predict Morphology Lite</NuxtLink></li>
+	</ul>
 	<NuxtChild />
 </div></template>

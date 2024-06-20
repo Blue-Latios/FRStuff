@@ -27,6 +27,9 @@
   <button @click="generate">Generate BBCode</button><br><br>
   Copy everything from here:<br>
   <p class="preformat">{{ result }}</p>
+  <hr>
+  <div class="footnote" style="font-size: 10px;"><a href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a><br>
+  Tool by BlueLatios.</div>
 </div></template>
 
 <script>
