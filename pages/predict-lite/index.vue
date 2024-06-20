@@ -8,7 +8,7 @@
   <div class="text-bold">Details<br>
   </div>
   
-  Similar to <a href="https://www1.flightrising.com/scrying/predict">Predict Morphology</a>, with some things<br>
+  Similar to <a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/scrying/predict">Predict Morphology</a>, with some things<br>
   less, and other things more.<br>
   For example, you can choose the genes first instead of breed. No more<br>
   having to choose the genes again across 5+ different ancient breeds.<br>
@@ -99,7 +99,7 @@
   <p class="results" v-html="results"></p>
   
   <hr>
-  <div class="footnote" style="font-size: 10px;"><a href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a><br>
+  <div class="footnote" style="font-size: 10px;"><a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a><br>
   Tool by BlueLatios.</div>
 </div></template>
 
@@ -282,7 +282,7 @@ export default {
 					let tertgene = "&tertgene=" + this.get_id(name, this.tert_g);
 					
 					let k = start_s + gender + age + element + eyetype + body + wings + tert + breed + bodygene + winggene + tertgene;
-					s += "\n\n<b><font size=4>" + name + "</font></b>\n<font size=1><a href=" + k + ">" + k + "</a></font>";
+					s += "\n\n<b><font size=4>" + name + '</font></b>\n<font size=1><a target="_blank" rel="noopener noreferrer" href=' + k + ">" + k + "</a></font>";
 				});
 				
 				this.results = s;

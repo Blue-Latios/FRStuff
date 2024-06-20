@@ -75,7 +75,7 @@
   <p class="results">{{ results }}</p>
   
   <hr>
-  <div class="footnote" style="font-size: 10px;"><a href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a><br>
+  <div class="footnote" style="font-size: 10px;"><a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/forums/gde/3269795">Tool thread</a><br>
   Tool by BlueLatios.</div>
 </div></template>
 
