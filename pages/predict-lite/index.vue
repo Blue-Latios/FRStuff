@@ -15,30 +15,39 @@
   This tool also allows you to see which breeds have this gene<br>
   combo. To select breed links to show, click on the buttons.<br>
   Orange buttons mean that the gene combo selected is not available<br>
-  on those breeds.<br><br>
+  on those breeds. Press the R buttons to randomize.<br><br>
   
+  Optionally, you can go to a dragon's page and select all (Ctrl+A),<br>
+  then click on the box below and paste (Ctrl+V) to input some options.<br><br>
+  
+  Copy dragon page, Paste here:<br>
+  <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
   
   <div class="cols">
 	<div class="col">
-		<label>Gender</label><br>
+		<label>Gender</label>
+		<button class="r" @click="r_gender()">R</button><br>
 		<select class="dropdown" id="gender" v-model="gender">
 			<option v-for="(val, key) in gender_list" :value="val">{{ key }}</option>
 		</select>
 	</div>
 	<div class="col">
-		<label>Age</label><br>
+		<label>Age</label>
+		<button class="r" @click="r_age()">R</button><br>
 		<select class="dropdown" id="age" v-model="age">
 			<option v-for="(val, key) in age_list" :value="val">{{ key }}</option>
 		</select>
 	</div>
 	<div class="col">
-		<label>Element</label><br>
-		<select class="dropdown" id="elem" v-model="elem">
-			<option v-for="(val, key) in elem_list" :value="val">{{ key }}</option>
+		<label>Element</label>
+		<button class="r" @click="r_element()">R</button><br>
+		<select class="dropdown" id="element" v-model="element">
+			<option v-for="(val, key) in element_list" :value="val">{{ key }}</option>
 		</select>
 	</div>
 	<div class="col">
-		<label>Eye Type</label><br>
+		<label>Eye Type</label>
+		<button class="r" @click="r_eye()">R</button><br>
 		<select class="dropdown" id="eye" v-model="eye">
 			<option v-for="(val, key) in eye_list" :value="val">{{ key }}</option>
 		</select>
@@ -46,31 +55,37 @@
   </div>
   <div class="cols">
 	<div class="col">
-		<label>Primary Color</label><br>
+		<label>Primary Color</label>
+		<button class="r" @click="r_pc()">R</button><br>
 		<select class="dropdown" id="prim_c" v-model="prim_c">
 			<option v-for="(val, key) in colors" :value="val">{{ key }}</option>
 		</select><br><br>
-		<label>Primary Gene</label><br>
+		<label>Primary Gene</label>
+		<button class="r" @click="r_pg()">R</button><br>
 		<select class="dropdown" id="prim_g" v-model="prim_g">
 			<option v-for="val in prim_genes" :value="val">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
-		<label>Secondary Color</label><br>
+		<label>Secondary Color</label>
+		<button class="r" @click="r_sc()">R</button><br>
 		<select class="dropdown" id="sec_c" v-model="sec_c">
 			<option v-for="(val, key) in colors" :value="val">{{ key }}</option>
 		</select><br><br>
-		<label>Secondary Gene</label><br>
+		<label>Secondary Gene</label>
+		<button class="r" @click="r_sg()">R</button><br>
 		<select class="dropdown" id="sec_g" v-model="sec_g">
 			<option v-for="val in sec_genes" :value="val">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
-		<label>Tertiary Color:</label><br>
+		<label>Tertiary Color:</label>
+		<button class="r" @click="r_tc()">R</button><br>
 		<select class="dropdown" id="tert_c" v-model="tert_c">
 			<option v-for="(val, key) in colors" :value="val">{{ key }}</option>
 		</select><br><br>
-		<label>Tertiary Gene:</label><br>
+		<label>Tertiary Gene:</label>
+		<button class="r" @click="r_tg()">R</button><br>
 		<select class="dropdown" id="tert_g" v-model="tert_g">
 			<option v-for="val in tert_genes" :value="val">{{ val }}</option>
 		</select>
@@ -145,29 +160,45 @@ ul {
 	color: white;
 	cursor: not-allowed;
 }
+.r {
+	background-color: gray;
+	color: #b3c2fd;
+	font-weight: bold;
+}
+.ta {
+	background-color: transparent;
+	color: transparent;
+}
 </style>
 
 <script>
+const HTMLParser = require('node-html-parser');
+
 import SCRY from "@/data/scry.js";
 
 const start_s = "https://www1.flightrising.com/scrying/predict?";
+
+function rand(min, max) {
+	return (Math.floor(Math.random() * (max - min + 1)) + min).toString();
+}
 
 export default {
 	data() {
 		return {
 			results: '',
+			anytext: '',
 			
 			colors: SCRY["colors"],
-			prim_c: 21,
-			sec_c: 21,
-			tert_c: 21,
+			prim_c: "21",
+			sec_c: "21",
+			tert_c: "21",
 			
 			gender_list: SCRY["gender"],
 			gender: "0",
 			age_list: SCRY["age"],
 			age: "1",
-			elem_list: SCRY["element"],
-			elem: "3",
+			element_list: SCRY["element"],
+			element: "3",
 			eye_list: SCRY["eye_type"],
 			eye: "0",
 			
@@ -258,11 +289,11 @@ export default {
 			return this.g_id[this.conv(breed)][gene];
 		},
 		generate() {
-			
+			try {
 				
 				let gender = "gender=" + this.gender;
 				let age = "&age=" + this.age;
-				let element = "&element=" + this.elem;
+				let element = "&element=" + this.element;
 				let eyetype = "&eyetype=" + this.eye;
 				let body = "&body=" + this.prim_c.toString();
 				let wings = "&wings=" + this.sec_c.toString();
@@ -286,7 +317,86 @@ export default {
 				});
 				
 				this.results = s;
+			} catch(e) {
+				alert("Something went wrong...");
+			}
+		},
+		htmlPaste(e) {
+			let pastedText = '';
+			try {
+				if (window.clipboardData && window.clipboardData.getData) { // IE
+					pastedText = window.clipboardData.getData('Text'); //unresolved
+					alert('May not work in Internet Explorer');
+				} else if (e.clipboardData && e.clipboardData.getData) {
+					pastedText = e.clipboardData.getData('text/html');
+				}
 				
+				this.processInput(pastedText);
+			} catch(e) {
+				alert('Error! Not valid pasted data.');
+			}
+		},
+		processInput(t) {
+			try {
+				const r = HTMLParser.parse(t);
+				
+				this.gender = (r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-sex-tooltip"]`).querySelector("img").getAttribute("src").match(/\/([^/]+)\.png$/)[1] == "male" ? 0 : 1);
+				this.age = (r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-eternal-youth-tooltip"]`) ? "0" : "1");
+				
+				const phys = r.querySelector("#dragon-profile-physical");
+				const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
+				
+				this.prim_c = this.colors[iconvalues[0].childNodes[0].text.trim()];
+				this.sec_c = this.colors[iconvalues[1].childNodes[0].text.trim()];
+				this.tert_c = this.colors[iconvalues[2].childNodes[0].text.trim()];
+				this.prim_g = iconvalues[0].querySelector("strong").text.split(" (")[0];
+				this.sec_g = iconvalues[1].querySelector("strong").text.split(" (")[0];
+				this.tert_g = iconvalues[2].querySelector("strong").text.split(" (")[0];
+				this.element = this.element_list[iconvalues[5].childNodes[0].text.trim()];
+				this.eye = this.eye_list[iconvalues[5].querySelector("strong").text];
+				
+				let breed = iconvalues[4].querySelector("strong").text;
+				let item = this.modern_list.find(obj => obj.name === breed);
+				if (item) item.isOn = true;
+				else {
+					item = this.ancient_list.find(obj => obj.name === breed);
+						if (item) item.isOn = true;
+						else alert("Breed not found?");
+				}
+
+			} catch(e) {
+				alert('Not valid dragon data?');
+			}
+		},
+		r_gender() {
+			this.gender = rand(0,1);
+		},
+		r_age() {
+			this.age = rand(0,1);
+		},
+		r_element() {
+			this.element = rand(1,Object.keys(this.element_list).length);
+		},
+		r_eye() {
+			this.eye = rand(0,Object.keys(this.eye_list).length-1);
+		},
+		r_tc() {
+			this.tert_c = rand(1,177);
+		},
+		r_pg() {
+			this.prim_g = this.prim_genes[rand(0,this.prim_genes.length-1)];
+		},
+		r_pc() {
+			this.prim_c = rand(1,177);
+		},
+		r_sg() {
+			this.sec_g = this.sec_genes[rand(0,this.sec_genes.length-1)];
+		},
+		r_sc() {
+			this.sec_c = rand(1,177);
+		},
+		r_tg() {
+			this.tert_g = this.tert_genes[rand(0,this.tert_genes.length-1)];
 		},
 	}
 }
