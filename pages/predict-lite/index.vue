@@ -18,7 +18,9 @@
   on those breeds. Press the R buttons to randomize.<br><br>
   
   Optionally, you can go to a dragon's page and select all (Ctrl+A),<br>
-  then click on the box below and paste (Ctrl+V) to input some options.<br><br>
+  then click on the box below and paste (Ctrl+V) to input some options.<br>
+  The "Limit Genes to Selection" button disables genes unavailable <br>
+  outside of the selected breeds.<br><br>
   
   Copy dragon page, Paste here:<br>
   <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
@@ -63,7 +65,7 @@
 		<label>Primary Gene</label>
 		<button class="r" @click="r_pg()">R</button><br>
 		<select class="dropdown" id="prim_g" v-model="prim_g">
-			<option v-for="val in prim_genes" :value="val">{{ val }}</option>
+			<option v-for="val in prim_genes" :value="val" :disabled="check_gene_disabled(val)">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
@@ -75,7 +77,7 @@
 		<label>Secondary Gene</label>
 		<button class="r" @click="r_sg()">R</button><br>
 		<select class="dropdown" id="sec_g" v-model="sec_g">
-			<option v-for="val in sec_genes" :value="val">{{ val }}</option>
+			<option v-for="val in sec_genes" :value="val" :disabled="check_gene_disabled(val)">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
@@ -87,7 +89,7 @@
 		<label>Tertiary Gene:</label>
 		<button class="r" @click="r_tg()">R</button><br>
 		<select class="dropdown" id="tert_g" v-model="tert_g">
-			<option v-for="val in tert_genes" :value="val">{{ val }}</option>
+			<option v-for="val in tert_genes" :value="val" :disabled="check_gene_disabled(val)">{{ val }}</option>
 		</select>
 	</div>
   </div>
@@ -108,7 +110,8 @@
   
   <br><br>
   <button @click="select_all">Select All Breeds</button>
-  <button @click="deselect_all">Deselect All Breeds</button><br><br>
+  <button @click="deselect_all">Deselect All Breeds</button>
+  <button @click="limit_genes" :class="limit_class">Limit Genes to Selection</button><br><br>
   
   <button style="background-color: #757adb; color: white" @click="generate">Generate Links</button><br><br>
   <p class="results" v-html="results"></p>
@@ -223,6 +226,8 @@ export default {
 				value: SCRY["ancient_list"][item],
 				isOn: false,
 			})),
+			
+			limit: false,
 		};
 	},
 	head() {
@@ -249,6 +254,28 @@ export default {
 				return 'on';
 			  };
 		},
+		limit_class() {
+			if (this.limit) return 'on';
+			return 'off';
+		},
+		check_gene_disabled() {
+			return (x) => {
+				let modern_already = false;
+				for (let breed in this.g_id) {
+					let b = {};
+					b.name = breed;
+					if (!(b.name == "Modern" && modern_already)) {
+						if (b.name == "Modern") modern_already=true;
+						if ((this.limit ? this.check_on(breed) : !this.check_disabled(b))) {
+							if (Object.keys(this.g_id[breed]).includes(x)) {
+								return false;
+							}
+						}
+					}
+				}
+				return true;
+			}
+		},
 	},
 	methods: {
 		conv(breed) {
@@ -256,8 +283,18 @@ export default {
 			return breed;
 		},
 		check_disabled(x) {
-			name = this.conv(x.name);
+			let name = this.conv(x.name);
 			return (!(this.prim_g in this.g_id[name] && this.sec_g in this.g_id[name] && this.tert_g in this.g_id[name]));
+		},
+		check_on(breed) {
+			if (breed == "Modern") {
+				let m = this.modern_list.filter(x => x.isOn);
+				if (m.length > 0) return true;
+				else return false;
+			} else {
+				let a = this.ancient_list.filter(x => x.name == breed).map(x => x.isOn);
+				return a[0];
+			}
 		},
 		toggle_m(x) {
 		  if (!this.modern_list[x].isDisabled) {
@@ -284,6 +321,9 @@ export default {
 			for (const key in this.ancient_list) {
 				this.ancient_list[key].isOn = false;
 			}
+		},
+		limit_genes() {
+			this.limit = !this.limit;
 		},
 		get_id(breed, gene) {
 			return this.g_id[this.conv(breed)][gene];
