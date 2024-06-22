@@ -424,19 +424,25 @@ export default {
 			this.tert_c = rand(1,177);
 		},
 		r_pg() {
-			this.prim_g = this.prim_genes[rand(0,this.prim_genes.length-1)];
+			let l = this.prim_genes.filter(x => !this.check_gene_disabled(x));
+			if (l.length == 0) this.prim_g = "Basic";
+			else this.prim_g = l[rand(0,l.length-1)];
 		},
 		r_pc() {
 			this.prim_c = rand(1,177);
 		},
 		r_sg() {
-			this.sec_g = this.sec_genes[rand(0,this.sec_genes.length-1)];
+			let l = this.sec_genes.filter(x => !this.check_gene_disabled(x));
+			if (l.length == 0) this.sec_g = "Basic";
+			else this.sec_g = l[rand(0,l.length-1)];
 		},
 		r_sc() {
 			this.sec_c = rand(1,177);
 		},
 		r_tg() {
-			this.tert_g = this.tert_genes[rand(0,this.tert_genes.length-1)];
+			let l = this.tert_genes.filter(x => !this.check_gene_disabled(x));
+			if (l.length == 0) this.tert_g = "Basic";
+			else this.tert_g = l[rand(0,l.length-1)];
 		},
 	}
 }
