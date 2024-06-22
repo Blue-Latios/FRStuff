@@ -65,7 +65,7 @@
 		<label>Primary Gene</label>
 		<button class="r" @click="r_pg()">R</button><br>
 		<select class="dropdown" id="prim_g" v-model="prim_g">
-			<option v-for="val in prim_genes" :value="val" :disabled="check_gene_disabled(val)">{{ val }}</option>
+			<option v-for="val in prim_genes" :value="val" :disabled="check_gene_disabled(val, 1)">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
@@ -77,7 +77,7 @@
 		<label>Secondary Gene</label>
 		<button class="r" @click="r_sg()">R</button><br>
 		<select class="dropdown" id="sec_g" v-model="sec_g">
-			<option v-for="val in sec_genes" :value="val" :disabled="check_gene_disabled(val)">{{ val }}</option>
+			<option v-for="val in sec_genes" :value="val" :disabled="check_gene_disabled(val, 2)">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
@@ -89,7 +89,7 @@
 		<label>Tertiary Gene:</label>
 		<button class="r" @click="r_tg()">R</button><br>
 		<select class="dropdown" id="tert_g" v-model="tert_g">
-			<option v-for="val in tert_genes" :value="val" :disabled="check_gene_disabled(val)">{{ val }}</option>
+			<option v-for="val in tert_genes" :value="val" :disabled="check_gene_disabled(val, 3)">{{ val }}</option>
 		</select>
 	</div>
   </div>
@@ -259,14 +259,14 @@ export default {
 			return 'off';
 		},
 		check_gene_disabled() {
-			return (x) => {
+			return (x, y) => {
 				let modern_already = false;
 				for (let breed in this.g_id) {
 					let b = {};
 					b.name = breed;
 					if (!(b.name == "Modern" && modern_already)) {
 						if (b.name == "Modern") modern_already=true;
-						if ((this.limit ? this.check_on(breed) : !this.check_disabled(b))) {
+						if ((this.limit ? this.check_on(breed) : !this.check_disabled(b, y))) {
 							if (Object.keys(this.g_id[breed]).includes(x)) {
 								return false;
 							}
@@ -282,9 +282,9 @@ export default {
 			if (this.modern_list.map(x => x.name).includes(breed)) return "Modern";
 			return breed;
 		},
-		check_disabled(x) {
+		check_disabled(x, y=0) {
 			let name = this.conv(x.name);
-			return (!(this.prim_g in this.g_id[name] && this.sec_g in this.g_id[name] && this.tert_g in this.g_id[name]));
+			return (!((y == 1 ? true : this.prim_g in this.g_id[name]) && (y == 2 ? true : this.sec_g in this.g_id[name]) && (y == 3 ? true : this.tert_g in this.g_id[name])));
 		},
 		check_on(breed) {
 			if (breed == "Modern") {
@@ -424,7 +424,7 @@ export default {
 			this.tert_c = rand(1,177);
 		},
 		r_pg() {
-			let l = this.prim_genes.filter(x => !this.check_gene_disabled(x));
+			let l = this.prim_genes.filter(x => !this.check_gene_disabled(x, 1));
 			if (l.length == 0) this.prim_g = "Basic";
 			else this.prim_g = l[rand(0,l.length-1)];
 		},
@@ -432,7 +432,7 @@ export default {
 			this.prim_c = rand(1,177);
 		},
 		r_sg() {
-			let l = this.sec_genes.filter(x => !this.check_gene_disabled(x));
+			let l = this.sec_genes.filter(x => !this.check_gene_disabled(x, 2));
 			if (l.length == 0) this.sec_g = "Basic";
 			else this.sec_g = l[rand(0,l.length-1)];
 		},
@@ -440,7 +440,7 @@ export default {
 			this.sec_c = rand(1,177);
 		},
 		r_tg() {
-			let l = this.tert_genes.filter(x => !this.check_gene_disabled(x));
+			let l = this.tert_genes.filter(x => !this.check_gene_disabled(x, 3));
 			if (l.length == 0) this.tert_g = "Basic";
 			else this.tert_g = l[rand(0,l.length-1)];
 		},
