@@ -328,6 +328,26 @@ export default {
 		get_id(breed, gene) {
 			return this.g_id[this.conv(breed)][gene];
 		},
+		get_id_from(s, id) {
+			for (const [main, sub] of Object.entries(this.g_id))
+				for (const [key, value] of Object.entries(sub)) {
+					if (value === id) {
+						switch (s) {
+							case 0:
+								if (this.prim_genes.includes(key)) return key; 
+							break;
+							case 1:
+								if (this.sec_genes.includes(key)) return key;
+							break;
+							case 2:
+								if (this.tert_genes.includes(key)) return key;
+							break;
+							default:
+								alert("Bad switch case?");
+						}
+					}
+				}
+		},
 		generate() {
 			try {
 				
@@ -367,16 +387,44 @@ export default {
 				if (window.clipboardData && window.clipboardData.getData) { // IE
 					pastedText = window.clipboardData.getData('Text'); //unresolved
 					alert('May not work in Internet Explorer');
+					this.processPage(pastedText);
 				} else if (e.clipboardData && e.clipboardData.getData) {
-					pastedText = e.clipboardData.getData('text/html');
+					if (e.clipboardData.types.includes('text/html')) {
+						pastedText = e.clipboardData.getData('text/html');
+						this.processPage(pastedText);
+					} else {
+						pastedText = e.clipboardData.getData('text/plain');
+						this.processLink(pastedText);
+					}
 				}
-				
-				this.processInput(pastedText);
 			} catch(e) {
 				alert('Error! Not valid pasted data.');
 			}
 		},
-		processInput(t) {
+		processLink(url) {
+			this.gender = url.match(/gender=([^&]*)/)[1];
+			this.age = url.match(/age=([^&]*)/)[1];
+			this.prim_c = url.match(/body=([^&]*)/)[1];
+			this.sec_c = url.match(/wings=([^&]*)/)[1];
+			this.tert_c = url.match(/tert=([^&]*)/)[1];
+			
+			this.prim_g = this.get_id_from(0, url.match(/bodygene=([^&]*)/)[1]);
+			this.sec_g = this.get_id_from(1, url.match(/winggene=([^&]*)/)[1]);
+			this.tert_g = this.get_id_from(2, url.match(/tertgene=([^&]*)/)[1]);
+			
+			this.element = url.match(/element=([^&]*)/)[1];
+			this.eye = url.match(/eyetype=([^&]*)/)[1];
+			
+			let breedId = url.match(/breed=([^&]*)/)[1];
+			let item = this.modern_list.find(obj => obj.value === breedId);
+			if (item) item.isOn = true;
+			else {
+				item = this.ancient_list.find(obj => obj.value === breedId);
+					if (item) item.isOn = true;
+					else alert("Breed not found?");
+			}
+		},
+		processPage(t) {
 			try {
 				const r = HTMLParser.parse(t);
 				
@@ -389,9 +437,11 @@ export default {
 				this.prim_c = this.colors[iconvalues[0].childNodes[0].text.trim()];
 				this.sec_c = this.colors[iconvalues[1].childNodes[0].text.trim()];
 				this.tert_c = this.colors[iconvalues[2].childNodes[0].text.trim()];
+				
 				this.prim_g = iconvalues[0].querySelector("strong").text.split(" (")[0];
 				this.sec_g = iconvalues[1].querySelector("strong").text.split(" (")[0];
 				this.tert_g = iconvalues[2].querySelector("strong").text.split(" (")[0];
+				
 				this.element = this.element_list[iconvalues[5].childNodes[0].text.trim()];
 				this.eye = this.eye_list[iconvalues[5].querySelector("strong").text];
 				

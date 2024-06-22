@@ -318,6 +318,7 @@ module.exports = {
 			"Tide": "231",
 			"Vipera": "96",
 			"Wasp": "108",
+			//
 			"Bee": "108",
 			"Blaze": "214",
 			"Blend": "91",
@@ -353,6 +354,7 @@ module.exports = {
 			"Toxin": "230",
 			"Trail": "231",
 			"Weaver": "102",
+			//
 			"Augment": "198",
 			"Braids": "199",
 			"Capsule": "83",
@@ -413,6 +415,7 @@ module.exports = {
 			"Stitched": "165",
 			"Tide": "164",
 			"Twinkle": "166",
+			//
 			"Alloy": "157",
 			"Blaze": "163",
 			"Blend": "148",
@@ -437,6 +440,7 @@ module.exports = {
 			"Spinner": "161",
 			"Thread": "162",
 			"Weaver": "284",
+			//
 			"Carnivore": "163",
 			"Circuit": "135",
 			"Contour": "136",
@@ -492,6 +496,7 @@ module.exports = {
 			"Varnish": "261",
 			"Vipera": "260",
 			"Wicker": "262",
+			//
 			"Affection": "279",
 			"Alloy": "250",
 			"Blend": "242",
@@ -519,6 +524,7 @@ module.exports = {
 			"Stripes": "259",
 			"Weaver": "253",
 			"Woven": "262",
+			//
 			"Batty": "214",
 			"Branches": "217",
 			"Capsule": "229",
@@ -587,6 +593,7 @@ module.exports = {
 			"Tapir": "74",
 			"Tide": "184",
 			"Tiger": "46",
+			//
 			"Alloy": "49",
 			"Arrow": "54",
 			"Blaze": "215",
@@ -619,6 +626,7 @@ module.exports = {
 			"Toxin": "53",
 			"Trail": "45",
 			"Weaver": "285",
+			//
 			"Capsule": "74",
 			"Carnivore": "164",
 			"Contour": "46",
@@ -676,6 +684,7 @@ module.exports = {
 			"Varnish": "316",
 			"Wasp": "310",
 			"Wrought": "307",
+			//
 			"Bee": "310",
 			"Blaze": "295",
 			"Blend": "296",
@@ -703,6 +712,7 @@ module.exports = {
 			"Spire": "307",
 			"Trail": "308",
 			"Weaver": "303",
+			//
 			"Angler": "286",
 			"Antlers": "276",
 			"Augment": "280",
@@ -765,6 +775,7 @@ module.exports = {
 			"Tide": "172",
 			"Tiger": "36",
 			"Wasp": "28",
+			//
 			"Bee": "28",
 			"Blaze": "216",
 			"Blend": "86",
@@ -796,6 +807,7 @@ module.exports = {
 			"Toxin": "173",
 			"Trail": "32",
 			"Weaver": "286",
+			//
 			"Angler": "156",
 			"Blossom": "36",
 			"Braids": "55",
@@ -871,6 +883,7 @@ module.exports = {
 			"Tiger": "2",
 			"Vipera": "8",
 			"Wasp": "20",
+			//
 			"Alloy": "17",
 			"Bee": "20",
 			"Blaze": "213",
@@ -915,6 +928,7 @@ module.exports = {
 			"Toxin": "12",
 			"Trail": "22",
 			"Weaver": "283",
+			//
 			"Capsule": "18",
 			"Circuit": "1",
 			"Contour": "13",
@@ -979,6 +993,7 @@ module.exports = {
 			"Tiger": "211",
 			"Wasp": "207",
 			"Wrought": "187",
+			//
 			"Arowana": "194",
 			"Bee": "207",
 			"Blaze": "217",
@@ -1007,6 +1022,7 @@ module.exports = {
 			"Stripes": "211",
 			"Trail": "202",
 			"Weaver": "287",
+			//
 			"Augment": "173",
 			"Beard": "174",
 			"Branches": "189",
@@ -1078,6 +1094,7 @@ module.exports = {
 			"Wasp": "125",
 			"Wolf": "116",
 			"Wrought": "277",
+			//
 			"Alloy": "278",
 			"Bee": "125",
 			"Blaze": "218",
@@ -1119,6 +1136,7 @@ module.exports = {
 			"Toxin": "131",
 			"Trail": "121",
 			"Weaver": "271",
+			//
 			"Angler": "246",
 			"Blossom": "267",
 			"Branches": "248",
@@ -1198,6 +1216,7 @@ module.exports = {
 			"Tapir": "62",
 			"Vipera": "63",
 			"Wasp": "68",
+			//
 			"Bee": "60",
 			"Blaze": "219",
 			"Blend": "61",
@@ -1226,6 +1245,7 @@ module.exports = {
 			"Vivid": "69",
 			"Weaver": "288",
 			"Web": "71",
+			//
 			"Angler": "78",
 			"Beetle": "65",
 			"Branches": "63",
