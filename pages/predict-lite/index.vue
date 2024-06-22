@@ -12,17 +12,19 @@
   less, and other things more.<br>
   For example, you can choose the genes first instead of breed. No more<br>
   having to choose the genes again across 5+ different ancient breeds.<br>
-  This tool also allows you to see which breeds have this gene<br>
-  combo. To select breed links to show, click on the buttons.<br>
-  Orange buttons mean that the gene combo selected is not available<br>
+  This tool also allows you to see which breeds have desired gene<br>
+  combos. To select breed links to show, click on the buttons.<br>
+  Orange buttons mean the gene combo selected is not available<br>
   on those breeds. Press the R buttons to randomize.<br><br>
   
   Optionally, you can go to a dragon's page and select all (Ctrl+A),<br>
   then click on the box below and paste (Ctrl+V) to input some options.<br>
+  You can also copy a dragon scry link and paste it into the box.<br>
   The "Limit Genes to Selection" button disables genes unavailable <br>
-  outside of the selected breeds.<br><br>
+  outside of the selected breeds. Click Generate Links to make<br>
+  Predict Morphology links that shows the scry images.<br><br>
   
-  Copy dragon page, Paste here:<br>
+  Paste page/link here:<br>
   <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
   
   <div class="cols">
