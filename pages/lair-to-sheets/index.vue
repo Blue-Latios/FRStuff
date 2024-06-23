@@ -3,6 +3,7 @@
   <div class="text-bold">What is this?<br>
   </div>
   Go to Lair/Den page, go to Page Source, copy all and paste into box.<br>
+  (You can also go to the Page Source of the Edit tab to get the entire tab.)<br>
   Text comes out, copy that and paste into Google Sheets.<br>
   Click the "Copy" button to copy the result text.<br><br>
   
@@ -17,6 +18,10 @@
   Add "<b>view-source:</b>" to the start of the URL link. Then select<br>
   all of the text, then copy and paste it into the box.<br><br>
   
+  <div style="line-height:1.0;"><font size=1>*Due to some mobile limitations, some mobile devices<br>
+  are not able to copy the whole view-source page. The workaround makes<br>
+  the user do many things, it's easier to ask someone with a PC to help.</font></div>
+  <br><br>
   <textarea v-model="textStuff" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
   <textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
   <button @click="copyText">Copy</button><br><br><br>
