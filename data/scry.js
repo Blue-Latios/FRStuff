@@ -627,6 +627,7 @@ module.exports = {
 			"Trail": "45",
 			"Weaver": "285",
 			//
+			"Brightshine" : "310",
 			"Capsule": "74",
 			"Carnivore": "164",
 			"Contour": "46",
@@ -718,6 +719,7 @@ module.exports = {
 			"Augment": "280",
 			"Batty": "289",
 			"Blossom": "281",
+			"Brightshine" : "309",
 			"Carnivore": "282",
 			"Dewlap": "288",
 			"Fishbone": "277",
