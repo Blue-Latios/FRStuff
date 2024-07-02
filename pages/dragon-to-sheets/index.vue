@@ -58,6 +58,8 @@ function buildString(t) {
 	isPermabab = (isPermabab ? "Yes" : "No");
 	let isSilhouette = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-silhouette-tooltip"]`);
 	isSilhouette = (isSilhouette ? "Yes" : "No");
+	let isFlip = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-reflect-tooltip"]`);
+	isFlip = (isFlip ? "Yes" : "No");
 	
 	//Physical Attributes
 	const phys = r.querySelector("#dragon-profile-physical");
@@ -109,6 +111,7 @@ function buildString(t) {
 	str += '\t' + length;
 	str += '\t' + wingspan;
 	str += '\t' + weight;
+	str += '\t' + isFlip;
 	return str;
 }
 

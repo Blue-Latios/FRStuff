@@ -96,6 +96,7 @@ function buildString(t, i) {
 	//icons data extraction
 	let isPermabab = (i.includes("#icon-eternal-youth-tooltip") ? "Yes" : "No");
 	let isSilhouette = (i.includes("#icon-silhouette-tooltip") ? "Yes" : "No");
+	let isFlip = (i.includes("#icon-reflect-tooltip") ? "Yes" : "No");
 	
 	//string building
 	let str = '';
@@ -115,6 +116,7 @@ function buildString(t, i) {
 	str += '\t' + isSilhouette;
 	str += '\t' + id;
 	str += '\t' + level;
+	str += '\t' + isFlip;
 	//console.log("passed");
 	return str;
 }
