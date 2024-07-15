@@ -6,10 +6,8 @@
   Text comes out, copy that and paste into Google Sheets.<br>
   Click the "Copy" button to copy the result text.<br><br>
   
-  <div class="text-bold">Sheets link:<br>
-  </div>
-  
-  https://docs.google.com/spreadsheets/d/1C_Bsog-brvpPR1ANAhLgegZdtorwwtCUcswm40W7cCc<br><br>
+  <div class="text-bold"><a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1C_Bsog-brvpPR1ANAhLgegZdtorwwtCUcswm40W7cCc">Click for Sheets Link Here</a>
+  </div><br>
   
   <textarea v-model="textStuff" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
   <textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
@@ -88,6 +86,7 @@ function buildString(t) {
 	let isBred = r.querySelector(".dragon-profile-lineage-offspring").querySelector("em");
 	isBred = (isBred ? "No" : "Yes");
 	
+	let cTime = r.querySelector("time").getAttribute("datetime");
 	
 	//string building
 	let str = '';
@@ -112,6 +111,7 @@ function buildString(t) {
 	str += '\t' + wingspan;
 	str += '\t' + weight;
 	str += '\t' + isFlip;
+	str += '\t' + cTime;
 	return str;
 }
 

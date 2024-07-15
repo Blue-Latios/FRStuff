@@ -2,27 +2,26 @@
 <div class="container">
   <div class="text-bold">What is this?<br>
   </div>
-  Go to Lair/Den page, go to Page Source, copy all and paste into box.<br>
-  (You can also go to the Page Source of the Edit tab to get the entire tab.)<br>
+  Download or save a Lair/Den page, click "Upload Webpage" button<br>
+  then select the saved (html) webpage. Alternatively, go to<br>
+  Lair/Den page, view Page Source, copy all, and paste into box.<br>
+  You can also go to the Edit tab to get entire tab of dragons!<br>
   Text comes out, copy that and paste into Google Sheets.<br>
   Click the "Copy" button to copy the result text.<br><br>
   
-  <div class="text-bold">Sheets link:<br>
-  </div>
+  <div class="text-bold"><a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1PwXIpCnLr10SYvqNkqX5B2DW9P-QlvUXQ9qA8o5AjY8">Click for Sheets Link Here</a>
+  </div><br>
   
-  https://docs.google.com/spreadsheets/d/1PwXIpCnLr10SYvqNkqX5B2DW9P-QlvUXQ9qA8o5AjY8<br><br>
-  
-  <div class="text-bold">Page Source?<br>
+  <div class="text-bold" style="font-size:17px;">Alternative method: Page Source?<br>
   </div>
   It's the part of a webpage where all you see is text. To get there,<br>
   Add "<b>view-source:</b>" to the start of the URL link. Then select<br>
-  all of the text, then copy and paste it into the box.<br><br>
+  all of the text, then copy and paste it into the box. (May not work<br>
+  for mobile users.)<br><br>
   
-  <div style="line-height:1.0;"><font size=1>*Due to some mobile limitations, some mobile devices<br>
-  are not able to copy the whole view-source page. The workaround makes<br>
-  the user do many things, it's easier to ask someone with a PC to help.</font></div>
-  <br><br>
-  <textarea v-model="textStuff" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
+  <input type="file" @change="handleFileUpload" ref="fileInput" style="display: none;" />
+  <button @click="triggerFileInput">Upload Webpage</button><br>
+  <textarea v-model="textStuff" placeholder="Or, copy and paste webpage source text here." @paste="htmlPaste" style="width:90%;"></textarea><br><br>
   <textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
   <button @click="copyText">Copy</button><br><br><br>
 
@@ -51,7 +50,7 @@ ul {
 
 <script>
 
-function buildString(t, i) {
+function buildString(t, i, cTime) {
 	
 	//tooltip data extraction
 	const pattern = />([^<>]*)<\/div>/g;
@@ -117,11 +116,16 @@ function buildString(t, i) {
 	str += '\t' + id;
 	str += '\t' + level;
 	str += '\t' + isFlip;
+	str += '\t' + cTime;
 	//console.log("passed");
 	return str;
 }
 
 function buildStrings(page) {
+	
+	//get time taken
+	
+	let cTime = page.match(/<time datetime="([^"]+)"/)[1];
 	
 	//get dragontip data
 	const dragontip_pattern = /class="dragontip"([^]*?)\[Click to see details about this dragon\.\]/g;
@@ -142,8 +146,8 @@ function buildStrings(page) {
 		icons.push(captureString);
 	}
 	
-	console.log(data.length);
-	console.log(icons.length);
+	//console.log(data.length);
+	//console.log(icons.length);
 	
 	//sort the icons data
 	function compareStringsByNumber(a, b) {
@@ -157,7 +161,7 @@ function buildStrings(page) {
 	//string building
 	let strAll = '';
 	for (let i = 0; i < data.length; i++) {
-		strAll += buildString(data[i], icons[i]) + '\n';
+		strAll += buildString(data[i], icons[i], cTime) + '\n';
 	}
 	return strAll;
 }
@@ -188,6 +192,25 @@ export default {
 				this.processInput(pastedText);
 			} catch(e) {
 				alert('Error! Not valid pasted data.');
+			}
+		},
+		triggerFileInput() {
+			this.$refs.fileInput.click();
+		},
+		handleFileUpload(e) {
+			try {
+				const file = event.target.files[0];
+				if (file && file.type === 'text/html') {
+					const reader = new FileReader();
+					reader.onload = (e) => {
+						const fileContent = e.target.result;
+						this.processInput(fileContent);
+					}
+				reader.readAsText(file);
+				} else
+					alert('Error! Not valid uploaded file?');
+			} catch(e) {
+				alert('Error! Something else went wrong.');
 			}
 		},
 		processInput(t) {
