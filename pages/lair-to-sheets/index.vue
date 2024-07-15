@@ -3,8 +3,8 @@
   <div class="text-bold">What is this?<br>
   </div>
   Download or save a Lair/Den page, click "Upload Webpage" button<br>
-  then select the saved (html) webpage. Alternatively, go to<br>
-  Lair/Den page, view Page Source, copy all, and paste into box.<br>
+  then select the saved (html) webpage. Or, go to Lair/Den page,<br>
+  view Page Source, copy all, and paste into box.<br>
   You can also go to the Edit tab to get entire tab of dragons!<br>
   Text comes out, copy that and paste into Google Sheets.<br>
   Click the "Copy" button to copy the result text.<br><br>
@@ -12,7 +12,7 @@
   <div class="text-bold"><a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1PwXIpCnLr10SYvqNkqX5B2DW9P-QlvUXQ9qA8o5AjY8">Click for Sheets Link Here</a>
   </div><br>
   
-  <div class="text-bold" style="font-size:17px;">Alternative method: Page Source?<br>
+  <div class="text-bold" style="font-size:18px;">Page Source?<br>
   </div>
   It's the part of a webpage where all you see is text. To get there,<br>
   Add "<b>view-source:</b>" to the start of the URL link. Then select<br>
