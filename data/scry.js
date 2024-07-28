@@ -1,14 +1,3 @@
-//0: Treasure MP
-//1: Gem MP
-//2: Baldwin
-//3: Swipp
-//4: Coliseum
-//5: Arlo
-//6: fest
-//7: achievements
-//8: NotN
-//9: Valentine
-
 module.exports = {
 	"gender": {
 		"Male": "0",
@@ -385,6 +374,7 @@ module.exports = {
 			"Spines": "206",
 			"Stained": "207",
 			"Thorns": "208",
+			"Thundercrack": "311",
 			"Thylacine": "93",
 			"Underbelly": "132",
 			"Veined": "91"
@@ -866,6 +856,7 @@ module.exports = {
 			"Mosaic": "58",
 			"Orb": "283",
 			"Petals": "13",
+			"Petrified": "318",
 			"Pharaoh": "87",
 			"Piebald": "9",
 			"Pinstripe": "22",
@@ -907,6 +898,7 @@ module.exports = {
 			"Hex": "14",
 			"Hypnotic": "9",
 			"Jester": "170",
+			"Lode": "318",
 			"Malachite": "237",
 			"Marbled": "57",
 			"Morph": "23",
@@ -1271,6 +1263,7 @@ module.exports = {
 			"Sparkle": "100",
 			"Stained": "72",
 			"Thorns": "68",
+			"Thundercrack": "312",
 			"Trickmurk": "270",
 			"Underbelly": "70",
 			"Veined": "134"
