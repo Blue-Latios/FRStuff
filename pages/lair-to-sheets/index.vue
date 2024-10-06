@@ -3,8 +3,10 @@
   <div class="text-bold">What is this?<br>
   </div>
   Download or save a Lair/Den page, click "Upload Webpage" button<br>
-  then select the saved (html) webpage. Or, go to Lair/Den page,<br>
-  view Page Source, copy all, and paste into box.<br>
+  then select the saved webpage. If it's not saved as HTML webpage, <br>
+  <u>you must rename the file and add .html to the end</u>.<br>
+  Alternatively, go to Lair/Den page, view Page Source, copy all, and<br>
+  paste into the input box.<br>
   You can also go to the Edit tab to get entire tab of dragons!<br>
   Text comes out, copy that and paste into Google Sheets.<br>
   Click the "Copy" button to copy the result text.<br><br>
@@ -203,8 +205,14 @@ export default {
 				if (file && file.type === 'text/html') {
 					const reader = new FileReader();
 					reader.onload = (e) => {
-						const fileContent = e.target.result;
-						this.processInput(fileContent);
+						try {
+							const fileContent = e.target.result;
+							this.processInput(fileContent);
+						} catch(e) {
+							alert('Error! Something went wrong with file processing.');
+						}  finally {
+							this.$refs.fileInput.value = '';
+						}
 					}
 				reader.readAsText(file);
 				} else

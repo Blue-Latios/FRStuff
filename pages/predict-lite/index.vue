@@ -8,8 +8,8 @@
   <div class="text-bold">Details<br>
   </div>
   
-  Similar to <a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/scrying/predict">Predict Morphology</a>, with some things less,<br<
-  but with other features that the site does not have.<br>
+  Similar to <a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/scrying/predict">Predict Morphology</a>, with some things less,<br>
+  but with other features that the site does not have.<br><br>
   For example, you can choose the genes first instead of breed. No more<br>
   having to choose the genes again across 5+ different ancient breeds.<br>
   This tool also allows you to see which breeds have desired gene<br>
@@ -20,7 +20,7 @@
   Optionally, you can go to a dragon's page and select all (Ctrl+A),<br>
   copy (Ctrl+C), then click on the box below and paste (Ctrl+V)<br>
   to input some options.<br>
-  You can also copy a dragon scry link and paste it into the box.<br>
+  You can also copy a dragon scry link and paste it into the box.<br><br>
   The "Limit Genes to Selection" button disables genes unavailable <br>
   outside of the selected breeds. Click Generate Links to make<br>
   Predict Morphology links that shows the scry images.<br><br>
