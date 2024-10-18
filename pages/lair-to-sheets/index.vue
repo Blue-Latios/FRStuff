@@ -2,14 +2,18 @@
 <div class="container">
   <div class="text-bold">What is this?<br>
   </div>
-  Download or save a Lair/Den page, click "Upload Webpage" button<br>
-  then select the saved webpage. If it's not saved as HTML webpage, <br>
-  <u>you must rename the file and add .html to the end</u>.<br>
-  Alternatively, go to Lair/Den page, view Page Source, copy all, and<br>
-  paste into the input box.<br>
-  You can also go to the Edit tab to get entire tab of dragons!<br>
-  Text comes out, copy that and paste into Google Sheets.<br>
-  Click the "Copy" button to copy the result text.<br><br>
+  Download or save a Lair/Den page, click<br>
+  "Upload Webpage" button, then select the saved<br>
+  webpage. If it's not saved as HTML webpage,<br>
+  <u>you must rename the file and add .html to<br>
+  the end</u>.<br>
+  Alternatively, go to Lair/Den page, view<br>
+  Page Source, copy all, and paste into the<br>
+  input box. You can also go to the Edit tab to<br>
+  get entire tab of dragons!<br>
+  Text comes out, copy that and paste into<br>
+  Google Sheets. Click the "Copy" button to copy<br>
+  the result text.<br><br>
   
   <div class="text-bold"><a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1PwXIpCnLr10SYvqNkqX5B2DW9P-QlvUXQ9qA8o5AjY8">Click for Sheets Link Here</a>
   </div><br>

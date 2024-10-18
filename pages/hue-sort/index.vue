@@ -2,14 +2,15 @@
 <div class="container">
     <div class="text-bold">What is this?<br>
     </div>
-    A simple tool that generates images of your dragons (or other<br>
-    things) sorted in approximate hues! Save dragon images to<br>
-    your local computer or phone, then upload* the images to<br>
-    the tool. Click Generate button to display the resulting<br>
-    grid of images! You can change the column number and zoom,<br>
-    starting position (think of it as the hue wheel!) and the<br>
-    results will automatically be adjusted!<br>
-    It's not perfect, but I hope you have fun using this tool!<br>
+    A simple tool that generates images of your dragons (or<br>
+    other things) sorted in approximate hues! Save dragon<br>
+    images to your local computer or phone, then upload*<br>
+    the images to the tool. Click Generate button to<br>
+    display the resulting grid of images! You can change<br>
+    the column number, zoom, starting position (think of<br>
+    it as the hue wheel!) and the results will be adjusted<br>
+    automatically! It's not perfect, but I hope you have<br>
+    fun using this tool!<br>
     <div style="font-size:10px;"><br>
     *the images are not actually uploaded to the web or stored anywhere.
     </div>

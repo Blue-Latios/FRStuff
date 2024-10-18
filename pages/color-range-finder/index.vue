@@ -13,19 +13,21 @@
   There's dropdowns for primary, secondary, and tertiary<br>
   colors. Choosing a second color will turn it into a range<br>
   search. <b>The order matters.</b> For example, if the 1st<br>
-  color is Blue and 2nd color is Green, it'll search color ranges<br>
-  in between, as in the color wheel, Green is further down than Blue.<br>
-  If the first color is Green and 2nd color is Blue,<br>
-  it will search for all colors except between Green and Blue.<br>
+  color is Blue and 2nd color is Green, it'll search color<br>
+  ranges in between, as in the color wheel, Green is<br>
+  further down than Blue. If the first color is Green and<br>
+  2nd color is Blue, it will search for all colors except<br>
+  between Green and Blue.<br>
   <br>
-  Distance is the number of colors that you may get that's not<br>
-  in the desired ranges. It could also refer as the longest<br>
-  "distance" from a dragon's color to the desired colors.<br>
-  For example, Maize is 1 distance away from Cream and 2 distance<br>
-  away from Antique. If you search for Maize in primary color and set<br>
-  maximum distance of 1, dragons with Cream primary are selected<br>
-  to pair with Maize primary dragons, but Antique primary dragons are<br>
-  not selected. Distance is added for both dragons in a pair.<br><br>
+  Distance is the number of colors that you may get that's<br>
+  not in the desired ranges. It could also refer as the<br>
+  longest "distance" from a dragon's color to the desired<br>
+  colors. For example, Maize is 1 distance away from Cream<br>
+  and 2 distance away from Antique. If you search for Maize<br>
+  in primary color and set maximum distance of 1, dragons<br>
+  with Cream primary are selected to pair with Maize<br>
+  primary dragons, but Antique primary dragons are not<br>
+  selected. Distance is added for both dragons in a pair.<br><br>
   
   <textarea v-model="textStuff" placeholder="Copy Paste Dragon data here." style="color:#777; width:90%;"></textarea><br>
   
