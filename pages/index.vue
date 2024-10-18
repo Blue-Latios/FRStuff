@@ -29,5 +29,8 @@
 	<ul>
 		<li><NuxtLink to="/predict-lite/">Predict Morphology Lite</NuxtLink></li>
 	</ul>
+	<ul>
+		<li><NuxtLink to="/hue-sort/">Hue Sort</NuxtLink></li>
+	</ul>
 	<NuxtChild />
 </div></template>
