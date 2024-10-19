@@ -11,10 +11,13 @@
     it as the hue wheel) and the results will be adjusted<br>
     automatically. Click the Download button to download<br>
     the results as an image file. Overall, the tool is not<br>
-    perfect, but I hope you have fun using it!<br>
+    perfect, but I hope you have fun using it!
     <div style="font-size:10px;"><br>
     *the images are not actually uploaded to the web or stored anywhere.
-    </div>
+    </div><br>
+    Note: If the number of images is too many and the<br>
+    zoom% is too large, Download may not work. 60 dragons<br>
+    on 100% zoom level is downloadable.<br>
     <br>
     <input type="file" multiple accept="image/*" ref="fileInput" @change="handleFileUpload" style="display: none;"/>
     <button @click="triggerFileInput">Upload Images</button>
@@ -23,19 +26,14 @@
 
     <label for="columns">Columns:</label>
     <input type="number" v-model="columns" min="1" style="width: 50px;" />
-
-    <label for="zoom">Zoom:</label>
-    <select v-model="zoomLevel">
-      <option value="0.25">25%</option>
-      <option value="0.5">50%</option>
-      <option value="0.75">75%</option>
-      <option value="1">100%</option>
-    </select>
-    <br>
+    
     <label for="startIndex">Start Index:</label>
 	<input type="number" v-model="startIndex" style="width: 75px;"/>
 	<br>
-
+	
+    <label for="zoom">Zoom%:</label>
+    <input type="range" v-model="zoomLevel" min="7" max="100" />
+    <br>
 
     <button @click="generateGrid">Generate</button> <button @click="downloadImage">Download</button>
     <br><br>
@@ -59,8 +57,8 @@ export default {
     return {
       imagesData: [],  // Store image data and hue here
       columns: 4,      // Default number of columns
-      zoomLevel: 1,    // Default zoom level (100%)
-      imageBaseWidth: 100,  // Base image width in pixels
+      zoomLevel: 25,    // Default zoom level (100%)
+      imageBaseWidth: 350,  // Base image width in pixels
       generated: false, // Flag to determine if grid is generated
       loading: false,
       diagonalImages: [], // Images arranged in diagonal order
@@ -77,7 +75,7 @@ export default {
       return this.imagesData.sort((a, b) => a.hue - b.hue);
     },
     zoomWidth() {
-      return this.imageBaseWidth * this.zoomLevel;  // Calculate width based on zoom
+      return this.imageBaseWidth * this.zoomLevel * 0.01;  // Calculate width based on zoom
     },
     gridColumnWidth() {
       // Calculate the exact width for each column based on zoom
@@ -86,10 +84,15 @@ export default {
   },
   methods: {
 	downloadImage() {
+	  this.loading=true;
       const gridElement = this.$refs.grid;
 
       // Use html2canvas to take a snapshot of the grid
-      html2canvas(gridElement, { backgroundColor: null }).then((canvas) => {
+      html2canvas(gridElement, {
+		  backgroundColor: null,  // Transparent background
+		  width: gridElement.scrollWidth,  // Full width, including overflow
+		  height: gridElement.scrollHeight, // Full height, including overflow
+		}).then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
         
         // Create a link to download the image
@@ -97,6 +100,12 @@ export default {
         link.href = imgData;
         link.download = 'grid_image.png'; // Filename for download
         link.click();
+        
+        this.loading=false;
+      })
+      .catch((error) => {
+        console.error("Download failed", error);
+        this.loadingDownload = false; // Reset loading in case of error
       });
     },
 	triggerFileInput() {
