@@ -8,9 +8,10 @@
     the images to the tool. Click Generate button to<br>
     display the resulting grid of images! You can change<br>
     the column number, zoom, starting position (think of<br>
-    it as the hue wheel!) and the results will be adjusted<br>
-    automatically! It's not perfect, but I hope you have<br>
-    fun using this tool!<br>
+    it as the hue wheel) and the results will be adjusted<br>
+    automatically. Click the Download button to download<br>
+    the results as an image file. Overall, the tool is not<br>
+    perfect, but I hope you have fun using it!<br>
     <div style="font-size:10px;"><br>
     *the images are not actually uploaded to the web or stored anywhere.
     </div>
@@ -36,10 +37,10 @@
 	<br>
 
 
-    <button @click="generateGrid">Generate</button>
+    <button @click="generateGrid">Generate</button> <button @click="downloadImage">Download</button>
     <br><br>
 
-    <div id="grid" v-if="generated" :style="{ gridTemplateColumns: gridColumnWidth, gap: '0px' }">
+    <div id="grid" v-if="generated" ref="grid" :style="{ gridTemplateColumns: gridColumnWidth, gap: '0px' }">
       <div v-for="(img, index) in diagonalImages" :key="img.file.name" class="grid-item">
         <img :src="img.imgSrc" :style="{ width: zoomWidth + 'px' }" :title="img.file.name.slice(0, img.file.name.lastIndexOf('.'))" alt="Uploaded Image" />
       </div>
@@ -51,6 +52,8 @@
 </div></template>
 
 <script>
+import html2canvas from 'html2canvas';
+
 export default {
   data() {
     return {
@@ -82,6 +85,20 @@ export default {
     }
   },
   methods: {
+	downloadImage() {
+      const gridElement = this.$refs.grid;
+
+      // Use html2canvas to take a snapshot of the grid
+      html2canvas(gridElement, { backgroundColor: null }).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        
+        // Create a link to download the image
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = 'grid_image.png'; // Filename for download
+        link.click();
+      });
+    },
 	triggerFileInput() {
 		this.$refs.fileInput.click();
 		this.loading = true;
