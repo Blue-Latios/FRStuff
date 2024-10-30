@@ -18,6 +18,8 @@
     Note: If the number of images is too many and the<br>
     zoom% is too large, Download may not work. 60 dragons<br>
     on 100% zoom level is downloadable.<br>
+    Known to not produce the best results for<br>
+    greyscale images.<br>
     <br>
     <input type="file" multiple accept="image/*" ref="fileInput" @change="handleFileUpload" style="display: none;"/>
     <button @click="triggerFileInput">Upload Images</button>
