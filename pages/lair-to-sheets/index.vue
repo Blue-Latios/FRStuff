@@ -144,7 +144,7 @@ function buildStrings(page) {
 	}
 	
 	//get icons data
-	const icons_pattern = /class="lair-page-dragon-tumbnail lair-dragon-tooltip" rel="#dragontip-([^]*?)(class="lair-page-dragon"|class="lair-footer")/g;
+	const icons_pattern = /class="lair-page-dragon-thumbnail lair-dragon-tooltip" rel="#dragontip-([^]*?)(class="lair-page-dragon"|class="lair-footer")/g;
 	//start string regex is so to get the first part of string is the ID
 	let icons = [];
 	while ((matches = icons_pattern.exec(page)) !== null) {
@@ -169,6 +169,7 @@ function buildStrings(page) {
 	for (let i = 0; i < data.length; i++) {
 		strAll += buildString(data[i], icons[i], cTime) + '\n';
 	}
+	
 	return strAll;
 }
 
