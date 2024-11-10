@@ -116,7 +116,7 @@ ul {
 import COLORS from "@/data/colors.js";
 import ANCIENTS from "@/data/ancients.js";
 
-const n_colors = 177;
+const n_colors = COLORS.length;
 
 function distNum(a, b) {
 	if (a == b) return 0;

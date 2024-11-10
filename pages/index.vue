@@ -32,5 +32,8 @@
 	<ul>
 		<li><NuxtLink to="/hue-sort/">Hue Sort</NuxtLink></li>
 	</ul>
+	<ul>
+		<li><NuxtLink to="/colors-data/">Colors Data</NuxtLink></li>
+	</ul>
 	<NuxtChild />
 </div></template>
