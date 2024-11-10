@@ -361,7 +361,7 @@ export default {
 			const outliers = Object.entries(colorCounts)
 				.filter(([color, data]) => data.o > 2)				// Filter where o > 2
 				.sort(([colorA, dataA], [colorB, dataB]) => dataB.o - dataA.o)	// Sort by o in descending order
-				.map(([color, data]) => `${color}: ${data.o}`)
+				.map(([color, data]) => `${titleCase(color)}: ${data.o}`)
 				.join('\n');
 			
 			const lastColors = getColorsWithLowestNonZeroLastValue(colorCounts);
@@ -389,14 +389,9 @@ export default {
 			
 			this.tertText = getTopColorsByAttribute("z", colorCounts).map(result => `${result.color}: ${result.count}`).join("\n");
 			
+			this.outlierText = outliers;
 			
-			
-			out += `Outlier colors (more than twice): ${outliers}\n`;
-			
-			this.outlierText = out;
-			out = ""
-			
-			this.missingText = "Missing colors: " + capitalizeWords(miss_arr).join(", ");
+			this.missingText = capitalizeWords(miss_arr).join(", ");
 			
 			this.nearDoubleText = printRows(nd_arr);
 			this.nearTripleText = printRows(nt_arr);
