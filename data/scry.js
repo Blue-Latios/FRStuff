@@ -289,8 +289,9 @@ module.exports = {
 	],
 	"breeds": {
 		"Aberration": {
+		  "Basic": "0",
+		  //
 			"Bar": "89",
-			"Basic": "0",
 			"Boa": "233",
 			"Boulder": "220",
 			"Cherub": "221",
@@ -401,8 +402,9 @@ module.exports = {
 			"Veined": "91"
 		},
 		"Aether": {
+		  "Basic": "0",
+		  //
 			"Bar": "150",
-			"Basic": "0",
 			"Boa": "234",
 			"Boulder": "151",
 			"Candy": "167",
@@ -540,8 +542,9 @@ module.exports = {
 			"Wish": "155"
 		},
 		"Auraboa": {
+		  "Basic": "0",
+		  //
 			"Bar": "238",
-			"Basic": "0",
 			"Boa": "239",
 			"Boulder": "240",
 			"Caterpillar": "241",
@@ -633,8 +636,9 @@ module.exports = {
 			"Willow": "227"
 		},
 		"Banescale": {
+		  "Basic": "0",
+		  //
 			"Bar": "181",
-			"Basic": "0",
 			"Boa": "235",
 			"Boulder": "291",
 			"Candycane": "55",
@@ -734,9 +738,10 @@ module.exports = {
 			"Wraith": "48"
 		},
 		"Dusthide": {
+		  "Basic": "0",
+		  //
 			"Arc": "306",
 			"Bar": "292",
-			"Basic": "0",
 			"Checkers": "293",
 			"Cherub": "340",
 			"Cinder": "295",
@@ -828,6 +833,8 @@ module.exports = {
 			"Whiskers": "291"
 		},
 		"Everlux": {
+		  "Basic": "0",
+		  //
 	    "Arapaima": "345",
 	    "Bar": "346",
 	    "Caterpillar": "347",
@@ -931,8 +938,9 @@ module.exports = {
 	    "Wool": "384"
     },
 		"Gaoler": {
+		  "Basic": "0",
+		  //
 			"Bar": "34",
-			"Basic": "0",
 			"Boa": "171",
 			"Boulder": "289",
 			"Checkers": "378",
@@ -1040,8 +1048,9 @@ module.exports = {
 			"Wintercoat": "34"
 		},
 		"Modern": {
+		  "Basic": "0",
+		  //
 			"Bar": "6",
-			"Basic": "0",
 			"Boa": "232",
 			"Boulder": "110",
 			"Cherub": "10",
@@ -1170,8 +1179,9 @@ module.exports = {
 			"Wish": "213"
 		},
 		"Sandsurge": {
+		  "Basic": "0",
+		  //
 			"Arapaima": "194",
-			"Basic": "0",
 			"Boa": "189",
 			"Boulder": "188",
 			"Cherub": "190",
@@ -1261,8 +1271,9 @@ module.exports = {
 			"Warrior": "314"
 		},
 		"Undertide": {
+		  "Basic": "0",
+		  //
 			"Bar": "117",
-			"Basic": "0",
 			"Boa": "128",
 			"Boulder": "135",
 			"Checkers": "127",
@@ -1396,9 +1407,10 @@ module.exports = {
 			"Wavecrest": "301"
 		},
 		"Veilspun": {
+		  "Basic": "0",
+		  //
 			"Arc": "70",
 			"Bar": "145",
-			"Basic": "0",
 			"Boa": "236",
 			"Boulder": "290",
 			"Bright": "69",
