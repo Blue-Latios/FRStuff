@@ -2,38 +2,38 @@
 <div class="container">
 	<div class="text-bold">What is this?<br>
 	</div>
-	Select All on format sheet, copy, paste into first<br>
-	box. Then, do the same for variables sheet and data<br>
+	Select All on <i>format sheet</i>, copy, paste into first<br>
+	box. Then, do the same for <i>variable sheet</i> and data<br>
 	sheet, paste into second and third box. Copy result<br>
 	from result box and paste into Google Sheets.<br>
 	Click the "Copy" button to copy the result text.<br>
 	<br>
-	For format sheet, every row is seperated by a<br>
+	For <i>format sheet</i>, every row is seperated by a<br>
 	newline. To add more newlines, you can also use <b>\n</b>.<br>
 	(Tips: add \n at the end to make two newlines.)<br>
 	Use <b>[ ]</b> for parts you want to assign automatically.<br>
 	Example:<pre>
 Hello, [user]! My name is [name]!
 	</pre>
-	For variables sheet, first column is the automatic parts<br>
-	used in format sheet, second column is the corresponding<br>
-	column containing the needed information in data sheet.<br>
+	For <i>variable sheet</i>, first column is the automatic parts<br>
+	used in <i>format sheet</i>, second column is the corresponding<br>
+	column containing the needed information in <i>data sheet</i>.<br>
 	Use <b>*</b> for whole rows to omit, if variable is empty.<br>
 	Example:<pre>
 user	A
-myname	B
+name	B
 extra*	C
 	</pre>
-	For data sheet, well, it's the rows of data.<br>
+	For <i>data sheet</i>, well, it's the rows of data.<br>
 	Example (first column is A, second column is B):<pre>
 Apple	Orange
 Candy	Tree
 Soil	Granite
 	</pre><br>
 	
-	<textarea v-model="formatStuff" placeholder="Copy Paste format here." @paste="formatPaste" style="width:90%;"></textarea><br>
-	<textarea v-model="varStuff" placeholder="Copy Paste variables here." @paste="varPaste" style="width:90%;"></textarea><br>
-	<textarea v-model="dataStuff" placeholder="Copy Paste data here." @paste="dataPaste" style="width:90%;"></textarea><br>
+	<textarea v-model="formatStuff" placeholder="Copy Paste format sheet here." @paste="formatPaste" style="width:90%;"></textarea><br>
+	<textarea v-model="varStuff" placeholder="Copy Paste <i>variable sheet</i> here." @paste="varPaste" style="width:90%;"></textarea><br>
+	<textarea v-model="dataStuff" placeholder="Copy Paste data sheet here." @paste="dataPaste" style="width:90%;"></textarea><br>
 	<textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
 	<button @click="copyText">Copy</button><br><br><br>
 	
