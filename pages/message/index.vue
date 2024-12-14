@@ -32,7 +32,7 @@ Soil	Granite
 	</pre><br>
 	
 	<textarea v-model="formatStuff" placeholder="Copy Paste format sheet here." @paste="formatPaste" style="width:90%;"></textarea><br>
-	<textarea v-model="varStuff" placeholder="Copy Paste <i>variable sheet</i> here." @paste="varPaste" style="width:90%;"></textarea><br>
+	<textarea v-model="varStuff" placeholder="Copy Paste variable sheet here." @paste="varPaste" style="width:90%;"></textarea><br>
 	<textarea v-model="dataStuff" placeholder="Copy Paste data sheet here." @paste="dataPaste" style="width:90%;"></textarea><br>
 	<textarea v-model="results" class="results" ref="res" placeholder="Results to copy into sheet will be shown here." style="width:90%;"></textarea><br>
 	<button @click="copyText">Copy</button><br><br><br>
