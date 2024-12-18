@@ -86,6 +86,7 @@ export default {
 	},
 	methods: {
 		formatPaste(e) {
+			e.preventDefault();
 			try {
 				let pastedText = cleanPastedText(e.clipboardData.getData('text/plain'));
 				this.$nextTick(() => {
@@ -96,6 +97,7 @@ export default {
 			}
 		},
 		varPaste(e) {
+			e.preventDefault();
 			try {
 				let pastedText = cleanPastedText(e.clipboardData.getData('text/plain'));
 				this.varStuff = pastedText;
@@ -105,6 +107,7 @@ export default {
 			}
 		},
 		dataPaste(e) {
+			e.preventDefault();
 			try {
 				let pastedText = cleanPastedText(e.clipboardData.getData('text/plain'));
 				this.dataStuff = pastedText;
