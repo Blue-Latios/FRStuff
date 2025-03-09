@@ -2,11 +2,12 @@
 <div class="container">
 	<div class="text-bold">What is this?<br>
 	</div>
-	Select All on <i>format sheet</i>, copy, paste into first<br>
+	Select contents in <i>format sheet</i>, copy, paste into first<br>
 	box. Then, do the same for <i>variable sheet</i> and data<br>
 	sheet, paste into second and third box. Copy result<br>
 	from result box and paste into Google Sheets.<br>
 	Click the "Copy" button to copy the result text.<br>
+	(Note: Select All (Ctrl+A) sometimes doesn't work!)<br>
 	<br>
 	For <i>format sheet</i>, every row is seperated by a<br>
 	newline. To add more newlines, you can also use <b>\n</b>.<br>
@@ -14,6 +15,7 @@
 	Use <b>[ ]</b> for parts you want to assign automatically.<br>
 	Example:<pre>
 Hello, [user]! My name is [name]!
+My favorite food is [food]!
 	</pre>
 	For <i>variable sheet</i>, first column is the automatic parts<br>
 	used in <i>format sheet</i>, second column is the corresponding<br>
@@ -22,14 +24,17 @@ Hello, [user]! My name is [name]!
 	Example:<pre>
 user	A
 name	B
-extra*	C
+food*	C
 	</pre>
 	For <i>data sheet</i>, well, it's the rows of data.<br>
 	Example (first column is A, second column is B):<pre>
-Apple	Orange
-Candy	Tree
-Soil	Granite
-	</pre><br>
+Blue	Latios	
+Windsinger	Corgi	Bone
+Kris	Ralsei	
+Kris	Susie	Apples
+	</pre>
+	<div class="text-bold"><a target="_blank" rel="noopener noreferrer" href="https://docs.google.com/spreadsheets/d/1ZvLAVqJGLlv98DyjIp9cubRKRDqh8R0ilZHE5ROqV5c">Click Here for Example Sheets Link</a>
+    </div><br>
 	
 	<textarea v-model="formatStuff" placeholder="Copy Paste format sheet here." @paste="formatPaste" style="width:90%;"></textarea><br>
 	<textarea v-model="varStuff" placeholder="Copy Paste variable sheet here." @paste="varPaste" style="width:90%;"></textarea><br>
@@ -170,7 +175,8 @@ export default {
 						align += newLines.length - 1;
 						
 					} else {
-						align--;
+						//align--;
+						formattedLines[index + align] = " ";
 					}
 				});
 
