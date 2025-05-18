@@ -27,7 +27,11 @@
   in primary color and set maximum distance of 1, dragons<br>
   with Cream primary are selected to pair with Maize<br>
   primary dragons, but Antique primary dragons are not<br>
-  selected. Distance is added for both dragons in a pair.<br><br>
+  selected. Distance is added for both dragons in a pair.<br>
+  Note: you can calculate odds for specific color combos<br>
+  using distance units. Distance 3 means you need to get<br>
+  3 Heads in a row with coin flips, or 12.5%. The odds<br>
+  differ if you use color ranges, though.<br><br>
   
   <textarea v-model="textStuff" placeholder="Copy Paste Dragon data here." style="color:#777; width:90%;"></textarea><br>
   
