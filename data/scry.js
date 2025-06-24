@@ -838,6 +838,7 @@ module.exports = {
 			//
 			"Blossom": "435",
 			"Braids": "436",
+			"Brightshine": "466",
 			"Coral": "437",
 			"Crackle": "438",
 			"Deco": "440",
@@ -1039,6 +1040,7 @@ module.exports = {
 			//
 			"Augment": "350",
 			"Batty": "351",
+			"Brightshine": "465",
 			"Chitin": "352",
 			"Crystalline": "425",
 			"Eclipse": "353",
