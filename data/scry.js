@@ -667,6 +667,7 @@ module.exports = {
 			"Thorns": "226",
 			"Topcoat": "243",
 			"Underbelly": "228",
+			"Warrior": "478",
 			"Wavecrest": "431",
 			"Willow": "227"
 		},
@@ -872,6 +873,7 @@ module.exports = {
 			"Thundercrack": "477",
 			"Topscale": "456",
 			"Underbelly": "434",
+			"Warrior": "479",
 			"Willow": "457",
 			"Wool": "458"
 		},
@@ -972,6 +974,7 @@ module.exports = {
 			"Topcoat": "299",
 			"Underbelly": "275",
 			"Veil": "296",
+			"Warrior": "480",
 			"Wavecrest": "300",
 			"Whiskers": "291"
 		},
