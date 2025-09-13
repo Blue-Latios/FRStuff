@@ -1321,6 +1321,7 @@ module.exports = {
 			"Circuit": "1",
 			"Contour": "13",
 			"Crackle": "6",
+			"Darts": "484",
 			"Eclipse": "421",
 			"Filigree": "21",
 			"Firebreather": "161",
