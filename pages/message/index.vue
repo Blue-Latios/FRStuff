@@ -116,7 +116,7 @@ export default {
 				this.dataStuff = pastedText;
 				this.processResults();
 			} catch(e) {
-				alert('Error! Not valid pasted data or format?');
+				alert(e.message);
 			}
 		},
 		processVariables() {
@@ -133,17 +133,43 @@ export default {
 				}
 			});
 		},
+		parseTSV(text) {
+		  const rows = [];
+		  let current = '';
+		  let inQuotes = false;
+
+		  for (const line of text.split('\n')) {
+			current += (current ? '\n' : '') + line;
+
+			const quoteCount = (current.match(/"/g) || []).length;
+			inQuotes = quoteCount % 2 !== 0;
+
+			if (!inQuotes) {
+			  rows.push(current);
+			  current = '';
+			}
+		  }
+
+		  return rows;
+		},
+
 		processResults() {
 			const formatLines = this.formatStuff.split("\n");
 			const maxRows = formatLines
 			  .map(line => line.replace(/\\n/g, "\n")) // Replace inline "\n" with actual newlines
 			  .join("\n") // Join to form a single string with actual newlines
 			  .split("\n").length;
-			const dataRows = this.dataStuff.split("\n").filter((row) => row.trim());
+			const dataRows = this.parseTSV(this.dataStuff);
 			const output = Array.from({ length: maxRows }, () => []); // Initialize container
 			
 			dataRows.forEach((row) => {
-				const dataColumns = row.split("\t");
+				const dataColumns = row.split("\t").map(v =>
+				  (v ?? "")
+					.replace(/^"(.*)"$/s, "$1")   // strip quotes
+					.replace(/\r?\n+/g, " ")      // flatten newlines
+					.trim()
+				);
+
 				let formattedLines = [];
 
 				let align = 0;
@@ -165,6 +191,7 @@ export default {
 
 					if (!skipLine) {
 						formattedLine = formattedLine.replace(/\\n/g, "\n"); // Replace "\n" with actual newlines
+						formattedLine = formattedLine.replace(/\\r\n/g, "\n"); // Replace "\n" with actual newlines
 						
 						let newLines = formattedLine.split("\n");
 						newLines.forEach((part, idx) => {
@@ -180,8 +207,11 @@ export default {
 
 				// Append horizontally to the output container
 				formattedLines.forEach((line, index) => {
-					if (line) output[index].push(line);
+				  if (!line) return;
+				  if (!output[index]) output[index] = [];
+				  output[index].push(line);
 				});
+
 			});
 			
 			let dataHeader = Array.from({ length: dataRows.length }, (_, i) => `[Row ${i + 1}]`).join("\t");
