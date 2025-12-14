@@ -201,7 +201,8 @@ export default {
 						
 					} else {
 						//align--;
-						formattedLines[index + align] = " ";
+						const visualLines = line.replace(/\\n/g, "\n").split("\n").length;
+						align += visualLines - 1;
 					}
 				});
 
