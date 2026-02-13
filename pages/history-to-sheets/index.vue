@@ -106,7 +106,7 @@ function buildString(t) {
 		row_str += '\t' +  sale_type;
 		row_str += '\t' +  quantity;
 		row_str += '\t' +  currency;
-		row_str += '\t' +  amount;
+		row_str += '\t' +  amount.replace(/[^\d]/g, ''); //remove commas and periods. Remove replace if normal text needed
 		row_str += '\t' +  date;
 		
 		str += row_str + '\n';
