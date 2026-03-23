@@ -43,7 +43,7 @@
 		</select>
 	</div>
   </div>
-  <button @click="compact = !compact">Toggle Compact View</button><br><br>
+  <button @click="compact = !compact">{{ toggleText }}</button><br><br>
   <p class="results" v-html="results"></p>
   
   <hr>
@@ -153,10 +153,13 @@ export default {
 	},
 	head() {
 		return {
-			title: "Color Match",
+			title: "Color-Gene Match Helper",
 		};
 	},
 	computed: {
+	  toggleText() {
+      return this.compact ? "Toggle Detailed View" : "Toggle Compact View";
+    }
 	},
 	watch: {
     prim_c() { this.generate(); },
