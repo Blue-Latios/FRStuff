@@ -15,7 +15,7 @@
   This tool also allows you to see which breeds have desired gene<br>
   combos. To select breed links to show, click on the buttons.<br>
   Orange buttons mean the gene combo selected is not available<br>
-  on those breeds. Press the R buttons to randomize.<br><br>
+  on those breeds. Press the R buttons to randomize options.<br><br>
   
   Optionally, you can go to a dragon's page and select all (Ctrl+A),<br>
   copy (Ctrl+C), then click on the box below and paste (Ctrl+V)<br>

@@ -35,5 +35,8 @@
 	<ul>
 		<li><NuxtLink to="/colors-data/">Colors Data</NuxtLink></li>
 	</ul>
+	<ul>
+		<li><NuxtLink to="/color-gene-match/">FR Color Match</NuxtLink></li>
+	</ul>
 	<NuxtChild />
 </div></template>
