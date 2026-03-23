@@ -57,6 +57,7 @@
 	margin: 5px;
 	font-size: 14px;
 	width: 750px;
+	min-width: 750px
 }
 .text-bold {
 	font-weight: bold;
@@ -64,11 +65,13 @@
 }
 .cols {
 	display: flex;
-	justify-content: space-between;
+	gap: 20px;
 	padding-bottom: 20px;
 }
 .col {
 	padding: 5px;
+	width: 250px;
+	flex-shrink: 0;
 }
 .results {
 	white-space: pre-line;
