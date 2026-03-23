@@ -56,7 +56,7 @@
 	padding: 10px;
 	margin: 5px;
 	font-size: 14px;
-	width: 640px;
+	width: 750px;
 }
 .text-bold {
 	font-weight: bold;
@@ -249,7 +249,7 @@ export default {
 
       let maxRows = Math.max(p.length, s.length, t.length);
 
-      let html = "<table style='border-collapse:collapse;'>";
+      let html = "<table style='border-collapse:collapse; table-layout:fixed; width:720px;'>";
 
       for (let i = 0; i < maxRows; i++) {
         html += "<tr>";
