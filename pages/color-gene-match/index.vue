@@ -23,27 +23,27 @@
   <button @click="compact = !compact">{{ toggleText }}</button><br><br>
   
   <div class="cols">
-	<div class="col">
-		<label>Primary Color</label>
-		<button class="r" @click="r_pc()">R</button><br>
-		<select class="dropdown" id="prim_c" v-model="prim_c">
-			<option v-for="(val, key) in colors" :value="key">{{ key }}</option>
-		</select>
-	</div>
-	<div class="col">
-		<label>Secondary Color</label>
-		<button class="r" @click="r_sc()">R</button><br>
-		<select class="dropdown" id="sec_c" v-model="sec_c">
-			<option v-for="(val, key) in colors" :value="key">{{ key }}</option>
-		</select>
-	</div>
-	<div class="col">
-		<label>Tertiary Color:</label>
-		<button class="r" @click="r_tc()">R</button><br>
-		<select class="dropdown" id="tert_c" v-model="tert_c">
-			<option v-for="(val, key) in colors" :value="key">{{ key }}</option>
-		</select>
-	</div>
+  <div class="col">
+    <label>Primary Color</label>
+    <button class="r" @click="r_pc()">R</button><br>
+    <select class="dropdown" id="prim_c" v-model="prim_c">
+      <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
+    </select>
+  </div>
+  <div class="col">
+    <label>Secondary Color</label>
+    <button class="r" @click="r_sc()">R</button><br>
+    <select class="dropdown" id="sec_c" v-model="sec_c">
+      <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
+    </select>
+  </div>
+  <div class="col">
+    <label>Tertiary Color:</label>
+    <button class="r" @click="r_tc()">R</button><br>
+    <select class="dropdown" id="tert_c" v-model="tert_c">
+      <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
+    </select>
+  </div>
   </div>
   
   <p class="results" v-html="results"></p>
@@ -55,48 +55,48 @@
 
 <style>
 .container {
-	padding: 10px;
-	margin: 5px;
-	font-size: 14px;
-	width: 680px;
-	min-width: 680px;
+  padding: 10px;
+  margin: 5px;
+  font-size: 14px;
+  width: 680px;
+  min-width: 680px;
 }
 .text-bold {
-	font-weight: bold;
-	font-size: 20px;
+  font-weight: bold;
+  font-size: 20px;
 }
 .cols {
-	display: flex;
-	column-gap: 20px;
-	padding-bottom: 20px;
+  display: flex;
+  column-gap: 20px;
+  padding-bottom: 20px;
 }
 .col {
-	padding: 5px;
-	flex-shrink: 0;
-	flex-grow: 0;
-	min-width: 210px;
-	text-align: center;
+  padding: 5px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  min-width: 210px;
+  text-align: center;
 }
 .results {
-	white-space: pre-line;
-	line-height: 16px;
-	font-family: monospace;
+  white-space: pre-line;
+  line-height: 16px;
+  font-family: monospace;
 }
 .hexText {
   font-size:10px;
 }
 .dropdown {
-	width: 125px;
+  width: 125px;
 }
 .r {
-	background-color: gray;
-	color: #b3c2fd;
-	font-weight: bold;
+  background-color: gray;
+  color: #b3c2fd;
+  font-weight: bold;
 }
 .ta {
-	background-color: transparent;
-	color: transparent;
-	width: 680px;
+  background-color: transparent;
+  color: transparent;
+  width: 680px;
 }
 .detailText {
   color: #000;
@@ -156,51 +156,51 @@ function colorBox(hex) {
 }
 
 export default {
-	data() {
-		return {
-			results: '',
-			
-			colors: DATA,
-			mappings: MAP,
-			base: BASE,
-			prim_c: "Blue",
-			sec_c: "Blue",
-			tert_c: "Blue",
-			compact: true
-		};
-	},
-	head() {
-		return {
-			title: "Color-Gene Match Helper",
-		};
-	},
-	computed: {
-	  toggleText() {
+  data() {
+    return {
+      results: '',
+      
+      colors: DATA,
+      mappings: MAP,
+      base: BASE,
+      prim_c: "Blue",
+      sec_c: "Blue",
+      tert_c: "Blue",
+      compact: true
+    };
+  },
+  head() {
+    return {
+      title: "Color-Gene Match Helper",
+    };
+  },
+  computed: {
+    toggleText() {
       return this.compact ? "Toggle Detailed View" : "Toggle Compact View";
     }
-	},
-	watch: {
+  },
+  watch: {
     prim_c() { this.generate(); },
     sec_c() { this.generate(); },
     tert_c() { this.generate(); },
     compact() { this.generate(); }
   },
-	methods: {
-	  generateFull() {
-	    let p = this.generateDetailed(this.prim_c, 1, this.mappings);
-		  let s = this.generateDetailed(this.sec_c, 2, this.mappings);
-			let t = this.generateDetailed(this.tert_c, 3, this.mappings);
-			
-			return p + "\n" + s + "\n" + t;
-	  },
-	  generateDetailed(colorName, mode, mapping) {
-	    let out = "";
-	    const baseHex = this.base[lower(colorName)]["hex"];
-	    let title;
-	    if (mode == 1) title = "PRIMARY";
-	    else if (mode == 2) title = "SECONDARY";
-	    else title = "TERTIARY";
-	    //out += "<b>" + title + "</b></td><td style='border:1px solid; padding:4px;'>Base Color " + colorBox(baseHex) + " " + baseHex + "</td></tr></table><br>";
+  methods: {
+    generateFull() {
+      let p = this.generateDetailed(this.prim_c, 1, this.mappings);
+      let s = this.generateDetailed(this.sec_c, 2, this.mappings);
+      let t = this.generateDetailed(this.tert_c, 3, this.mappings);
+      
+      return p + "\n" + s + "\n" + t;
+    },
+    generateDetailed(colorName, mode, mapping) {
+      let out = "";
+      const baseHex = this.base[lower(colorName)]["hex"];
+      let title;
+      if (mode == 1) title = "PRIMARY";
+      else if (mode == 2) title = "SECONDARY";
+      else title = "TERTIARY";
+      //out += "<b>" + title + "</b></td><td style='border:1px solid; padding:4px;'>Base Color " + colorBox(baseHex) + " " + baseHex + "</td></tr></table><br>";
       out += "<table class='detailTable' style='border: 5px solid #ddd; background:" + baseHex + "''>";
       
       out += "<tr><th style='width:160px;'><span class='detailText'>" + title + " GENE</span></th>";
@@ -232,8 +232,8 @@ export default {
       }
       out += "</table></br>";
       return out;
-	  },
-	  getGeneRows(colorName, mode) {
+    },
+    getGeneRows(colorName, mode) {
       let rows = [];
       let mapping = this.mappings;
       //rows.push("<div>Base Color " + colorBox(this.base[lower(colorName)]["hex"]) + "</div>");
@@ -260,7 +260,7 @@ export default {
 
       return rows;
     },
-	  generateCompact() {
+    generateCompact() {
       let p = this.getGeneRows(this.prim_c, 1);
       let s = this.getGeneRows(this.sec_c, 2);
       let t = this.getGeneRows(this.tert_c, 3);
@@ -268,15 +268,13 @@ export default {
       let maxRows = Math.max(p.length, s.length, t.length);
 
       let html = "<table style='border-collapse:collapse; table-layout:fixed; width:680px;'>";
-      let baseHex1, baseHex2, baseHex3;
       let colorString = "";
+      let baseHex1 = this.base[lower(this.prim_c)]["hex"];
+      let baseHex2 = this.base[lower(this.sec_c)]["hex"];
+      let baseHex3 = this.base[lower(this.tert_c)]["hex"];
       
       for (let i = 0; i < maxRows; i++) {
         html += "<tr>";
-        
-        baseHex1 = this.base[lower(this.prim_c)]["hex"];
-        baseHex2 = this.base[lower(this.sec_c)]["hex"];
-        baseHex3 = this.base[lower(this.tert_c)]["hex"];
         
         colorString = "background: " + baseHex1 + ";";
         html += "<td style='padding:6px; vertical-align:top;" + colorString + "'>" + (p[i] || "") + "</td>";
@@ -293,65 +291,65 @@ export default {
       html += "</table>";
       return html;
     },
-		generate() {
+    generate() {
       if (this.compact) {
         this.results = this.generateCompact();
       } else {
-				this.results = this.generateFull();
+        this.results = this.generateFull();
       }
-		},
-		htmlPaste(e) {
-			let pastedText = '';
-			try {
-				if (window.clipboardData && window.clipboardData.getData) { // IE
-					pastedText = window.clipboardData.getData('Text'); //unresolved
-					alert('May not work in Internet Explorer');
-					this.processPage(pastedText);
-				} else if (e.clipboardData && e.clipboardData.getData) {
-					if (e.clipboardData.types.includes('text/html')) {
-						pastedText = e.clipboardData.getData('text/html');
-						this.processPage(pastedText);
-					} else {
-						pastedText = e.clipboardData.getData('text/plain');
-						this.processLink(pastedText);
-					}
-				}
-			} catch(e) {
-				alert('Error! Not valid pasted data.');
-			}
-		},
-		processLink(url) {
-			this.prim_c = findColor(url.match(/body=([^&]*)/)[1]);
-			this.sec_c = findColor(url.match(/wings=([^&]*)/)[1]);
-			this.tert_c = findColor(url.match(/tert=([^&]*)/)[1]);
-		},
-		processPage(t) {
-			try {
-				const r = HTMLParser.parse(t);
-				
-				const phys = r.querySelector("#dragon-profile-physical");
-				const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
-				
-				this.prim_c = iconvalues[0].childNodes[0].text.trim();
-				this.sec_c = iconvalues[1].childNodes[0].text.trim();
-				this.tert_c = iconvalues[2].childNodes[0].text.trim();
+    },
+    htmlPaste(e) {
+      let pastedText = '';
+      try {
+        if (window.clipboardData && window.clipboardData.getData) { // IE
+          pastedText = window.clipboardData.getData('Text'); //unresolved
+          alert('May not work in Internet Explorer');
+          this.processPage(pastedText);
+        } else if (e.clipboardData && e.clipboardData.getData) {
+          if (e.clipboardData.types.includes('text/html')) {
+            pastedText = e.clipboardData.getData('text/html');
+            this.processPage(pastedText);
+          } else {
+            pastedText = e.clipboardData.getData('text/plain');
+            this.processLink(pastedText);
+          }
+        }
+      } catch(e) {
+        alert('Error! Not valid pasted data.');
+      }
+    },
+    processLink(url) {
+      this.prim_c = findColor(url.match(/body=([^&]*)/)[1]);
+      this.sec_c = findColor(url.match(/wings=([^&]*)/)[1]);
+      this.tert_c = findColor(url.match(/tert=([^&]*)/)[1]);
+    },
+    processPage(t) {
+      try {
+        const r = HTMLParser.parse(t);
+        
+        const phys = r.querySelector("#dragon-profile-physical");
+        const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
+        
+        this.prim_c = iconvalues[0].childNodes[0].text.trim();
+        this.sec_c = iconvalues[1].childNodes[0].text.trim();
+        this.tert_c = iconvalues[2].childNodes[0].text.trim();
 
-			} catch(e) {
-				alert('Not valid dragon data?');
-			}
-		},
-		r_tc() {
-		  let s = randomColor();
-			this.tert_c = titleCase(s);
-		},
-		r_pc() {
-		  let s = randomColor();
-			this.prim_c = titleCase(s);
-		},
-		r_sc() {
-		  let s = randomColor();
-			this.sec_c = titleCase(s);
-		},
-	}
+      } catch(e) {
+        alert('Not valid dragon data?');
+      }
+    },
+    r_tc() {
+      let s = randomColor();
+      this.tert_c = titleCase(s);
+    },
+    r_pc() {
+      let s = randomColor();
+      this.prim_c = titleCase(s);
+    },
+    r_sc() {
+      let s = randomColor();
+      this.sec_c = titleCase(s);
+    },
+  }
 }
 </script>

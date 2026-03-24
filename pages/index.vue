@@ -17,6 +17,9 @@
 	<ul>
 		<li><NuxtLink to="/history-to-sheets/">Recent History to Sheets</NuxtLink></li>
 	</ul>
+		<ul>
+		<li><NuxtLink to="/hoard-to-sheets/">Hoard to Sheets</NuxtLink></li>
+	</ul>
 	<ul>
 		<li><NuxtLink to="/color-range-finder/">Color Range Finder</NuxtLink></li>
 	</ul>
