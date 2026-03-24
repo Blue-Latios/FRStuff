@@ -93,6 +93,17 @@
 	background-color: transparent;
 	color: transparent;
 }
+.detailText {
+  font-weight: bold;
+  color: #000;
+  text-shadow: 1px 1px 1px #eee, -1px 1px 1px #eee, 1px -1px 1px #eee, -1px -1px 1px #eee;
+}
+.detailTable tr td, .detailTable tr th {
+  box-shadow:
+    0 0 1px white,
+    1px 0 1px black;
+    padding: 7px;
+}
 </style>
 
 <script>
@@ -132,11 +143,13 @@ function colorBox(hex) {
     width:16px;
     height:16px;
     background:${hex};
-    border:1px solid #000;
-    margin-left:4px;
+    border:2px solid black;
+    border-radius: 4px;
+    margin-left: 4px;
     vertical-align:middle;
     position: relative;
     bottom: 1px;
+    box-shadow: 0 0 0 1px #fff;
   "></span>`;
 }
 
@@ -185,12 +198,13 @@ export default {
 	    if (mode == 1) title = "PRIMARY";
 	    else if (mode == 2) title = "SECONDARY";
 	    else title = "TERTIARY";
-	    out += "<table><tr><td style='padding-right:10px;'><b>" + title + "</b></td><td style='border:1px solid; padding:4px;'>Base Color " + colorBox(baseHex) + " " + baseHex + "</td></tr></table><br>";
-      out += "<table style='border:1px solid;'>";
+	    //out += "<b>" + title + "</b></td><td style='border:1px solid; padding:4px;'>Base Color " + colorBox(baseHex) + " " + baseHex + "</td></tr></table><br>";
+	    out += "<b>" + title + "</b><br>";
+      out += "<table class='detailTable' style='border: 5px solid #ddd; background:" + baseHex + "''>";
       
-      out += "<tr style='border:1px solid;'><th style='border:1px solid; text-align:left; padding:4px;'>GENE</th>";
+      out += "<tr><th><span class='detailText'>GENE</span></th>";
       for (let i = 1; i <= 6; i++) {
-        out += "<th style='padding:4px; border:1px solid;'>ACCENT " + i + "</th>";
+        out += "<th><span class='detailText'>ACCENT " + i + "</span></th>";
       }
       out += "</tr>";
       
@@ -209,9 +223,9 @@ export default {
         
         out += "<tr>";
         
-        out += "<td style='padding:4px; border:1px solid;'>" + g + "</td>";
+        out += "<td><span class='detailText'>" + g + "</span></td>";
         for (let hex of accents) {
-          out += "<td class='hexText' style='border:1px solid;'>" + colorBox(hex) + " " + hex.slice(1) + "</td>";
+          out += "<td class='hexText'>" + colorBox(hex) + " <span class='detailText'>" + hex.slice(1) + "</span></td>";
         }
         out += "</tr>";
       }
@@ -221,7 +235,7 @@ export default {
 	  getGeneRows(colorName, mode) {
       let rows = [];
       let mapping = this.mappings;
-      rows.push("<div>Base Color " + colorBox(this.base[lower(colorName)]["hex"]) + "</div>");
+      //rows.push("<div>Base Color " + colorBox(this.base[lower(colorName)]["hex"]) + "</div>");
       
 
       let geneList;
@@ -234,7 +248,7 @@ export default {
         let accents = this.colors[colorName][gene];
         if (!accents) continue;
 
-        let row = "<div>" + g + " ";
+        let row = "<div><span style='padding-left:3px; padding-right:3px; background:white; border-radius: 4px;'>" + g + "</span> ";
         for (let hex of accents) {
           row += colorBox(hex);
         }
@@ -253,13 +267,24 @@ export default {
       let maxRows = Math.max(p.length, s.length, t.length);
 
       let html = "<table style='border-collapse:collapse; table-layout:fixed; width:720px;'>";
-
+      let baseHex1, baseHex2, baseHex3;
+      let colorString = "";
+      
       for (let i = 0; i < maxRows; i++) {
         html += "<tr>";
-
-        html += "<td style='padding:6px; vertical-align:top;'>" + (p[i] || "") + "</td>";
-        html += "<td style='padding:6px; vertical-align:top;'>" + (s[i] || "") + "</td>";
-        html += "<td style='padding:6px; vertical-align:top;'>" + (t[i] || "") + "</td>";
+        
+        baseHex1 = this.base[lower(this.prim_c)]["hex"];
+        baseHex2 = this.base[lower(this.sec_c)]["hex"];
+        baseHex3 = this.base[lower(this.tert_c)]["hex"];
+        
+        colorString = "background: " + baseHex1 + ";";
+        html += "<td style='padding:6px; vertical-align:top;" + colorString + "'>" + (p[i] || "") + "</td>";
+        
+        colorString = "background: " + baseHex2 + ";";
+        html += "<td style='padding:6px; vertical-align:top; " + colorString + "'>" + (s[i] || "") + "</td>";
+        
+        colorString = "background: " + baseHex3 + ";";
+        html += "<td style='padding:6px; vertical-align:top;" + colorString + "'>" + (t[i] || "") + "</td>";
 
         html += "</tr>";
       }
