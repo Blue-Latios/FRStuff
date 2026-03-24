@@ -18,7 +18,9 @@
   Press the R buttons to randomize colors.<br><br>
   
   Paste page/link here:<br>
-  <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
+  <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste"></textarea><br><br>
+  
+  <button @click="compact = !compact">{{ toggleText }}</button><br><br>
   
   <div class="cols">
 	<div class="col">
@@ -43,7 +45,7 @@
 		</select>
 	</div>
   </div>
-  <button @click="compact = !compact">{{ toggleText }}</button><br><br>
+  
   <p class="results" v-html="results"></p>
   
   <hr>
@@ -56,8 +58,8 @@
 	padding: 10px;
 	margin: 5px;
 	font-size: 14px;
-	width: 750px;
-	min-width: 750px
+	width: 680px;
+	min-width: 680px;
 }
 .text-bold {
 	font-weight: bold;
@@ -65,13 +67,15 @@
 }
 .cols {
 	display: flex;
-	gap: 20px;
+	column-gap: 20px;
 	padding-bottom: 20px;
 }
 .col {
 	padding: 5px;
-	width: 250px;
 	flex-shrink: 0;
+	flex-grow: 0;
+	min-width: 210px;
+	text-align: center;
 }
 .results {
 	white-space: pre-line;
@@ -92,17 +96,15 @@
 .ta {
 	background-color: transparent;
 	color: transparent;
+	width: 680px;
 }
 .detailText {
-  font-weight: bold;
   color: #000;
-  text-shadow: 1px 1px 1px #eee, -1px 1px 1px #eee, 1px -1px 1px #eee, -1px -1px 1px #eee;
 }
 .detailTable tr td, .detailTable tr th {
-  box-shadow:
-    0 0 1px white,
-    1px 0 1px black;
-    padding: 7px;
+  border: 1px solid black;
+  padding: 6px;
+  background: white;
 }
 </style>
 
@@ -199,10 +201,9 @@ export default {
 	    else if (mode == 2) title = "SECONDARY";
 	    else title = "TERTIARY";
 	    //out += "<b>" + title + "</b></td><td style='border:1px solid; padding:4px;'>Base Color " + colorBox(baseHex) + " " + baseHex + "</td></tr></table><br>";
-	    out += "<b>" + title + "</b><br>";
       out += "<table class='detailTable' style='border: 5px solid #ddd; background:" + baseHex + "''>";
       
-      out += "<tr><th><span class='detailText'>GENE</span></th>";
+      out += "<tr><th style='width:160px;'><span class='detailText'>" + title + " GENE</span></th>";
       for (let i = 1; i <= 6; i++) {
         out += "<th><span class='detailText'>ACCENT " + i + "</span></th>";
       }
@@ -266,7 +267,7 @@ export default {
 
       let maxRows = Math.max(p.length, s.length, t.length);
 
-      let html = "<table style='border-collapse:collapse; table-layout:fixed; width:720px;'>";
+      let html = "<table style='border-collapse:collapse; table-layout:fixed; width:680px;'>";
       let baseHex1, baseHex2, baseHex3;
       let colorString = "";
       
