@@ -249,12 +249,12 @@ export default {
 		},
 		buttonClass() {
 			  return (item) => {
-				if (this.check_disabled(item)) {
-					item.isOn = false;
-					return 'disabled';
-				}
-				if (!item.isOn) return 'off';
-				return 'on';
+				  if (this.check_disabled(item)) {
+					  item.isOn = false;
+					  return 'disabled';
+				  }
+				  if (!item.isOn) return 'off';
+				  return 'on';
 			  };
 		},
 		limit_class() {

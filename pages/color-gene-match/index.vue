@@ -15,6 +15,7 @@
   copy (Ctrl+C), then click on the box below and paste (Ctrl+V)<br>
   to input the colors automatically.<br>
   You can also copy a dragon scry link and paste it into the box.<br>
+  Click breeds to fade out genes unavailable for selected breeds.<br>
   Press the R buttons to randomize colors.<br><br>
   
   Paste page/link here:<br>
@@ -22,6 +23,20 @@
   
   <button @click="compact = !compact">{{ toggleText }}</button><br><br>
   
+  <button v-for="(item, idx) in modern_list" :key="item.value"
+      :class="buttonClass(item)" 
+      @click="toggle_m(idx)">
+      {{ item.name }}
+  </button>&nbsp;
+  <button @click="deselect_all">Deselect All Breeds</button>
+  <br><br>
+  <button v-for="(item, idx) in ancient_list" :key="item.value"
+      :class="buttonClass(item)" 
+      @click="toggle_a(idx)">
+      {{ item.name }}
+  </button>
+  <br>
+  <br>
   <div class="cols">
   <div class="col">
     <label>Primary Color</label>
@@ -106,6 +121,23 @@
   padding: 6px;
   background: white;
 }
+.on {
+	background-color: blue;
+	color: white;
+}
+.off {
+	background-color: white;
+	color: black;
+}
+.disableGene {
+  background: white;
+}
+.disableGene td {
+  opacity: 0.2;
+}
+.disableGene2 {
+  opacity: 0.2;
+}
 </style>
 
 <script>
@@ -166,7 +198,19 @@ export default {
       prim_c: "Blue",
       sec_c: "Blue",
       tert_c: "Blue",
-      compact: true
+      compact: true,
+      
+      g_id: SCRY["breeds"],
+      
+      modern_list: [{
+          name: "Modern",
+          isOn: false,
+      }],
+      ancient_list: Object.keys(SCRY["ancient_list"]).map(
+        item=>({
+          name: item,
+          isOn: false,
+      })),
     };
   },
   head() {
@@ -177,7 +221,38 @@ export default {
   computed: {
     toggleText() {
       return this.compact ? "Toggle Detailed View" : "Toggle Compact View";
-    }
+    },
+    buttonClass() {
+      return (item) => {
+        if (!item.isOn) return 'off';
+        return 'on';
+      };
+    },
+    noSelect() {
+      return [...this.modern_list, ...this.ancient_list].every(item => item.isOn == false);
+    },
+    check_gene_disabled() {
+			return (x) => {
+        if (this.noSelect)
+          return false;
+        else {
+          let modern_already = false;
+          for (let breed in this.g_id) {
+            let b = {};
+            b.name = breed;
+            if (!(b.name == "Modern" && modern_already)) {
+              if (b.name == "Modern") modern_already=true;
+              if (this.check_on(breed)) {
+                if (Object.keys(this.g_id[breed]).includes(x)) {
+                  return false;
+                }
+              }
+            }
+          }
+        }
+				return true;
+			}
+		},
   },
   watch: {
     prim_c() { this.generate(); },
@@ -186,6 +261,33 @@ export default {
     compact() { this.generate(); }
   },
   methods: {
+    check_on(breed) {
+			if (breed == "Modern") {
+				let m = this.modern_list.filter(x => x.isOn);
+				if (m.length > 0) return true;
+				else return false;
+			} else {
+				let a = this.ancient_list.filter(x => x.name == breed).map(x => x.isOn);
+				return a[0];
+			}
+		},
+    toggle_m(x) {
+			this.modern_list[x].isOn = !this.modern_list[x].isOn;
+      this.generate();
+		},
+		toggle_a(x) {
+			this.ancient_list[x].isOn = !this.ancient_list[x].isOn;
+      this.generate();
+		},
+    deselect_all() {
+			for (const key in this.modern_list) {
+				this.modern_list[key].isOn = false;
+			}
+			for (const key in this.ancient_list) {
+				this.ancient_list[key].isOn = false;
+			}
+      this.generate();
+		},
     generateFull() {
       let p = this.generateDetailed(this.prim_c, 1, this.mappings);
       let s = this.generateDetailed(this.sec_c, 2, this.mappings);
@@ -222,8 +324,7 @@ export default {
         let accents = this.colors[colorName][gene];
         if (!accents) continue;
         
-        out += "<tr>";
-        
+        out += `<tr class="${this.check_gene_disabled(g) ? 'disableGene' : ''}">`;        
         out += "<td><span class='detailText'>" + g + "</span></td>";
         for (let hex of accents) {
           out += "<td class='hexText'>" + colorBox(hex) + " <span class='detailText'>" + hex.slice(1) + "</span></td>";
@@ -249,7 +350,7 @@ export default {
         let accents = this.colors[colorName][gene];
         if (!accents) continue;
 
-        let row = "<div><span style='padding-left:3px; padding-right:3px; background:white; border-radius: 4px;'>" + g + "</span> ";
+        let row = `<div class="${this.check_gene_disabled(g) ? 'disableGene2' : ''}"><span style='padding-left:3px; padding-right:3px; background:white; border-radius: 4px;'>` + g + "</span> ";
         for (let hex of accents) {
           row += colorBox(hex);
         }
@@ -277,13 +378,13 @@ export default {
         html += "<tr>";
         
         colorString = "background: " + baseHex1 + ";";
-        html += "<td style='padding:6px; vertical-align:top;" + colorString + "'>" + (p[i] || "") + "</td>";
+        html += "<td style='padding:6px; vertical-align:top;" + colorString + `'>` + (p[i] || "") + "</td>";
         
         colorString = "background: " + baseHex2 + ";";
-        html += "<td style='padding:6px; vertical-align:top; " + colorString + "'>" + (s[i] || "") + "</td>";
+        html += "<td style='padding:6px; vertical-align:top; " + colorString + `'>` + (s[i] || "") + "</td>";
         
         colorString = "background: " + baseHex3 + ";";
-        html += "<td style='padding:6px; vertical-align:top;" + colorString + "'>" + (t[i] || "") + "</td>";
+        html += "<td style='padding:6px; vertical-align:top;" + colorString + `'>` + (t[i] || "") + "</td>";
 
         html += "</tr>";
       }
