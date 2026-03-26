@@ -84,7 +84,7 @@
 		</select>
 	</div>
 	<div class="col">
-		<label>Tertiary Color:</label>
+		<label>Tertiary Color</label>
 		<button class="r" @click="r_tc()">R</button><br>
 		<select class="dropdown" id="tert_c" v-model="tert_c">
 			<option v-for="(val, key) in colors" :value="val">{{ key }}</option>

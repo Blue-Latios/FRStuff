@@ -2,21 +2,14 @@
 <div class="container">
   <div class="text-bold">What is this?<br>
   </div>
-  Color gene matcher, shows a list of genes and<br>
-  their accent colors.<br><br>
+  Select a gene, see all the accent colors that<br>
+  a gene could have.<br><br>
   
   <div class="text-bold">Details<br>
   </div>
   
-  Honestly, just my take on implementing xCorbeau's tool.<br>
-  For now, it just displays data already in their tool.<br><br>
-  
-  You can go to a dragon's page and select all (Ctrl+A),<br>
-  copy (Ctrl+C), then click on the box below and paste (Ctrl+V)<br>
-  to input the colors automatically.<br>
-  You can also copy a dragon scry link and paste it into the box.<br>
-  Click breeds to fade out genes unavailable for selected breeds.<br>
-  Press the R buttons to randomize colors.<br><br>
+  Sibling of the other tool.<br>
+  Instead of choosing colors, choose genes.<br><br>
   
   Paste page/link here:<br>
   <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste"></textarea><br><br>
@@ -39,24 +32,24 @@
   <br>
   <div class="cols">
   <div class="col">
-    <label>Primary Color</label>
+    <label>Primary Gene</label>
     <button class="r" @click="r_pc()">R</button><br>
-    <select class="dropdown" id="prim_c" v-model="prim_c">
-      <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
+    <select class="dropdown" id="prim_c" v-model="prim_g">
+      <option v-for="gene in mappings.prim_genes" :value="gene">{{ gene }}</option>
     </select>
   </div>
   <div class="col">
-    <label>Secondary Color</label>
+    <label>Secondary Gene</label>
     <button class="r" @click="r_sc()">R</button><br>
-    <select class="dropdown" id="sec_c" v-model="sec_c">
-      <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
+    <select class="dropdown" id="sec_c" v-model="sec_g">
+      <option v-for="gene in mappings.sec_genes" :value="gene">{{ gene }}</option>
     </select>
   </div>
   <div class="col">
-    <label>Tertiary Color:</label>
+    <label>Tertiary Gene</label>
     <button class="r" @click="r_tc()">R</button><br>
-    <select class="dropdown" id="tert_c" v-model="tert_c">
-      <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
+    <select class="dropdown" id="tert_c" v-model="tert_g">
+      <option v-for="gene in mappings.tert_genes" :value="gene">{{ gene }}</option>
     </select>
   </div>
   </div>
@@ -114,12 +107,11 @@
   width: 680px;
 }
 .detailText {
-  color: #000;
+  
 }
 .detailTable tr td, .detailTable tr th {
   border: 1px solid black;
   padding: 6px;
-  background: white;
 }
 .on {
 	background-color: blue;
@@ -149,6 +141,17 @@ import BASE from "@/data/colors2.js";
 import SCRY from "@/data/scry.js";
 
 const colors_arr = Object.keys(BASE);
+
+function isDark(hex) {
+  hex = hex.replace('#', '');
+  let r = parseInt(hex.substr(0,2), 16);
+  let g = parseInt(hex.substr(2,2), 16);
+  let b = parseInt(hex.substr(4,2), 16);
+
+  // perceived brightness
+  let brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness < 140;
+}
 
 function randomColor() {
   return colors_arr[Math.floor(Math.random() * (177))];
@@ -195,9 +198,9 @@ export default {
       colors: DATA,
       mappings: MAP,
       base: BASE,
-      prim_c: "Blue",
-      sec_c: "Blue",
-      tert_c: "Blue",
+      prim_g: MAP["prim_genes"][0],
+      sec_g: MAP["sec_genes"][0],
+      tert_g: MAP["tert_genes"][0],
       compact: true,
       
       g_id: SCRY["breeds"],
@@ -215,7 +218,7 @@ export default {
   },
   head() {
     return {
-      title: "Color-Gene Match Helper",
+      title: "All Gene Accents",
     };
   },
   computed: {
@@ -255,9 +258,9 @@ export default {
 		},
   },
   watch: {
-    prim_c() { this.generate(); },
-    sec_c() { this.generate(); },
-    tert_c() { this.generate(); },
+    prim_g() { this.generate(); },
+    sec_g() { this.generate(); },
+    tert_g() { this.generate(); },
     compact() { this.generate(); }
   },
   methods: {
@@ -289,68 +292,55 @@ export default {
       this.generate();
 		},
     generateFull() {
-      let p = this.generateDetailed(this.prim_c, 1, this.mappings);
-      let s = this.generateDetailed(this.sec_c, 2, this.mappings);
-      let t = this.generateDetailed(this.tert_c, 3, this.mappings);
+      let p = this.generateDetailed(this.prim_g, 1, this.mappings);
+      let s = this.generateDetailed(this.sec_g, 2, this.mappings);
+      let t = this.generateDetailed(this.tert_g, 3, this.mappings);
       
       return p + "\n" + s + "\n" + t;
     },
-    generateDetailed(colorName, mode, mapping) {
+    generateDetailed(geneName, mode, mapping) {
       let out = "";
-      const baseHex = this.base[lower(colorName)]["hex"];
-      let title;
-      if (mode == 1) title = "PRIMARY";
-      else if (mode == 2) title = "SECONDARY";
-      else title = "TERTIARY";
-      //out += "<b>" + title + "</b></td><td style='border:1px solid; padding:4px;'>Base Color " + colorBox(baseHex) + " " + baseHex + "</td></tr></table><br>";
-      out += "<table class='detailTable' style='border: 5px solid #ddd; background:" + baseHex + "'>";
+      let geneRef = (mode == 2) ? this.mappings["mapping"][geneName] : geneName;
+
+      out += "<table class='detailTable' style='border: 5px solid #ddd;'>";
       
-      out += "<tr><th style='width:160px;'><span class='detailText'>" + title + " GENE</span></th>";
+      out += "<tr><th style='width:160px;'><span class='detailText'>" + geneName + "</span></th>";
       for (let i = 1; i <= 6; i++) {
         out += "<th><span class='detailText'>ACCENT " + i + "</span></th>";
       }
       out += "</tr>";
       
-      let geneList;
-      if (mode == 1) { //prim
-        geneList = mapping["prim_genes"];
-      } else if (mode == 3) { //tert
-        geneList = mapping["tert_genes"];
-      } else { //sec, mode == 2
-        geneList = mapping["sec_genes"]
-      }
-      for (let g of geneList) {
-        let gene = (mode != 2) ? g : mapping["mapping"][g];
-        let accents = this.colors[colorName][gene];
-        if (!accents) continue;
+      for (let color of Object.keys(this.colors)) {
         
-        out += `<tr class="${this.check_gene_disabled(g) ? 'disableGene' : ''}">`;        
-        out += "<td><span class='detailText'>" + g + "</span></td>";
-        for (let hex of accents) {
-          out += "<td class='hexText'>" + colorBox(hex) + " <span class='detailText'>" + hex.slice(1) + "</span></td>";
+        let baseHex = this.base[lower(color)]["hex"];
+        let accents = this.colors[titleCase(color)][geneRef] || [];
+        
+        out += `<tr class="${this.check_gene_disabled(geneName) ? 'disableGene' : ''}" style="background:${baseHex}">`;
+        let textColor = isDark(baseHex) ? "#fff" : "#000";
+        out += `<td style="vertical-align: middle;background:${baseHex}; color:${textColor}">${titleCase(color)}</td>`;
+        for (let i = 0; i < 6; i++) {
+          if (accents[i]) {
+            let hex = accents[i];
+            out += `<td class='hexText' style='color:${textColor}'>` + colorBox(hex) + " <span class='detailText'>" + hex.slice(1) + "</span></td>";
+          } else {
+            out += "<td></td>";
+          }
         }
         out += "</tr>";
       }
-      out += "</table></br>";
+      out += "</table><br>";
       return out;
     },
-    getGeneRows(colorName, mode) {
+    getColorRows(geneName, mode) {
       let rows = [];
-      let mapping = this.mappings;
-      //rows.push("<div>Base Color " + colorBox(this.base[lower(colorName)]["hex"]) + "</div>");
-      
+      let geneRef = (mode == 2) ? this.mappings["mapping"][geneName] : geneName;
+      for (let color of Object.keys(this.colors)) {
+        
+        let accents = this.colors[titleCase(color)][geneRef] || [];
 
-      let geneList;
-      if (mode == 1) geneList = mapping["prim_genes"];
-      else if (mode == 2) geneList = mapping["sec_genes"];
-      else geneList = mapping["tert_genes"];
+        let row = `<div class="${this.check_gene_disabled(geneName) ? 'disableGene2' : ''}"><span style='padding-left:3px; padding-right:3px; background:white; border-radius: 4px;'>`
+          + titleCase(color) + "</span> ";
 
-      for (let g of geneList) {
-        let gene = (mode == 2) ? mapping["mapping"][g] : g;
-        let accents = this.colors[colorName][gene];
-        if (!accents) continue;
-
-        let row = `<div class="${this.check_gene_disabled(g) ? 'disableGene2' : ''}"><span style='padding-left:3px; padding-right:3px; background:white; border-radius: 4px;'>` + g + "</span> ";
         for (let hex of accents) {
           row += colorBox(hex);
         }
@@ -362,29 +352,28 @@ export default {
       return rows;
     },
     generateCompact() {
-      let p = this.getGeneRows(this.prim_c, 1);
-      let s = this.getGeneRows(this.sec_c, 2);
-      let t = this.getGeneRows(this.tert_c, 3);
+      let p = this.getColorRows(this.prim_g, 1);
+      let s = this.getColorRows(this.sec_g, 2);
+      let t = this.getColorRows(this.tert_g, 3);
 
       let maxRows = Math.max(p.length, s.length, t.length);
 
-      let html = "<table style='border-collapse:collapse; table-layout:fixed; width:680px;'>";
-      let colorString = "";
-      let baseHex1 = this.base[lower(this.prim_c)]["hex"];
-      let baseHex2 = this.base[lower(this.sec_c)]["hex"];
-      let baseHex3 = this.base[lower(this.tert_c)]["hex"];
-      
+      let html = "<table style='border-collapse:collapse; table-layout:fixed; width:720px;'>";
+
       for (let i = 0; i < maxRows; i++) {
         html += "<tr>";
         
-        colorString = "background: " + baseHex1 + ";";
-        html += "<td style='padding:6px; vertical-align:top;" + colorString + `'>` + (p[i] || "") + "</td>";
+        let c1 = (p[i] || "");
+        let c2 = (s[i] || "");
+        let c3 = (t[i] || "");
         
-        colorString = "background: " + baseHex2 + ";";
-        html += "<td style='padding:6px; vertical-align:top; " + colorString + `'>` + (s[i] || "") + "</td>";
+        let baseHex = this.base[lower(Object.keys(this.colors)[i])]["hex"];
         
-        colorString = "background: " + baseHex3 + ";";
-        html += "<td style='padding:6px; vertical-align:top;" + colorString + `'>` + (t[i] || "") + "</td>";
+        html += "<td style='padding:6px; vertical-align:top; background:" + baseHex + ";'>" + c1 + "</td>";
+       
+        html += "<td style='padding:6px; vertical-align:top; background:" + baseHex + ";'>" + c2 + "</td>";
+        
+        html += "<td style='padding:6px; vertical-align:top; background:" + baseHex + ";'>" + c3 + "</td>";
 
         html += "</tr>";
       }
@@ -420,9 +409,9 @@ export default {
       }
     },
     processLink(url) {
-      this.prim_c = findColor(url.match(/body=([^&]*)/)[1]);
-      this.sec_c = findColor(url.match(/wings=([^&]*)/)[1]);
-      this.tert_c = findColor(url.match(/tert=([^&]*)/)[1]);
+			this.prim_g = this.get_id_from(0, url.match(/bodygene=([^&]*)/)[1]);
+			this.sec_g = this.get_id_from(1, url.match(/winggene=([^&]*)/)[1]);
+			this.tert_g = this.get_id_from(2, url.match(/tertgene=([^&]*)/)[1]);			
     },
     processPage(t) {
       try {
@@ -431,9 +420,9 @@ export default {
         const phys = r.querySelector("#dragon-profile-physical");
         const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
         
-        this.prim_c = iconvalues[0].childNodes[0].text.trim();
-        this.sec_c = iconvalues[1].childNodes[0].text.trim();
-        this.tert_c = iconvalues[2].childNodes[0].text.trim();
+				this.prim_g = iconvalues[0].querySelector("strong").text.split(" (")[0];
+				this.sec_g = iconvalues[1].querySelector("strong").text.split(" (")[0];
+				this.tert_g = iconvalues[2].querySelector("strong").text.split(" (")[0];
 
       } catch(e) {
         alert('Not valid dragon data?');
