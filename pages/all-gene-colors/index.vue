@@ -218,7 +218,7 @@ export default {
   },
   head() {
     return {
-      title: "All Gene Accents",
+      title: "All Gene Colors",
     };
   },
   computed: {
