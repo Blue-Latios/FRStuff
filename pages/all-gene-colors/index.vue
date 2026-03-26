@@ -409,10 +409,41 @@ export default {
       }
     },
     processLink(url) {
+
 			this.prim_g = this.get_id_from(0, url.match(/bodygene=([^&]*)/)[1]);
 			this.sec_g = this.get_id_from(1, url.match(/winggene=([^&]*)/)[1]);
-			this.tert_g = this.get_id_from(2, url.match(/tertgene=([^&]*)/)[1]);			
+			this.tert_g = this.get_id_from(2, url.match(/tertgene=([^&]*)/)[1]);
+			
+			let breedId = url.match(/breed=([^&]*)/)[1];
+			
+			let item = Object.values(SCRY["modern_list"]).includes(breedId);
+			if (item) this.modern_list[0].isOn = true;
+			else {
+				item = this.ancient_list.find(obj => obj.value === breedId);
+					if (item) item.isOn = true;
+					else alert("Breed not found?");
+			}
     },
+    get_id_from(s, id) {
+			for (const [main, sub] of Object.entries(this.g_id))
+				for (const [key, value] of Object.entries(sub)) {
+					if (value === id) {
+						switch (s) {
+							case 0:
+								if (SCRY["prim_genes"].includes(key)) return key; 
+							break;
+							case 1:
+								if (SCRY["sec_genes"].includes(key)) return key;
+							break;
+							case 2:
+								if (SCRY["tert_genes"].includes(key)) return key;
+							break;
+							default:
+								alert("Bad switch case?");
+						}
+					}
+				}
+		},
     processPage(t) {
       try {
         const r = HTMLParser.parse(t);
@@ -423,7 +454,15 @@ export default {
 				this.prim_g = iconvalues[0].querySelector("strong").text.split(" (")[0];
 				this.sec_g = iconvalues[1].querySelector("strong").text.split(" (")[0];
 				this.tert_g = iconvalues[2].querySelector("strong").text.split(" (")[0];
-
+				
+				let breed = iconvalues[4].querySelector("strong").text;
+				let item = Object.keys(SCRY["modern_list"]).includes(breed);
+			  if (item) this.modern_list[0].isOn = true;
+			  else {
+				  item = this.ancient_list.find(obj => obj.name === breed);
+					  if (item) item.isOn = true;
+					  else alert("Breed not found?");
+			  }
       } catch(e) {
         alert('Not valid dragon data?');
       }

@@ -423,7 +423,37 @@ export default {
       this.prim_c = findColor(url.match(/body=([^&]*)/)[1]);
       this.sec_c = findColor(url.match(/wings=([^&]*)/)[1]);
       this.tert_c = findColor(url.match(/tert=([^&]*)/)[1]);
+      
+      let breedId = url.match(/breed=([^&]*)/)[1];
+			
+			let item = Object.values(SCRY["modern_list"]).includes(breedId);
+			if (item) this.modern_list[0].isOn = true;
+			else {
+				item = this.ancient_list.find(obj => obj.value === breedId);
+					if (item) item.isOn = true;
+					else alert("Breed not found?");
+			}
     },
+    get_id_from(s, id) {
+			for (const [main, sub] of Object.entries(this.g_id))
+				for (const [key, value] of Object.entries(sub)) {
+					if (value === id) {
+						switch (s) {
+							case 0:
+								if (SCRY["prim_genes"].includes(key)) return key; 
+							break;
+							case 1:
+								if (SCRY["sec_genes"].includes(key)) return key;
+							break;
+							case 2:
+								if (SCRY["tert_genes"].includes(key)) return key;
+							break;
+							default:
+								alert("Bad switch case?");
+						}
+					}
+				}
+		},
     processPage(t) {
       try {
         const r = HTMLParser.parse(t);
@@ -434,7 +464,15 @@ export default {
         this.prim_c = iconvalues[0].childNodes[0].text.trim();
         this.sec_c = iconvalues[1].childNodes[0].text.trim();
         this.tert_c = iconvalues[2].childNodes[0].text.trim();
-
+        
+        let breed = iconvalues[4].querySelector("strong").text;
+				let item = Object.keys(SCRY["modern_list"]).includes(breed);
+			  if (item) this.modern_list[0].isOn = true;
+			  else {
+				  item = this.ancient_list.find(obj => obj.name === breed);
+					  if (item) item.isOn = true;
+					  else alert("Breed not found?");
+			  }
       } catch(e) {
         alert('Not valid dragon data?');
       }
