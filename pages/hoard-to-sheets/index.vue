@@ -47,7 +47,7 @@ function buildString(t) {
 	
 	//header
 	let rows = r.querySelectorAll(".itemicon");
-	let qtys = r.querySelectorAll(".hoard-result-item-controls");
+	let qtys = r.querySelectorAll(".hoard-result-item");
 	let str = '';
 	
 	for (let i = 0; i < rows.length; i++) {
@@ -61,13 +61,7 @@ function buildString(t) {
 		name = rows[i].getAttribute("data-name");
 		
 		//second div
-		let selectable = qtys[i].querySelector("select");
-		if (selectable && selectable.value) {
-		  q = selectable.value;
-		} else {
-		  let text = qtys[i].innerText.trim() //mobile fix?
-		  q = parseInt(text) || 1;
-		}
+		q = qtys[i].getAttribute("data-quantity");
 		
 		//string building
 		let row_str = id;
