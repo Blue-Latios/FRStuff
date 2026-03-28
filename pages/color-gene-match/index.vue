@@ -209,6 +209,7 @@ export default {
       ancient_list: Object.keys(SCRY["ancient_list"]).map(
         item=>({
           name: item,
+          value: SCRY["ancient_list"][item],
           isOn: false,
       })),
     };
