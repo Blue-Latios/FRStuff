@@ -62,10 +62,11 @@ function buildString(t) {
 		
 		//second div
 		let selectable = qtys[i].querySelector("select");
-		if (selectable) {
+		if (selectable && selectable.value) {
 		  q = selectable.value;
 		} else {
-		  q = 1;
+		  let text = qtys[i].innerText.trim() //mobile fix?
+		  q = parseInt(text) || 1;
 		}
 		
 		//string building
