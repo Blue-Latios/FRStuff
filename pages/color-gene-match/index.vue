@@ -351,7 +351,7 @@ export default {
         let accents = this.colors[colorName][gene];
         if (!accents) continue;
 
-        let row = `<div class="${this.check_gene_disabled(g) ? 'disableGene2' : ''}"><span style='padding-left:3px; padding-right:3px; background:white; border-radius: 4px;'>` + g + "</span> ";
+        let row = `<div class="${this.check_gene_disabled(g) ? 'disableGene2' : ''}"><span style='padding-left:3px; padding-right:3px; background:#eee; border-radius: 4px;'>` + g + "</span> ";
         for (let hex of accents) {
           row += colorBox(hex);
         }
@@ -369,7 +369,7 @@ export default {
 
       let maxRows = Math.max(p.length, s.length, t.length);
 
-      let html = "<table style='border-collapse:collapse; table-layout:fixed; width:680px;'>";
+      let html = "<table style='font-size: 12px; font-weight: bold; border-collapse:collapse; table-layout:fixed; width:680px;'>";
       let colorString = "";
       let baseHex1 = this.base[lower(this.prim_c)]["hex"];
       let baseHex2 = this.base[lower(this.sec_c)]["hex"];
