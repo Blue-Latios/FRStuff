@@ -11,6 +11,10 @@
   Honestly, just my take on implementing xCorbeau's tool.<br>
   For now, it just displays data already in their tool.<br><br>
   
+  For secondary genes, including Basic gene, it takes the accents<br>
+  found on both primary and secondary parts. Basic tert is<br>
+  excluded here.<br><br>
+  
   You can go to a dragon's page and select all (Ctrl+A),<br>
   copy (Ctrl+C), then click on the box below and paste (Ctrl+V)<br>
   to input the colors automatically.<br>
@@ -322,7 +326,9 @@ export default {
       }
       for (let g of geneList) {
         let gene = (mode != 2) ? g : mapping["mapping"][g];
-        let accents = this.colors[colorName][gene];
+        let accents;
+        if ( !(mode == 3 && gene == "Basic"))
+          accents = this.colors[colorName][gene];
         if (!accents) continue;
         
         out += `<tr class="${this.check_gene_disabled(g) ? 'disableGene' : ''}">`;        
@@ -348,7 +354,9 @@ export default {
 
       for (let g of geneList) {
         let gene = (mode == 2) ? mapping["mapping"][g] : g;
-        let accents = this.colors[colorName][gene];
+        let accents;
+        if ( !(mode == 3 && gene == "Basic"))
+          accents = this.colors[colorName][gene];
         if (!accents) continue;
 
         let row = `<div class="${this.check_gene_disabled(g) ? 'disableGene2' : ''}"><span style='padding-left:3px; padding-right:3px; background:#eee; border-radius: 4px;'>` + g + "</span> ";
