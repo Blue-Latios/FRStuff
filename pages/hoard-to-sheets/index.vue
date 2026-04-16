@@ -2,8 +2,8 @@
 <div class="container">
   <div class="text-bold">What is this?<br>
   </div>
-  Select All on Hoard,<br>
-  copy, paste into box. Text comes out, copy that and<br>
+  Select All (Ctrl+A) on Hoard webpage, copy,<br>
+  paste into box. Text comes out, copy that and<br>
   paste into Google Sheets.<br>
   Click the "Copy" button to copy the result text.<br><br>
   

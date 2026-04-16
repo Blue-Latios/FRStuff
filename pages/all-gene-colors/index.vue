@@ -198,9 +198,9 @@ export default {
       colors: DATA,
       mappings: MAP,
       base: BASE,
-      prim_g: MAP["prim_genes"][0],
-      sec_g: MAP["sec_genes"][0],
-      tert_g: MAP["tert_genes"][0],
+      prim_g: "Basic",
+      sec_g: "Basic",
+      tert_g: "Basic",
       compact: true,
       
       g_id: SCRY["breeds"],
