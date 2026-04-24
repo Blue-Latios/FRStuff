@@ -37,83 +37,7 @@ ul {
 </style>
 
 <script>
-const HTMLParser = require('node-html-parser');
-
-function buildString(t) {
-	const r = HTMLParser.parse(t);
-	
-	//data extraction
-	
-	//header
-	let name = r.querySelector("#main-content").text;
-	let id = r.querySelector("#dragon-profile-share").getAttribute("data-id");
-	
-	//icons
-	let gender = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-sex-tooltip"]`).querySelector("img").getAttribute("src").match(/\/([^/]+)\.png$/)[1];
-	gender = gender[0].toUpperCase() + gender.slice(1);
-	
-	let isPermabab = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-eternal-youth-tooltip"]`);
-	isPermabab = (isPermabab ? "Yes" : "No");
-	let isSilhouette = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-silhouette-tooltip"]`);
-	isSilhouette = (isSilhouette ? "Yes" : "No");
-	let isFlip = r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-reflect-tooltip"]`);
-	isFlip = (isFlip ? "Yes" : "No");
-	
-	//Physical Attributes
-	const phys = r.querySelector("#dragon-profile-physical");
-	
-	let measurements = phys.querySelectorAll(".dragon-profile-stat-value");
-	let length = measurements[0].text.slice(0,-2);
-	let wingspan = measurements[1].text.slice(0,-2);
-	let weight = measurements[2].text.slice(0,-3);
-	
-	const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
-	let primaryColor = iconvalues[0].childNodes[0].text.trim();
-	let primaryGene = iconvalues[0].querySelector("strong").text.split(" (")[0]; //split to remove ancient gene variant
-	let secondaryColor = iconvalues[1].childNodes[0].text.trim();
-	let secondaryGene = iconvalues[1].querySelector("strong").text.split(" (")[0];
-	let tertiaryColor = iconvalues[2].childNodes[0].text.trim();
-	let tertiaryGene = iconvalues[2].querySelector("strong").text.split(" (")[0];
-	
-	let birthdate = iconvalues[3].querySelector("strong").text;
-	let breed = iconvalues[4].querySelector("strong").text;
-	
-	let element = iconvalues[5].childNodes[0].text.trim();
-	let eyes = iconvalues[5].querySelector("strong").text;
-	
-	let gen = r.querySelector(".dragon-profile-lineage-parents").querySelector("em");
-	gen = (gen ? "1" : "2+");
-	let isBred = r.querySelector(".dragon-profile-lineage-offspring").querySelector("em");
-	isBred = (isBred ? "No" : "Yes");
-	
-	let cTime = r.querySelector("time").getAttribute("datetime");
-	
-	//string building
-	let str = '';
-	str += name;
-	str += '\t' + gender;
-	str += '\t' + breed;
-	str += '\t' + primaryColor;
-	str += '\t' + primaryGene;
-	str += '\t' + secondaryColor;
-	str += '\t' + secondaryGene;
-	str += '\t' + tertiaryColor;
-	str += '\t' + tertiaryGene;
-	str += '\t' + element;
-	str += '\t' + eyes;
-	str += '\t' + gen;
-	str += '\t' + isPermabab;
-	str += '\t' + isSilhouette;
-	str += '\t' + id;
-	str += '\t' + birthdate;
-	str += '\t' + isBred;
-	str += '\t' + length;
-	str += '\t' + wingspan;
-	str += '\t' + weight;
-	str += '\t' + isFlip;
-	str += '\t' + cTime;
-	return str;
-}
+import PARSER from "@/utils/parser.js";
 
 export default {
 	data() {
@@ -144,11 +68,11 @@ export default {
 			}
 		},
 		processInput(t) {
-			try {
-				this.results = buildString(t);
-			} catch(e) {
-				alert('Not valid dragon data?');
-			}
+		  let res = PARSER.parseDragonPage(t);
+		  if (res == null) {
+		    alert("Not valid dragon data?");
+		  } else
+	      this.results = res.join("\t");
 		},
 		copyText() {
 			this.$refs.res.select();

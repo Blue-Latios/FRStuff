@@ -133,12 +133,12 @@
 </style>
 
 <script>
-const HTMLParser = require('node-html-parser');
 
 import DATA from "@/data/gene_colors.json";
 import MAP from "@/data/gene_mappings.json";
 import BASE from "@/data/colors2.js";
 import SCRY from "@/data/scry.js";
+import PARSER from "@/utils/parser.js";
 
 const colors_arr = Object.keys(BASE);
 
@@ -390,6 +390,7 @@ export default {
       }
     },
     htmlPaste(e) {
+      this.deselect_all();
       let pastedText = '';
       try {
         if (window.clipboardData && window.clipboardData.getData) { // IE
@@ -445,18 +446,15 @@ export default {
 					}
 				}
 		},
-    processPage(t) {
+    processPage(page) {
       try {
-        const r = HTMLParser.parse(t);
+        const t = PARSER.parseDragonPage(page);
         
-        const phys = r.querySelector("#dragon-profile-physical");
-        const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
-        
-				this.prim_g = iconvalues[0].querySelector("strong").text.split(" (")[0];
-				this.sec_g = iconvalues[1].querySelector("strong").text.split(" (")[0];
-				this.tert_g = iconvalues[2].querySelector("strong").text.split(" (")[0];
+				this.prim_g = t[4];
+				this.sec_g = t[6];
+				this.tert_g = t[8];
 				
-				let breed = iconvalues[4].querySelector("strong").text;
+				let breed = t[2];
 				let item = Object.keys(SCRY["modern_list"]).includes(breed);
 			  if (item) this.modern_list[0].isOn = true;
 			  else {

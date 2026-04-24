@@ -64,8 +64,6 @@ ul {
 </style>
 
 <script>
-const HTMLParser = require('node-html-parser');
-
 function cleanPastedText(text) {
     return text.split("\n")
         .filter(line => line.trim() !== "") // Remove tabs and trim the line

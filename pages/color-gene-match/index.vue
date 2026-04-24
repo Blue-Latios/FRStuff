@@ -145,12 +145,12 @@
 </style>
 
 <script>
-const HTMLParser = require('node-html-parser');
 
 import DATA from "@/data/gene_colors.json";
 import MAP from "@/data/gene_mappings.json";
 import BASE from "@/data/colors2.js";
 import SCRY from "@/data/scry.js";
+import PARSER from "@/utils/parser.js";
 
 const colors_arr = Object.keys(BASE);
 
@@ -409,6 +409,7 @@ export default {
       }
     },
     htmlPaste(e) {
+      this.deselect_all();
       let pastedText = '';
       try {
         if (window.clipboardData && window.clipboardData.getData) { // IE
@@ -463,18 +464,15 @@ export default {
 					}
 				}
 		},
-    processPage(t) {
+    processPage(page) {
       try {
-        const r = HTMLParser.parse(t);
+        const t = PARSER.parseDragonPage(page);
         
-        const phys = r.querySelector("#dragon-profile-physical");
-        const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
-        
-        this.prim_c = iconvalues[0].childNodes[0].text.trim();
-        this.sec_c = iconvalues[1].childNodes[0].text.trim();
-        this.tert_c = iconvalues[2].childNodes[0].text.trim();
-        
-        let breed = iconvalues[4].querySelector("strong").text;
+        this.prim_c = t[3];
+				this.sec_c = t[5];
+				this.tert_c = t[7];
+				
+				let breed = t[2];
 				let item = Object.keys(SCRY["modern_list"]).includes(breed);
 			  if (item) this.modern_list[0].isOn = true;
 			  else {

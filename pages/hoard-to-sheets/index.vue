@@ -40,34 +40,21 @@ ul {
 </style>
 
 <script>
-const HTMLParser = require('node-html-parser');
+function buildString(r) {
 
-function buildString(t) {
-	const r = HTMLParser.parse(t);
-	
-	//header
-	let rows = r.querySelectorAll(".itemicon");
-	let qtys = r.querySelectorAll(".hoard-result-item");
-	let str = '';
-	
-	for (let i = 0; i < rows.length; i++) {
-		//prepare variables
-		let id;
-		let name;
-		let q;
-		
-		//first div
-		id = rows[i].getAttribute("data-itemid");
-		name = rows[i].getAttribute("data-name");
-		
-		//second div
-		q = qtys[i].getAttribute("data-quantity");
+  const itemPattern = /<div class="hoard-result-item" data-itemid="(\d+)"[^]*?data-quantity="(\d+)"[^]*?data-name="([^]*?)"/g;
+  let matches = r.matchAll(itemPattern);
+  
+  let str = '';
+  for (let match of matches) {
+    let id = match[1];
+    let q = match[2];
+		let name = match[3];
 		
 		//string building
 		let row_str = id;
-		row_str += '\t' +  name;
-		row_str += '\t' +  q;
-		console.log(row_str);
+		row_str += '\t' + name;
+		row_str += '\t' + q;
 		
 		str += row_str + '\n';
 	}

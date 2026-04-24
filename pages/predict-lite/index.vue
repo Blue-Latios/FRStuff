@@ -178,9 +178,8 @@ ul {
 </style>
 
 <script>
-const HTMLParser = require('node-html-parser');
-
 import SCRY from "@/data/scry.js";
+import PARSER from "@/utils/parser.js";
 
 const start_s = "https://www1.flightrising.com/scrying/predict?";
 
@@ -385,6 +384,7 @@ export default {
 			}
 		},
 		htmlPaste(e) {
+		  this.deselect_all();
 			let pastedText = '';
 			try {
 				if (window.clipboardData && window.clipboardData.getData) { // IE
@@ -427,28 +427,25 @@ export default {
 					else alert("Breed not found?");
 			}
 		},
-		processPage(t) {
+		processPage(page) {
 			try {
-				const r = HTMLParser.parse(t);
+				const t = PARSER.parseDragonPage(page);
 				
-				this.gender = (r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-sex-tooltip"]`).querySelector("img").getAttribute("src").match(/\/([^/]+)\.png$/)[1] == "male" ? 0 : 1);
-				this.age = (r.querySelector(`span[data-tooltip-source="#dragon-profile-icon-eternal-youth-tooltip"]`) ? "0" : "1");
+				this.gender = this.gender_list[t[1]];
+				this.age = (t[12] == "Yes" ? "0" : "1");
 				
-				const phys = r.querySelector("#dragon-profile-physical");
-				const iconvalues = phys.querySelectorAll(".dragon-profile-stat-icon-value");
+				this.prim_c = this.colors[t[3]];
+				this.sec_c = this.colors[t[5]];
+				this.tert_c = this.colors[t[7]];
 				
-				this.prim_c = this.colors[iconvalues[0].childNodes[0].text.trim()];
-				this.sec_c = this.colors[iconvalues[1].childNodes[0].text.trim()];
-				this.tert_c = this.colors[iconvalues[2].childNodes[0].text.trim()];
+				this.prim_g = t[4];
+				this.sec_g = t[6];
+				this.tert_g = t[8];
 				
-				this.prim_g = iconvalues[0].querySelector("strong").text.split(" (")[0];
-				this.sec_g = iconvalues[1].querySelector("strong").text.split(" (")[0];
-				this.tert_g = iconvalues[2].querySelector("strong").text.split(" (")[0];
+				this.element = this.element_list[t[9]];
+				this.eye = this.eye_list[t[10]];
 				
-				this.element = this.element_list[iconvalues[5].childNodes[0].text.trim()];
-				this.eye = this.eye_list[iconvalues[5].querySelector("strong").text];
-				
-				let breed = iconvalues[4].querySelector("strong").text;
+				let breed = t[2];
 				let item = this.modern_list.find(obj => obj.name === breed);
 				if (item) item.isOn = true;
 				else {

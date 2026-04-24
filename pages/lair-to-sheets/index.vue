@@ -55,123 +55,7 @@ ul {
 </style>
 
 <script>
-
-function buildString(t, i, cTime) {
-	
-	//tooltip data extraction
-	const pattern = />([^<>]*)<\/div>/g;
-	let data = [];
-	let matches;
-	
-	while ((matches = pattern.exec(t)) !== null) {
-		const captureString = matches[1];
-		data.push(captureString);
-	}
-	
-	//const n = 11; //11 substrings found in dragontip class pattern regex search
-	
-	let name = data[0].trim();
-	
-	let desc = data[1].trim().split(" ");
-	let breed = desc[0];
-	let gender = desc[1];
-	
-	let level = data[2].trim().split(" ")[1];
-	
-	let id = data[3].trim();
-	//let age = data[4].trim();
-	let gen = (data[5].trim().length == 0 ? "1" : "2+"); //only newlines and spaces found if First Generation
-	
-	let prim = data[6].trim().split(" ");
-	let primaryColor = prim[0];
-	let primaryGene = prim[1];
-	let sec = data[7].trim().split(" ");
-	let secondaryColor = sec[0];
-	let secondaryGene = sec[1];
-	let tert = data[8].trim().split(" ");
-	let tertiaryColor = tert[0];
-	let tertiaryGene = tert[1];
-	
-	let eye_type = data[9].trim().split(" ");
-	let element = eye_type[0];
-	let eyes = eye_type[1];
-	
-	//let food_type = data[10].trim();
-	
-	//icons data extraction
-	let isPermabab = (i.includes("#icon-eternal-youth-tooltip") ? "Yes" : "No");
-	let isSilhouette = (i.includes("#icon-silhouette-tooltip") ? "Yes" : "No");
-	let isFlip = (i.includes("#icon-reflect-tooltip") ? "Yes" : "No");
-	
-	//string building
-	let str = '';
-	str += name;
-	str += '\t' + gender;
-	str += '\t' + breed;
-	str += '\t' + primaryColor;
-	str += '\t' + primaryGene;
-	str += '\t' + secondaryColor;
-	str += '\t' + secondaryGene;
-	str += '\t' + tertiaryColor;
-	str += '\t' + tertiaryGene;
-	str += '\t' + element;
-	str += '\t' + eyes;
-	str += '\t' + gen;
-	str += '\t' + isPermabab;
-	str += '\t' + isSilhouette;
-	str += '\t' + id;
-	str += '\t' + level;
-	str += '\t' + isFlip;
-	str += '\t' + cTime;
-	//console.log("passed");
-	return str;
-}
-
-function buildStrings(page) {
-	
-	//get time taken
-	
-	let cTime = page.match(/<time datetime="([^"]+)"/)[1];
-	
-	//get dragontip data
-	const dragontip_pattern = /class="dragontip"([^]*?)\[Click to see details about this dragon\.\]/g;
-	let data = [];
-	let matches;
-	
-	while ((matches = dragontip_pattern.exec(page)) !== null) {
-		const captureString = matches[1].trim();
-		data.push(captureString);
-	}
-	
-	//get icons data
-	const icons_pattern = /class="lair-page-dragon-thumbnail lair-dragon-tooltip" rel="#dragontip-([^]*?)(class="lair-page-dragon"|class="lair-footer")/g;
-	//start string regex is so to get the first part of string is the ID
-	let icons = [];
-	while ((matches = icons_pattern.exec(page)) !== null) {
-		const captureString = matches[1].trim();
-		icons.push(captureString);
-	}
-	
-	//console.log(data.length);
-	//console.log(icons.length);
-	
-	//sort the icons data
-	function compareStringsByNumber(a, b) {
-		const numA = a.substring(0, a.indexOf(`">`));
-		const numB = b.substring(0, b.indexOf(`">`));
-		return numA - numB;
-	}
-	
-	icons.sort(compareStringsByNumber);
-	
-	//string building
-	let strAll = '';
-	for (let i = 0; i < data.length; i++) {
-		strAll += buildString(data[i], icons[i], cTime) + '\n';
-	}
-	
-	return strAll;
-}
+import PARSER from "@/utils/parser.js";
 
 export default {
 	data() {
@@ -215,7 +99,7 @@ export default {
 							this.processInput(fileContent);
 						} catch(e) {
 							alert('Error! Something went wrong with file processing.');
-						}  finally {
+						} finally {
 							this.$refs.fileInput.value = '';
 						}
 					}
@@ -227,11 +111,11 @@ export default {
 			}
 		},
 		processInput(t) {
-			try {
-				this.results = buildStrings(t);
-			} catch(e) {
-				alert('Not valid lair data?');
-			}
+		  let res = PARSER.parseLairPage(t);
+		  if (res == null) {
+		    alert("Not valid lair data?");
+		  } else
+	      this.results = res;
 		},
 		copyText() {
 			this.$refs.res.select();

@@ -44,64 +44,51 @@ ul {
 </style>
 
 <script>
-const HTMLParser = require('node-html-parser');
+function getBetween(s, start, end) {
+  let re = new RegExp(start + "([\\s\\S]*?)" + end);
+  return s.match(re)[1];
+}
 
-function buildString(t) {
-	const r = HTMLParser.parse(t);
-	
+function buildString(r) {
+
 	//data extraction
-	const pattern = /itemicon-([^]*?)-(prev|scry)/;
-	const img_pattern = /\/cms\/([^]*?)\//;
 	const currency_pattern = /icon_([^]*?)\.png/;
 	
-	//header
-	let rows = r.querySelectorAll(".itemicon");
-	let lefts = r.querySelectorAll(".ah-listing-left");
-	let rights = r.querySelectorAll(".ah-listing-right");
-	let str = '';
-	
-	for (let i = 0; i < rows.length; i++) {
-		//prepare variables
-		let type;
-		let name;
-		let sale_type;
-		let quantity;
-		let currency;
-		let amount;
-		let date;
-		
-		//first div
-		if (rows[i].getAttribute("href")) { //dragon sales have href attr
-			type = "Dragon";
-			name = '#' + rows[i].getAttribute("href").split("/").slice(-1);
+	const rowPattern = /<div class="ah-listing-row"([\s\S]*?)<\/div>\s+<\/div>\s+<\/div>\s+<\/div>/g;
+  let matches = r.matchAll(rowPattern);
+  
+  let str = '';
+  
+  for (let match of matches) {
+    let data = match[1];
+    let type, name, sale_type, quantity, currency, amount, date;
+    
+    if (data.includes("href=\"https://www1.flightrising.com/dragon")) {
+      type = "Dragon";
+			name = '#' + data.match(/dragon\/(\d+)"/)[1];
 			quantity = '1';
-		} else {
-			let classnames = rows[i].getAttribute("class").split(" ");
-			let item_type;
-			if (classnames.length == 3) {
-				item_type = pattern.exec(classnames[1])[1].trim();
-				if (item_type == "fam") item_type = "Familiar";
+    } else {
+      let classnames = data.match(/<div class="([\s\S]*?)"/)[1].split(" "); //take the first match, ignore others
+      if (classnames.length == 3) {
+				type = classnames[1].match(/itemicon-([^]*?)-(prev|scry)/)[1].trim();
+				if (type == "fam") type = "Familiar";
 			} else {
-				item_type = img_pattern.exec(rows[i].querySelector("img").getAttribute("src"))[1].trim();
+				type = data.match(/static\/cms\/([^]*?)\//)[1].trim();
 			}
-			type = item_type[0].toUpperCase() + item_type.slice(1);
-			name = rows[i].getAttribute("data-name");
-			quantity = rows[i].getAttribute("data-quantity");
-		}
-		
-		//second div
-		let sale_desc = lefts[i].querySelectorAll("div")[2];
-		sale_type = sale_desc.querySelector("b").text;
-		date = sale_desc.text.trim().split("on ")[1];
-		
-		//third div
-		let currency_img = rights[i].querySelector("img").getAttribute("src");
-		currency = currency_pattern.exec(currency_img)[1].trim();
-		currency = currency[0].toUpperCase() + currency.slice(1);
-		amount = rights[i].querySelector(".ah-listing-cost").text;
-		
-		//string building
-		let row_str = type;
+			type = type[0].toUpperCase() + type.slice(1);
+			name = data.match(/data-name="([^]*?)"/)[1];
+			quantity = data.match(/data-quantity="([^]*?)"/)[1];
+    }
+    
+    let sale_desc = data.match(/<b>(\w+)<\/b> on ([^]*?)\s*<\/div>/);
+    sale_type = sale_desc[1];
+    date = sale_desc[2];
+    
+    currency = data.match(/www1.flightrising.com\/static\/layout\/icon_(\w+)\.png/)[1];
+    currency = currency[0].toUpperCase() + currency.slice(1);
+    amount = data.match(/ah-listing-cost">(\d+)</)[1];
+    
+    let row_str = type;
 		row_str += '\t' +  name;
 		row_str += '\t' +  sale_type;
 		row_str += '\t' +  quantity;
@@ -110,8 +97,8 @@ function buildString(t) {
 		row_str += '\t' +  date;
 		
 		str += row_str + '\n';
-	}
-	
+  }
+  
 	return str;
 }
 
