@@ -54,7 +54,7 @@ function buildString(r) {
 	//data extraction
 	const currency_pattern = /icon_([^]*?)\.png/;
 	
-	const rowPattern = /<div class="ah-listing-row"([\s\S]*?)<\/div>\s+<\/div>\s+<\/div>\s+<\/div>/g;
+	const rowPattern = /<div class="ah-listing-row"([^]*?)<\/div>\s*<\/div>\s*<\/div>/g;
   let matches = r.matchAll(rowPattern);
   
   let str = '';
