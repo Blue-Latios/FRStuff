@@ -118,7 +118,7 @@ ul {
 
 <script>
 import COLORS from "@/data/colors.js";
-import ANCIENTS from "@/data/ancients.js";
+import DATA from "@/data/scry.js";
 
 const n_colors = COLORS.length;
 
@@ -330,7 +330,7 @@ export default {
 			return pairs;
 		},
 		validateBreed(m, f) {
-			if (ANCIENTS.includes(m) || ANCIENTS.includes(f))
+			if (DATA.ancient_list.includes(m) || DATA.ancient_list.includes(f))
 				return (m == f);
 			else
 				return true;
