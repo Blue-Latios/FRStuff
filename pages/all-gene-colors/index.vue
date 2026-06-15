@@ -56,6 +56,10 @@
   
   <p class="results" v-html="results"></p>
   
+  <div v-show="tooltip.show" class="tooltipClass" :style="{left: tooltip.x + 'px', top: tooltip.y + 'px'}">
+    {{ tooltip.text }}
+  </div>
+  
   <hr>
   <div class="footnote" style="font-size: 10px;"><a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/forums/gde/3384576">Tool thread</a><br>
   Data, sheets tool credits are by xCorbeau and team. Web tool by BlueLatios.</div>
@@ -106,8 +110,9 @@
   color: transparent;
   width: 680px;
 }
-.detailText {
-  
+.detailTable th {
+  text-align: center;
+  width: 90px;
 }
 .detailTable tr td, .detailTable tr th {
   border: 1px solid black;
@@ -129,6 +134,30 @@
 }
 .disableGene2 {
   opacity: 0.2;
+}
+.compactTable {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 750px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.tooltipClass {
+  width: max-content;
+  background-color: #eeeeee;
+  color: #1a1044;
+  text-align: center;
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  padding: 2px 4px;
+  position: fixed;
+  z-index: 1;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  font-family: "Monospace";
 }
 </style>
 
@@ -175,19 +204,22 @@ function findColor(idx) {
 }
 
 function colorBox(hex) {
-  return `<span style="
-    display:inline-block;
-    width:16px;
-    height:16px;
-    background:${hex};
-    border:2px solid black;
-    border-radius: 4px;
-    margin-left: 4px;
-    vertical-align:middle;
-    position: relative;
-    bottom: 1px;
-    box-shadow: 0 0 0 1px #fff;
-  "></span>`;
+  return `<span class="colorBox"
+    data-hex="${hex}"
+    style="
+      display:inline-block;
+      width:16px;
+      height:16px;
+      background:${hex};
+      border:2px solid black;
+      border-radius: 4px;
+      margin-left: 4px;
+      vertical-align:middle;
+      position: relative;
+      bottom: 1px;
+      box-shadow: 0 0 0 1px #fff;
+  ">
+  </span>`;
 }
 
 export default {
@@ -215,6 +247,13 @@ export default {
           value: SCRY["ancient_list"][item],
           isOn: false,
       })),
+      
+      tooltip: {
+        show: false,
+        text: '',
+        x: 0,
+        y: 0,
+      },
     };
   },
   head() {
@@ -305,9 +344,9 @@ export default {
 
       out += "<table class='detailTable' style='border: 5px solid #ddd;'>";
       
-      out += "<tr><th style='width:160px;'><span class='detailText'>" + geneName + "</span></th>";
-      for (let i = 1; i <= 6; i++) {
-        out += "<th><span class='detailText'>ACCENT " + i + "</span></th>";
+      out += "<tr><th style='width:120px;'><span class='detailText'>" + geneName + "</span></th>";
+      for (let i = 1; i <= 7; i++) {
+        out += "<th><span class='detailText'>ACC " + i + "</span></th>";
       }
       out += "</tr>";
       
@@ -319,7 +358,7 @@ export default {
         out += `<tr class="${this.check_gene_disabled(geneName) ? 'disableGene' : ''}" style="background:${baseHex}">`;
         let textColor = isDark(baseHex) ? "#fff" : "#000";
         out += `<td style="vertical-align: middle;background:${baseHex}; color:${textColor}">${titleCase(color)}</td>`;
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 7; i++) {
           if (accents[i]) {
             let hex = accents[i];
             out += `<td class='hexText' style='color:${textColor}'>` + colorBox(hex) + " <span class='detailText'>" + hex.slice(1) + "</span></td>";
@@ -339,7 +378,7 @@ export default {
         
         let accents = this.colors[titleCase(color)][geneRef] || [];
 
-        let row = `<div class="${this.check_gene_disabled(geneName) ? 'disableGene2' : ''}"><span style='padding-left:3px; padding-right:3px; background:white; border-radius: 4px;'>`
+        let row = `<div class="${this.check_gene_disabled(geneName) ? 'disableGene2' : ''}"><span style='padding: 2px 3px; background:white; border-radius: 3px;'>`
           + titleCase(color) + "</span> ";
 
         for (let hex of accents) {
@@ -359,7 +398,7 @@ export default {
 
       let maxRows = Math.max(p.length, s.length, t.length);
 
-      let html = "<table style='border-collapse:collapse; table-layout:fixed; width:720px;'>";
+      let html = "<table class='compactTable'>";
 
       for (let i = 0; i < maxRows; i++) {
         html += "<tr>";
@@ -370,11 +409,11 @@ export default {
         
         let baseHex = this.base[lower(Object.keys(this.colors)[i])]["hex"];
         
-        html += "<td style='padding:6px; vertical-align:top; background:" + baseHex + ";'>" + c1 + "</td>";
+        html += "<td style='padding:5px 3px; vertical-align:top; background:" + baseHex + ";'>" + c1 + "</td>";
        
-        html += "<td style='padding:6px; vertical-align:top; background:" + baseHex + ";'>" + c2 + "</td>";
+        html += "<td style='padding:5px 3px; vertical-align:top; background:" + baseHex + ";'>" + c2 + "</td>";
         
-        html += "<td style='padding:6px; vertical-align:top; background:" + baseHex + ";'>" + c3 + "</td>";
+        html += "<td style='padding:5px 3px; vertical-align:top; background:" + baseHex + ";'>" + c3 + "</td>";
 
         html += "</tr>";
       }
@@ -478,6 +517,43 @@ export default {
       let s = randomColor();
       this.sec_c = titleCase(s);
     },
-  }
+    showTooltip(event, text) {
+      this.tooltip.text = text.toUpperCase();
+      this.tooltip.x = event.clientX + 20;
+      this.tooltip.y = event.clientY - 30;
+      this.tooltip.show = true;
+      //console.log("Tooltip shown");
+    },
+    hideTooltip() {
+      this.tooltip.show = false;
+      //console.log("Tooltip hidden");
+    }
+  },
+  mounted() {
+    this._mouseoverHandler = (e) => {
+      const box = e.target.closest('.colorBox');
+      if (!box) return;
+      this.showTooltip(e, box.dataset.hex);
+    };
+    this._mouseoutHandler = (e) => {
+      if (!e.target.closest('.colorBox')) return;
+      this.hideTooltip();
+    };
+     this._clickHandler = (e) => {
+      const box = e.target.closest('.colorBox');
+      if (!box) return;
+      
+      navigator.clipboard.writeText(this.tooltip.text);
+      this.tooltip.text = "Color copied!"; 
+    };
+    document.addEventListener('mouseover', this._mouseoverHandler);
+    document.addEventListener('mouseout', this._mouseoutHandler);
+    document.addEventListener('click', this._clickHandler);
+  },
+  beforeUnmount() {
+    document.removeEventListener('mouseover', this._mouseoverHandler);
+    document.removeEventListener('mouseout', this._mouseoutHandler);
+    document.removeEventListener('click', this._clickHandler);
+  },
 }
 </script>
