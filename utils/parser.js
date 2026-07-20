@@ -168,26 +168,26 @@ function buildDragonData(page) {
 	
 	//physical attributes part trimming
 	let phys = t.match(/dragon-profile-physical([^]*?<\/div>)\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>\s*<\/div>/)[1];
-	
+  
 	//measurements
-  const statPattern = /dragon-profile-stat-value">([^]*?)<\/div>/g;
+  const statPattern = /dragon-profile-stat-value"[^>]*>([^]*?)<\/div>/g;
 	matches = [...phys.matchAll(statPattern)];
 	let length = matches[0][1].slice(0,-2);
 	let wingspan = matches[1][1].slice(0,-2);
 	let weight = matches[2][1].slice(0,-3);
-	
+  
 	//genes and others
-	const genePattern = /dragon-profile-stat-icon-value[^]*?>([^]*?)<\/div>/g;
+	const genePattern = /dragon-profile-stat-icon-value[^>]*>([^]*?)<\/div>/g;
 	matches = [...phys.matchAll(genePattern)];
 	function processMatches(a) {
-	  let x = a.split("<br>");
-	  let y = getBetween(x[1], "<strong>", "</strong>").split(" ")[0];
+	  let x = a.split("<br");
+	  let y = getBetween(x[1], "<strong", "</strong>").split("\">")[1].split(" ")[0];
 	  return [x[0].trim(), y.trim()];
 	}
 	let [primaryColor, primaryGene] = processMatches(matches[0][1]);
 	let [secondaryColor, secondaryGene] = processMatches(matches[1][1]);
 	let [tertiaryColor, tertiaryGene] = processMatches(matches[2][1]);
-	let birthdate = getBetween(matches[3][1], "<strong>", "</strong>");
+	let birthdate = getBetween(matches[3][1], "<strong", "</strong>").split("\">")[1];
 	let [element, eyes] = processMatches(matches[5][1]);
 	
 	//lineage
