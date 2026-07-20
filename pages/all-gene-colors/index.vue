@@ -502,7 +502,7 @@ export default {
 					  else alert("Breed not found?");
 			  }
       } catch(e) {
-        alert('Not valid dragon data?');
+        alert('Not valid dragon data? ' + e.message);
       }
     },
     r_tc() {
