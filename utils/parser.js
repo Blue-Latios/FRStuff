@@ -15,7 +15,8 @@ function parseDragonPage(s) {
   try {
     return buildDragonData(s);
   } catch(e) {
-    return null;
+    //return null;
+    throw e;
 	}
 }
 
