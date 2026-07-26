@@ -377,8 +377,9 @@ export default {
       for (let color of Object.keys(this.colors)) {
         
         let accents = this.colors[titleCase(color)][geneRef] || [];
+        let hexColor = this.base[lower(color)]["hex"];
 
-        let row = `<div class="${this.check_gene_disabled(geneName) ? 'disableGene2' : ''}"><span style='padding: 2px 3px; background:white; border-radius: 3px;'>`
+        let row = `<div class="${this.check_gene_disabled(geneName) ? 'disableGene2' : ''}"><span style='padding: 2px 3px; background:white; border-radius: 3px;' onmouseenter='this.textContent="${hexColor}"' onmouseleave='this.textContent="${titleCase(color)}"'>`
           + titleCase(color) + "</span> ";
 
         for (let hex of accents) {

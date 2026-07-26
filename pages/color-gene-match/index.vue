@@ -47,21 +47,24 @@
     <button class="r" @click="r_pc()">R</button><br>
     <select class="dropdown" id="prim_c" v-model="prim_c">
       <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
-    </select>
+    </select><br>
+    <p>Hex: {{ prim_hex }}</p>
   </div>
   <div class="col">
     <label>Secondary Color</label>
     <button class="r" @click="r_sc()">R</button><br>
     <select class="dropdown" id="sec_c" v-model="sec_c">
       <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
-    </select>
+    </select><br>
+    <p>Hex: {{ sec_hex }}</p>
   </div>
   <div class="col">
     <label>Tertiary Color:</label>
     <button class="r" @click="r_tc()">R</button><br>
     <select class="dropdown" id="tert_c" v-model="tert_c">
       <option v-for="(val, key) in colors" :value="key">{{ key }}</option>
-    </select>
+    </select><br>
+    <p>Hex: {{ tert_hex }}</p>
   </div>
   </div>
   
@@ -91,7 +94,7 @@
 .cols {
   display: flex;
   column-gap: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 .col {
   padding: 5px;
@@ -99,6 +102,10 @@
   flex-grow: 0;
   min-width: 210px;
   text-align: center;
+}
+.col p {
+  font-size: 12px;
+  margin-top: 3px;
 }
 .results {
   white-space: pre-line;
@@ -294,6 +301,15 @@ export default {
         }
 				return true;
 			}
+		},
+		prim_hex() {
+		  return this.base[lower(this.prim_c)]["hex"];
+		},
+		sec_hex() {
+		  return this.base[lower(this.sec_c)]["hex"];
+		},
+		tert_hex() {
+		  return this.base[lower(this.tert_c)]["hex"];
 		},
   },
   watch: {
