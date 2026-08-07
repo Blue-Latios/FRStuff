@@ -42,13 +42,17 @@ ul {
 <script>
 function buildString(r) {
 
-  const itemPattern = /<div class="hoard-result-item" data-itemid="(\d+)"[^]*?data-quantity="(\d+)"[^]*?data-name="([^]*?)"/g;
+  const itemPattern = /<div class="hoard-result-item"([^]*?)hoard-result-item-uses/g; 
+  const matchPattern = /data-itemid="(\d+)"[^]*?data-quantity="(\d+)"[^]*?data-name="([^]*?)"/;
+  const stackPattern = /(\d+)\*/;
   let matches = r.matchAll(itemPattern);
   
   let str = '';
-  for (let match of matches) {
+  for (let part of matches) {
+    let match = part[1].match(matchPattern);
+    let stack = part[1].match(stackPattern);
     let id = match[1];
-    let q = match[2];
+    let q = (stack) ? stack[1] : match[2];
 		let name = match[3];
 		
 		//string building
