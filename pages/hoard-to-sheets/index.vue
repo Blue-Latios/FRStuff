@@ -99,7 +99,7 @@ export default {
 			try {
 				this.results = buildString(t);
 			} catch(e) {
-				alert('Not valid AH data?');
+				throw(e);
 			}
 		},
 		copyText() {
