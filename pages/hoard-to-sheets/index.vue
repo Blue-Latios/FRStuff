@@ -45,6 +45,7 @@ function buildString(r) {
   const itemPattern = /<div class="hoard-result-item"([^]*?)hoard-result-item-uses/g; 
   const matchPattern = /data-itemid="(\d+)"[^]*?data-quantity="(\d+)"[^]*?data-name="([^]*?)"/;
   const stackPattern = /(\d+)\*/;
+  if (!r.includes("hoard-result-item")) throw(e); //throw check
   let matches = r.matchAll(itemPattern);
   
   let str = '';
