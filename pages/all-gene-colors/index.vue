@@ -212,12 +212,12 @@ function colorBox(hex) {
       height:16px;
       background:${hex};
       border:2px solid black;
-      border-radius: 4px;
+      border-radius: 2px;
       margin-left: 4px;
       vertical-align:middle;
       position: relative;
       bottom: 1px;
-      box-shadow: 0 0 0 1px #fff;
+      box-shadow: 0 0 0 1px #ddd;
   ">
   </span>`;
 }

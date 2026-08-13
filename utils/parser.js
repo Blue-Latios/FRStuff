@@ -181,9 +181,10 @@ function buildDragonData(page) {
 	matches = [...phys.matchAll(genePattern)];
 	function processMatches(a) {
 	  let x = a.split("<br");
-	  let y = getBetween(x[1], "<strong", "</strong>").split("\">")[1].split(" ")[0];
+	  let y = getBetween(x[1], "<strong", "</strong>").split(">")[1].split(" ")[0];
 	  return [x[0].trim(), y.trim()];
 	}
+	console.log(matches[0][1]);
 	let [primaryColor, primaryGene] = processMatches(matches[0][1]);
 	let [secondaryColor, secondaryGene] = processMatches(matches[1][1]);
 	let [tertiaryColor, tertiaryGene] = processMatches(matches[2][1]);
