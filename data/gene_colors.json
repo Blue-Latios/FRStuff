@@ -83,7 +83,7 @@
     "Tusked": [
       "#fff37f"
     ],
-    "Chorus": [
+    "Chord": [
       "#836531",
       "#201a0d",
       "#fffef4"
@@ -766,7 +766,7 @@
     "Tusked": [
       "#ffddcc"
     ],
-    "Chorus": [
+    "Chord": [
       "#d2973d",
       "#fff9f2",
       "#efc17a"
@@ -1449,7 +1449,7 @@
     "Tusked": [
       "#fff9d7"
     ],
-    "Chorus": [
+    "Chord": [
       "#bfa165",
       "#231f18",
       "#fffef3"
@@ -2132,7 +2132,7 @@
     "Tusked": [
       "#e9a8b2"
     ],
-    "Chorus": [
+    "Chord": [
       "#e3c7c7",
       "#9c8c8c",
       "#ffffff"
@@ -2815,7 +2815,7 @@
     "Tusked": [
       "#a895a8"
     ],
-    "Chorus": [
+    "Chord": [
       "#1f6f00",
       "#111111",
       "#b1ec73"
@@ -3498,7 +3498,7 @@
     "Tusked": [
       "#abc3ef"
     ],
-    "Chorus": [
+    "Chord": [
       "#b7c1ef",
       "#606f9b",
       "#f1f3ff"
@@ -4181,7 +4181,7 @@
     "Tusked": [
       "#584f74"
     ],
-    "Chorus": [
+    "Chord": [
       "#887da9",
       "#1d1c20",
       "#ffffff"
@@ -4864,7 +4864,7 @@
     "Tusked": [
       "#c39fa2"
     ],
-    "Chorus": [
+    "Chord": [
       "#832a31",
       "#251c1c",
       "#fbf9fc"
@@ -5547,7 +5547,7 @@
     "Tusked": [
       "#d6cee2"
     ],
-    "Chorus": [
+    "Chord": [
       "#1a1a36",
       "#ffffff",
       "#2f2f92"
@@ -6230,7 +6230,7 @@
     "Tusked": [
       "#313131"
     ],
-    "Chorus": [
+    "Chord": [
       "#f4f4f4",
       "#303037",
       "#18181c"
@@ -6913,7 +6913,7 @@
     "Tusked": [
       "#e2aec0"
     ],
-    "Chorus": [
+    "Chord": [
       "#c5c5c5",
       "#424242",
       "#f3f3f3"
@@ -7596,7 +7596,7 @@
     "Tusked": [
       "#b4adef"
     ],
-    "Chorus": [
+    "Chord": [
       "#564c6f",
       "#1b1822",
       "#efe7ff"
@@ -8279,7 +8279,7 @@
     "Tusked": [
       "#9887bc"
     ],
-    "Chorus": [
+    "Chord": [
       "#65698a",
       "#1b1b20",
       "#dedde8"
@@ -8962,7 +8962,7 @@
     "Tusked": [
       "#858ec6"
     ],
-    "Chorus": [
+    "Chord": [
       "#8e3148",
       "#272225",
       "#ede4e7"
@@ -9645,7 +9645,7 @@
     "Tusked": [
       "#b295cc"
     ],
-    "Chorus": [
+    "Chord": [
       "#9d92a5",
       "#1e1c1f",
       "#f3e8f0"
@@ -10328,7 +10328,7 @@
     "Tusked": [
       "#a29087"
     ],
-    "Chorus": [
+    "Chord": [
       "#879da2",
       "#1a1a1c",
       "#ebeff1"
@@ -11011,7 +11011,7 @@
     "Tusked": [
       "#242424"
     ],
-    "Chorus": [
+    "Chord": [
       "#682c18",
       "#1b1b1b",
       "#ffd36d"
@@ -11694,7 +11694,7 @@
     "Tusked": [
       "#674b4b"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffdc76",
       "#171411",
       "#a52812"
@@ -12378,7 +12378,7 @@
     "Tusked": [
       "#5e4e43"
     ],
-    "Chorus": [
+    "Chord": [
       "#69251e",
       "#211d1b",
       "#d8c97a"
@@ -13061,7 +13061,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#6a6a6a",
       "#454545",
       "#ffffff"
@@ -13744,7 +13744,7 @@
     "Tusked": [
       "#98444d"
     ],
-    "Chorus": [
+    "Chord": [
       "#890000",
       "#bb0700",
       "#f8ba2e"
@@ -14429,7 +14429,7 @@
     "Tusked": [
       "#83c35c"
     ],
-    "Chorus": [
+    "Chord": [
       "#7caa27",
       "#0c1805",
       "#f3ff94"
@@ -15112,7 +15112,7 @@
     "Tusked": [
       "#8a99c0"
     ],
-    "Chorus": [
+    "Chord": [
       "#25377e",
       "#131518",
       "#ebeefa"
@@ -15795,7 +15795,7 @@
     "Tusked": [
       "#c48eb8"
     ],
-    "Chorus": [
+    "Chord": [
       "#742d9c",
       "#161416",
       "#f4ebfa"
@@ -16478,7 +16478,7 @@
     "Tusked": [
       "#ed95db"
     ],
-    "Chorus": [
+    "Chord": [
       "#973082",
       "#15081d",
       "#fadc77"
@@ -17161,7 +17161,7 @@
     "Tusked": [
       "#cd7ecb"
     ],
-    "Chorus": [
+    "Chord": [
       "#b00e5b",
       "#2d0323",
       "#fff089"
@@ -17844,7 +17844,7 @@
     "Tusked": [
       "#eb45ca"
     ],
-    "Chorus": [
+    "Chord": [
       "#a349ed",
       "#330639",
       "#ff92d2"
@@ -18527,7 +18527,7 @@
     "Tusked": [
       "#bf89ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#261149",
       "#e2dde6",
       "#41218c"
@@ -19210,7 +19210,7 @@
     "Tusked": [
       "#dea9ea"
     ],
-    "Chorus": [
+    "Chord": [
       "#6a3e61",
       "#271b22",
       "#ffe4f9"
@@ -19893,7 +19893,7 @@
     "Tusked": [
       "#d37788"
     ],
-    "Chorus": [
+    "Chord": [
       "#e5e0fb",
       "#3a3046",
       "#fcfbff"
@@ -20576,7 +20576,7 @@
     "Tusked": [
       "#bf96ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#7f41a2",
       "#fdfbff",
       "#7967b4"
@@ -21259,7 +21259,7 @@
     "Tusked": [
       "#726680"
     ],
-    "Chorus": [
+    "Chord": [
       "#8750a9",
       "#e8d0ff",
       "#4e2b64"
@@ -21942,7 +21942,7 @@
     "Tusked": [
       "#cc50ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#6f2a7f",
       "#bb1baa",
       "#ee8be2"
@@ -22625,7 +22625,7 @@
     "Tusked": [
       "#d27699"
     ],
-    "Chorus": [
+    "Chord": [
       "#5735ad",
       "#350a52",
       "#efd7fe"
@@ -23308,7 +23308,7 @@
     "Tusked": [
       "#7c294a"
     ],
-    "Chorus": [
+    "Chord": [
       "#83ecf0",
       "#4e0064",
       "#b5fe76"
@@ -23991,7 +23991,7 @@
     "Tusked": [
       "#9b8eff"
     ],
-    "Chorus": [
+    "Chord": [
       "#f9f7ff",
       "#3f0c5d",
       "#f0cbff"
@@ -24674,7 +24674,7 @@
     "Tusked": [
       "#c7bfff"
     ],
-    "Chorus": [
+    "Chord": [
       "#72067a",
       "#170029",
       "#6b5ae6"
@@ -25357,7 +25357,7 @@
     "Tusked": [
       "#e9a8c7"
     ],
-    "Chorus": [
+    "Chord": [
       "#f18824",
       "#291854",
       "#ffcf80"
@@ -26040,7 +26040,7 @@
     "Tusked": [
       "#a268e5"
     ],
-    "Chorus": [
+    "Chord": [
       "#b9da52",
       "#1b1137",
       "#faffbc"
@@ -26723,7 +26723,7 @@
     "Tusked": [
       "#8e33e2"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffc545",
       "#0a001f",
       "#fff5d2"
@@ -27406,7 +27406,7 @@
     "Tusked": [
       "#7c50c3"
     ],
-    "Chorus": [
+    "Chord": [
       "#c21ea5",
       "#130d36",
       "#f1ffbc"
@@ -28089,7 +28089,7 @@
     "Tusked": [
       "#8a88eb"
     ],
-    "Chorus": [
+    "Chord": [
       "#812c4f",
       "#1b1b3d",
       "#efbf4a"
@@ -28772,7 +28772,7 @@
     "Tusked": [
       "#77a7ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#2c3189",
       "#111220",
       "#c7c8e3"
@@ -29455,7 +29455,7 @@
     "Tusked": [
       "#c59fee"
     ],
-    "Chorus": [
+    "Chord": [
       "#213ed2",
       "#090a29",
       "#fcf9ff"
@@ -30138,7 +30138,7 @@
     "Tusked": [
       "#7f73ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#5886cf",
       "#0d0c1c",
       "#f9faff"
@@ -30821,7 +30821,7 @@
     "Tusked": [
       "#9b5fc4"
     ],
-    "Chorus": [
+    "Chord": [
       "#b21e28",
       "#04022e",
       "#80f8ef"
@@ -31504,7 +31504,7 @@
     "Tusked": [
       "#77a7ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#b0b9e3",
       "#090d25",
       "#ffffff"
@@ -32187,7 +32187,7 @@
     "Tusked": [
       "#198e9e"
     ],
-    "Chorus": [
+    "Chord": [
       "#a8c4e3",
       "#13171c",
       "#f6faff"
@@ -32870,7 +32870,7 @@
     "Tusked": [
       "#83a3ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#7bfd4d",
       "#03174d",
       "#e8fd00"
@@ -33553,7 +33553,7 @@
     "Tusked": [
       "#97d8fc"
     ],
-    "Chorus": [
+    "Chord": [
       "#4a83ef",
       "#060f34",
       "#f0f5ff"
@@ -34236,7 +34236,7 @@
     "Tusked": [
       "#5c51fe"
     ],
-    "Chorus": [
+    "Chord": [
       "#2d278c",
       "#ebf4ff",
       "#1b1481"
@@ -34919,7 +34919,7 @@
     "Tusked": [
       "#8a6da3"
     ],
-    "Chorus": [
+    "Chord": [
       "#d3b751",
       "#061534",
       "#fffbee"
@@ -35602,7 +35602,7 @@
     "Tusked": [
       "#74c1af"
     ],
-    "Chorus": [
+    "Chord": [
       "#e7ffff",
       "#083578",
       "#5fe2de"
@@ -36285,7 +36285,7 @@
     "Tusked": [
       "#7776ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffecb5",
       "#326ac9",
       "#ffb3be"
@@ -36968,7 +36968,7 @@
     "Tusked": [
       "#a8cde9"
     ],
-    "Chorus": [
+    "Chord": [
       "#3368d8",
       "#fff5f3",
       "#89d8db"
@@ -37651,7 +37651,7 @@
     "Tusked": [
       "#eaa3c1"
     ],
-    "Chorus": [
+    "Chord": [
       "#29427e",
       "#192032",
       "#e4e4e4"
@@ -38334,7 +38334,7 @@
     "Tusked": [
       "#84a9ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#850c1b",
       "#0d1117",
       "#ffffff"
@@ -39017,7 +39017,7 @@
     "Tusked": [
       "#a9ceea"
     ],
-    "Chorus": [
+    "Chord": [
       "#909699",
       "#10161b",
       "#ffffff"
@@ -39700,7 +39700,7 @@
     "Tusked": [
       "#8c847a"
     ],
-    "Chorus": [
+    "Chord": [
       "#9e5d1c",
       "#0b1f30",
       "#ffffff"
@@ -40383,7 +40383,7 @@
     "Tusked": [
       "#59462c"
     ],
-    "Chorus": [
+    "Chord": [
       "#90182f",
       "#1e3e41",
       "#eafa50"
@@ -41066,7 +41066,7 @@
     "Tusked": [
       "#d59891"
     ],
-    "Chorus": [
+    "Chord": [
       "#3e6d90",
       "#041522",
       "#fff9eb"
@@ -41749,7 +41749,7 @@
     "Tusked": [
       "#8fa4f6"
     ],
-    "Chorus": [
+    "Chord": [
       "#90095a",
       "#061522",
       "#fff2b1"
@@ -42432,7 +42432,7 @@
     "Tusked": [
       "#94a6ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#fffc79",
       "#001a29",
       "#24df77"
@@ -43115,7 +43115,7 @@
     "Tusked": [
       "#a8cde9"
     ],
-    "Chorus": [
+    "Chord": [
       "#c52724",
       "#0f191c",
       "#46c7c6"
@@ -43798,7 +43798,7 @@
     "Tusked": [
       "#b7c6ec"
     ],
-    "Chorus": [
+    "Chord": [
       "#60ffda",
       "#091f24",
       "#f6fffe"
@@ -44481,7 +44481,7 @@
     "Tusked": [
       "#439bff"
     ],
-    "Chorus": [
+    "Chord": [
       "#0989a4",
       "#151c20",
       "#ffffff"
@@ -45164,7 +45164,7 @@
     "Tusked": [
       "#6da5f1"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff9782",
       "#3a80a4",
       "#fdffff"
@@ -45847,7 +45847,7 @@
     "Tusked": [
       "#adff92"
     ],
-    "Chorus": [
+    "Chord": [
       "#47ffb9",
       "#252c3f",
       "#e2fff4"
@@ -46530,7 +46530,7 @@
     "Tusked": [
       "#9eb0ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#2b455d",
       "#1f2039",
       "#85f4fe"
@@ -47213,7 +47213,7 @@
     "Tusked": [
       "#364e64"
     ],
-    "Chorus": [
+    "Chord": [
       "#752e19",
       "#092e30",
       "#f4fffc"
@@ -47896,7 +47896,7 @@
     "Tusked": [
       "#ffdcdc"
     ],
-    "Chorus": [
+    "Chord": [
       "#7aa780",
       "#2f4d30",
       "#c0d9c3"
@@ -48579,7 +48579,7 @@
     "Tusked": [
       "#a4f595"
     ],
-    "Chorus": [
+    "Chord": [
       "#efff6b",
       "#121713",
       "#fefffd"
@@ -49262,7 +49262,7 @@
     "Tusked": [
       "#8c97ff"
     ],
-    "Chorus": [
+    "Chord": [
       "#31aeac",
       "#ebfff4",
       "#49cb84"
@@ -49945,7 +49945,7 @@
     "Tusked": [
       "#c3ff8e"
     ],
-    "Chorus": [
+    "Chord": [
       "#016638",
       "#052415",
       "#b9f9c7"
@@ -50628,7 +50628,7 @@
     "Tusked": [
       "#86edff"
     ],
-    "Chorus": [
+    "Chord": [
       "#30d9ff",
       "#063338",
       "#9bffe5"
@@ -51311,7 +51311,7 @@
     "Tusked": [
       "#4b874d"
     ],
-    "Chorus": [
+    "Chord": [
       "#d8c376",
       "#00271e",
       "#eef1cc"
@@ -51994,7 +51994,7 @@
     "Tusked": [
       "#8ac382"
     ],
-    "Chorus": [
+    "Chord": [
       "#f6d450",
       "#1a0f28",
       "#35e8ff"
@@ -52677,7 +52677,7 @@
     "Tusked": [
       "#e2ff92"
     ],
-    "Chorus": [
+    "Chord": [
       "#e2ef63",
       "#06190f",
       "#efffce"
@@ -53360,7 +53360,7 @@
     "Tusked": [
       "#b8915a"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffbd39",
       "#072507",
       "#b7ff38"
@@ -54043,7 +54043,7 @@
     "Tusked": [
       "#a9c84b"
     ],
-    "Chorus": [
+    "Chord": [
       "#bd6f2b",
       "#0f170e",
       "#efce4e"
@@ -54726,7 +54726,7 @@
     "Tusked": [
       "#6b7861"
     ],
-    "Chorus": [
+    "Chord": [
       "#5f2656",
       "#c99739",
       "#a92e0f"
@@ -55409,7 +55409,7 @@
     "Tusked": [
       "#d3e7a3"
     ],
-    "Chorus": [
+    "Chord": [
       "#7d8f6b",
       "#161714",
       "#e5ecdf"
@@ -56092,7 +56092,7 @@
     "Tusked": [
       "#feeb82"
     ],
-    "Chorus": [
+    "Chord": [
       "#9db285",
       "#191e17",
       "#556350"
@@ -56775,7 +56775,7 @@
     "Tusked": [
       "#bda45e"
     ],
-    "Chorus": [
+    "Chord": [
       "#53977a",
       "#243224",
       "#cefcc0"
@@ -57458,7 +57458,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#97872f",
       "#191b16",
       "#c6cb74"
@@ -58141,7 +58141,7 @@
     "Tusked": [
       "#9fc163"
     ],
-    "Chorus": [
+    "Chord": [
       "#a97b18",
       "#211e27",
       "#faf361"
@@ -58824,7 +58824,7 @@
     "Tusked": [
       "#a8cde9"
     ],
-    "Chorus": [
+    "Chord": [
       "#3e9047",
       "#0d1707",
       "#eefacf"
@@ -59507,7 +59507,7 @@
     "Tusked": [
       "#dfbc91"
     ],
-    "Chorus": [
+    "Chord": [
       "#c5e63e",
       "#286c1f",
       "#f0ffb3"
@@ -60190,7 +60190,7 @@
     "Tusked": [
       "#5b7230"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff878d",
       "#03322f",
       "#fff356"
@@ -60873,7 +60873,7 @@
     "Tusked": [
       "#58c8a5"
     ],
-    "Chorus": [
+    "Chord": [
       "#ebf86d",
       "#44800e",
       "#fbffcc"
@@ -61556,7 +61556,7 @@
     "Tusked": [
       "#415718"
     ],
-    "Chorus": [
+    "Chord": [
       "#f7ff43",
       "#376300",
       "#f1ffc3"
@@ -62239,7 +62239,7 @@
     "Tusked": [
       "#4b4b4b"
     ],
-    "Chorus": [
+    "Chord": [
       "#111504",
       "#c1051a",
       "#ffffff"
@@ -62922,7 +62922,7 @@
     "Tusked": [
       "#ffe8ad"
     ],
-    "Chorus": [
+    "Chord": [
       "#fea741",
       "#70831d",
       "#faebaa"
@@ -63605,7 +63605,7 @@
     "Tusked": [
       "#bf997d"
     ],
-    "Chorus": [
+    "Chord": [
       "#d8cc4b",
       "#6b872d",
       "#b4d472"
@@ -64288,7 +64288,7 @@
     "Tusked": [
       "#feb476"
     ],
-    "Chorus": [
+    "Chord": [
       "#b18210",
       "#5e5f00",
       "#fffad2"
@@ -64971,7 +64971,7 @@
     "Tusked": [
       "#f7bb97"
     ],
-    "Chorus": [
+    "Chord": [
       "#bf5117",
       "#292710",
       "#ffe664"
@@ -65654,7 +65654,7 @@
     "Tusked": [
       "#babb74"
     ],
-    "Chorus": [
+    "Chord": [
       "#2d3807",
       "#131902",
       "#ffffc3"
@@ -66337,7 +66337,7 @@
     "Tusked": [
       "#566114"
     ],
-    "Chorus": [
+    "Chord": [
       "#3a2b54",
       "#a4210f",
       "#efd475"
@@ -67020,7 +67020,7 @@
     "Tusked": [
       "#b78d79"
     ],
-    "Chorus": [
+    "Chord": [
       "#996512",
       "#836d37",
       "#f5e580"
@@ -67703,7 +67703,7 @@
     "Tusked": [
       "#d3b67d"
     ],
-    "Chorus": [
+    "Chord": [
       "#543b11",
       "#191b0a",
       "#c6c1a2"
@@ -68386,7 +68386,7 @@
     "Tusked": [
       "#ffd48b"
     ],
-    "Chorus": [
+    "Chord": [
       "#aa8100",
       "#3b3218",
       "#fcf2d6"
@@ -69069,7 +69069,7 @@
     "Tusked": [
       "#fff2c2"
     ],
-    "Chorus": [
+    "Chord": [
       "#c24b0d",
       "#511100",
       "#ffe371"
@@ -69752,7 +69752,7 @@
     "Tusked": [
       "#ffc872"
     ],
-    "Chorus": [
+    "Chord": [
       "#995200",
       "#1a1300",
       "#fffee4"
@@ -70435,7 +70435,7 @@
     "Tusked": [
       "#938336"
     ],
-    "Chorus": [
+    "Chord": [
       "#cea617",
       "#1d1700",
       "#fffdf6"
@@ -71118,7 +71118,7 @@
     "Tusked": [
       "#fff4d3"
     ],
-    "Chorus": [
+    "Chord": [
       "#be9939",
       "#1e1d19",
       "#fffaeb"
@@ -71801,7 +71801,7 @@
     "Tusked": [
       "#fe9283"
     ],
-    "Chorus": [
+    "Chord": [
       "#b62d16",
       "#ffffff",
       "#e9815c"
@@ -72484,7 +72484,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff7b75",
       "#b4f7f5",
       "#fffdf2"
@@ -73167,7 +73167,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#4da8bb",
       "#fffee6",
       "#b1ecf8"
@@ -73850,7 +73850,7 @@
     "Tusked": [
       "#ff9f95"
     ],
-    "Chorus": [
+    "Chord": [
       "#cfa938",
       "#ab6c05",
       "#fff8e4"
@@ -74533,7 +74533,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#cd644e",
       "#43251b",
       "#fffaf3"
@@ -75216,7 +75216,7 @@
     "Tusked": [
       "#ffe0b0"
     ],
-    "Chorus": [
+    "Chord": [
       "#d0ea6f",
       "#ae6410",
       "#ffdaa1"
@@ -75899,7 +75899,7 @@
     "Tusked": [
       "#e9dca8"
     ],
-    "Chorus": [
+    "Chord": [
       "#a8621d",
       "#19150d",
       "#f6e4bd"
@@ -76582,7 +76582,7 @@
     "Tusked": [
       "#7e849d"
     ],
-    "Chorus": [
+    "Chord": [
       "#853f06",
       "#201f1a",
       "#7e849d"
@@ -77265,7 +77265,7 @@
     "Tusked": [
       "#fff152"
     ],
-    "Chorus": [
+    "Chord": [
       "#c74100",
       "#fddd81",
       "#8464ed"
@@ -77948,7 +77948,7 @@
     "Tusked": [
       "#f7bb97"
     ],
-    "Chorus": [
+    "Chord": [
       "#73180a",
       "#341f25",
       "#ffeab8"
@@ -78631,7 +78631,7 @@
     "Tusked": [
       "#c14427"
     ],
-    "Chorus": [
+    "Chord": [
       "#901300",
       "#042552",
       "#ffc453"
@@ -79314,7 +79314,7 @@
     "Tusked": [
       "#ffd088"
     ],
-    "Chorus": [
+    "Chord": [
       "#2a17a2",
       "#231d2d",
       "#fff8e2"
@@ -79997,7 +79997,7 @@
     "Tusked": [
       "#ffa585"
     ],
-    "Chorus": [
+    "Chord": [
       "#fe8a3c",
       "#e34b30",
       "#fff5c3"
@@ -80680,7 +80680,7 @@
     "Tusked": [
       "#ffe293"
     ],
-    "Chorus": [
+    "Chord": [
       "#ad3d00",
       "#1c1612",
       "#ffffff"
@@ -81363,7 +81363,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffd68d",
       "#d5602b",
       "#fffbf9"
@@ -82046,7 +82046,7 @@
     "Tusked": [
       "#ffd297"
     ],
-    "Chorus": [
+    "Chord": [
       "#16626a",
       "#051617",
       "#e6a549"
@@ -82729,7 +82729,7 @@
     "Tusked": [
       "#feb956"
     ],
-    "Chorus": [
+    "Chord": [
       "#7e2309",
       "#320e00",
       "#ffd89a"
@@ -83412,7 +83412,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#abc438",
       "#8a1e09",
       "#fffda3"
@@ -84095,7 +84095,7 @@
     "Tusked": [
       "#f4b894"
     ],
-    "Chorus": [
+    "Chord": [
       "#a90d14",
       "#643cb5",
       "#ffcf71"
@@ -84778,7 +84778,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#f7da8b",
       "#25100a",
       "#fffbf9"
@@ -85461,7 +85461,7 @@
     "Tusked": [
       "#ebaf62"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff3510",
       "#721b11",
       "#feffd9"
@@ -86144,7 +86144,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#e0915f",
       "#3b0b08",
       "#ffffff"
@@ -86827,7 +86827,7 @@
     "Tusked": [
       "#ffa295"
     ],
-    "Chorus": [
+    "Chord": [
       "#f6b181",
       "#7a3b2a",
       "#ffe6d0"
@@ -87510,7 +87510,7 @@
     "Tusked": [
       "#f6ba96"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffdd8b",
       "#7c4c27",
       "#fff3d3"
@@ -88193,7 +88193,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#8e3b00",
       "#392518",
       "#705b37"
@@ -88876,7 +88876,7 @@
     "Tusked": [
       "#ebb293"
     ],
-    "Chorus": [
+    "Chord": [
       "#a5bbcc",
       "#3a3221",
       "#f1eee3"
@@ -89559,7 +89559,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#631307",
       "#251e1c",
       "#d1b26d"
@@ -90242,7 +90242,7 @@
     "Tusked": [
       "#b8915a"
     ],
-    "Chorus": [
+    "Chord": [
       "#b39e83",
       "#1b1a19",
       "#f1eae4"
@@ -90925,7 +90925,7 @@
     "Tusked": [
       "#eac5a9"
     ],
-    "Chorus": [
+    "Chord": [
       "#542329",
       "#2e393f",
       "#b2bec6"
@@ -91608,7 +91608,7 @@
     "Tusked": [
       "#383838"
     ],
-    "Chorus": [
+    "Chord": [
       "#587c7a",
       "#303030",
       "#c6c2c0"
@@ -92291,7 +92291,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#95644a",
       "#4d3e35",
       "#fff2d8"
@@ -92974,7 +92974,7 @@
     "Tusked": [
       "#e3a365"
     ],
-    "Chorus": [
+    "Chord": [
       "#7f8731",
       "#391e10",
       "#f1d8a5"
@@ -93657,7 +93657,7 @@
     "Tusked": [
       "#684c64"
     ],
-    "Chorus": [
+    "Chord": [
       "#a75141",
       "#5a1a16",
       "#eacbc5"
@@ -94340,7 +94340,7 @@
     "Tusked": [
       "#b79871"
     ],
-    "Chorus": [
+    "Chord": [
       "#b94821",
       "#30201b",
       "#fef2ee"
@@ -95023,7 +95023,7 @@
     "Tusked": [
       "#662e1b"
     ],
-    "Chorus": [
+    "Chord": [
       "#a5867e",
       "#6b4840",
       "#c2bdbc"
@@ -95706,7 +95706,7 @@
     "Tusked": [
       "#301a08"
     ],
-    "Chorus": [
+    "Chord": [
       "#374e00",
       "#847e29",
       "#dfb983"
@@ -96389,7 +96389,7 @@
     "Tusked": [
       "#b8925a"
     ],
-    "Chorus": [
+    "Chord": [
       "#531b44",
       "#483b62",
       "#eab9a2"
@@ -97072,7 +97072,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#4b7679",
       "#0f1f20",
       "#d4c998"
@@ -97755,7 +97755,7 @@
     "Tusked": [
       "#fc806d"
     ],
-    "Chorus": [
+    "Chord": [
       "#522200",
       "#291000",
       "#fff5d0"
@@ -98438,7 +98438,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#aa683d",
       "#54332a",
       "#fef0ed"
@@ -99121,7 +99121,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#871e10",
       "#291006",
       "#fef0ed"
@@ -99804,7 +99804,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#c05622",
       "#401905",
       "#e8b361"
@@ -100487,7 +100487,7 @@
     "Tusked": [
       "#79d2da"
     ],
-    "Chorus": [
+    "Chord": [
       "#7a240b",
       "#1d0803",
       "#ebf9fa"
@@ -101170,7 +101170,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#c2712b",
       "#2c0002",
       "#f1d287"
@@ -101853,7 +101853,7 @@
     "Tusked": [
       "#f6b18b"
     ],
-    "Chorus": [
+    "Chord": [
       "#fe7231",
       "#4d080b",
       "#ffe889"
@@ -102536,7 +102536,7 @@
     "Tusked": [
       "#ffaea4"
     ],
-    "Chorus": [
+    "Chord": [
       "#fc9a36",
       "#220703",
       "#ffe08b"
@@ -103219,7 +103219,7 @@
     "Tusked": [
       "#3c3440"
     ],
-    "Chorus": [
+    "Chord": [
       "#005756",
       "#1e0001",
       "#ffd074"
@@ -103902,7 +103902,7 @@
     "Tusked": [
       "#ff7344"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff3e38",
       "#2b0009",
       "#fff7f8"
@@ -104585,7 +104585,7 @@
     "Tusked": [
       "#ff9880"
     ],
-    "Chorus": [
+    "Chord": [
       "#2a268f",
       "#1b0f10",
       "#ffe260"
@@ -105268,7 +105268,7 @@
     "Tusked": [
       "#d80a19"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff5c67",
       "#3f0029",
       "#9fb2ff"
@@ -105951,7 +105951,7 @@
     "Tusked": [
       "#7e3c3f"
     ],
-    "Chorus": [
+    "Chord": [
       "#a01a20",
       "#2a2243",
       "#dee3ff"
@@ -106634,7 +106634,7 @@
     "Tusked": [
       "#a96a5a"
     ],
-    "Chorus": [
+    "Chord": [
       "#6d2031",
       "#1c0909",
       "#6145ed"
@@ -107317,7 +107317,7 @@
     "Tusked": [
       "#ef5e5f"
     ],
-    "Chorus": [
+    "Chord": [
       "#78101e",
       "#221718",
       "#ffede7"
@@ -108000,7 +108000,7 @@
     "Tusked": [
       "#cd6958"
     ],
-    "Chorus": [
+    "Chord": [
       "#c0984a",
       "#3f0608",
       "#ffe1a6"
@@ -108683,7 +108683,7 @@
     "Tusked": [
       "#f6ba96"
     ],
-    "Chorus": [
+    "Chord": [
       "#fa6561",
       "#66080b",
       "#ffebec"
@@ -109366,7 +109366,7 @@
     "Tusked": [
       "#ff8183"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffffff",
       "#75090b",
       "#ffe9e9"
@@ -110049,7 +110049,7 @@
     "Tusked": [
       "#604c91"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff95c3",
       "#481128",
       "#fef4ff"
@@ -110732,7 +110732,7 @@
     "Tusked": [
       "#ff8787"
     ],
-    "Chorus": [
+    "Chord": [
       "#931919",
       "#2c1b20",
       "#fed5de"
@@ -111415,7 +111415,7 @@
     "Tusked": [
       "#3f0d0d"
     ],
-    "Chorus": [
+    "Chord": [
       "#edd1c3",
       "#4d0e0e",
       "#e8cbbe"
@@ -112098,7 +112098,7 @@
     "Tusked": [
       "#f6ba96"
     ],
-    "Chorus": [
+    "Chord": [
       "#31a0d7",
       "#710c2b",
       "#ffeade"
@@ -112781,7 +112781,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#ffe0be",
       "#bb5555",
       "#fffaf0"
@@ -113464,7 +113464,7 @@
     "Tusked": [
       "#ffd6d8"
     ],
-    "Chorus": [
+    "Chord": [
       "#abeaf8",
       "#f6dbdd",
       "#ffffff"
@@ -114147,7 +114147,7 @@
     "Tusked": [
       "#9c1d3b"
     ],
-    "Chorus": [
+    "Chord": [
       "#7cbf7a",
       "#5d0215",
       "#fff2f8"
@@ -114830,7 +114830,7 @@
     "Tusked": [
       "#802833"
     ],
-    "Chorus": [
+    "Chord": [
       "#b92558",
       "#1b0e16",
       "#fff0f5"
@@ -115513,7 +115513,7 @@
     "Tusked": [
       "#701458"
     ],
-    "Chorus": [
+    "Chord": [
       "#811364",
       "#37032a",
       "#ffe2b8"
@@ -116196,7 +116196,7 @@
     "Tusked": [
       "#e77fbd"
     ],
-    "Chorus": [
+    "Chord": [
       "#cf428b",
       "#ffe2f1",
       "#370620"
@@ -116879,7 +116879,7 @@
     "Tusked": [
       "#e576db"
     ],
-    "Chorus": [
+    "Chord": [
       "#c6004c",
       "#ffc4b5",
       "#f8856e"
@@ -117562,7 +117562,7 @@
     "Tusked": [
       "#ff9385"
     ],
-    "Chorus": [
+    "Chord": [
       "#8942b9",
       "#41162d",
       "#f99d9b"
@@ -118245,7 +118245,7 @@
     "Tusked": [
       "#f5b995"
     ],
-    "Chorus": [
+    "Chord": [
       "#b31546",
       "#fff2fe",
       "#ec467a"
@@ -118928,7 +118928,7 @@
     "Tusked": [
       "#7e379f"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff7cf4",
       "#971a91",
       "#8dd8ff"
@@ -119611,7 +119611,7 @@
     "Tusked": [
       "#af3ca6"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff59b0",
       "#1d0c15",
       "#fff6de"
@@ -120294,7 +120294,7 @@
     "Tusked": [
       "#ffb5e1"
     ],
-    "Chorus": [
+    "Chord": [
       "#ff6bce",
       "#ffffff",
       "#9ce4ee"
