@@ -188,7 +188,7 @@ function buildDragonData(page) {
 	let [primaryColor, primaryGene] = processMatches(matches[0][1]);
 	let [secondaryColor, secondaryGene] = processMatches(matches[1][1]);
 	let [tertiaryColor, tertiaryGene] = processMatches(matches[2][1]);
-	let birthdate = getBetween(matches[3][1], "<strong", "</strong>").split("\">")[1];
+	let birthdate = getBetween(matches[3][1], "<strong", "</strong>").split(">")[1];
 	let [element, eyes] = processMatches(matches[5][1]);
 	
 	//lineage
