@@ -62,7 +62,7 @@
   
   <hr>
   <div class="footnote" style="font-size: 10px;"><a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/forums/gde/3384576">Tool thread</a><br>
-  Data, sheets tool credits are by xCorbeau and team. Web tool by BlueLatios.</div>
+  Data, sheets tool credits are by xCorbeau, BlueLatios, and team. Web tool by BlueLatios.</div>
 </div></template>
 
 <style>

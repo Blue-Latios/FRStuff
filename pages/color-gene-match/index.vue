@@ -76,7 +76,7 @@
   
   <hr>
   <div class="footnote" style="font-size: 10px;"><a target="_blank" rel="noopener noreferrer" href="https://www1.flightrising.com/forums/gde/3384576">Tool thread</a><br>
-  Data, sheets tool credits are by xCorbeau and team. Web tool by BlueLatios.</div>
+  Data, sheets tool credits are by xCorbeau, BlueLatios, and team. Web tool by BlueLatios.</div>
 </div></template>
 
 <style>
@@ -316,7 +316,15 @@ export default {
     prim_c() { this.generate(); },
     sec_c() { this.generate(); },
     tert_c() { this.generate(); },
-    compact() { this.generate(); }
+    compact() { this.generate(); },
+    modern_list: {
+      handler() { this.generate(); },
+      deep: true
+    },
+    ancient_list: {
+      handler() { this.generate(); },
+      deep: true
+    }
   },
   methods: {
     check_on(breed) {
@@ -331,11 +339,9 @@ export default {
 		},
     toggle_m(x) {
 			this.modern_list[x].isOn = !this.modern_list[x].isOn;
-      this.generate();
 		},
 		toggle_a(x) {
 			this.ancient_list[x].isOn = !this.ancient_list[x].isOn;
-      this.generate();
 		},
     deselect_all() {
 			for (const key in this.modern_list) {
@@ -344,7 +350,6 @@ export default {
 			for (const key in this.ancient_list) {
 				this.ancient_list[key].isOn = false;
 			}
-      this.generate();
 		},
     generateFull() {
       let p = this.generateDetailed(this.prim_c, 1, this.mappings);
