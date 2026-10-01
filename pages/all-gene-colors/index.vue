@@ -301,7 +301,15 @@ export default {
     prim_g() { this.generate(); },
     sec_g() { this.generate(); },
     tert_g() { this.generate(); },
-    compact() { this.generate(); }
+    compact() { this.generate(); },
+    modern_list: {
+      handler() { this.generate(); },
+      deep: true
+    },
+    ancient_list: {
+      handler() { this.generate(); },
+      deep: true
+    }
   },
   methods: {
     check_on(breed) {
@@ -316,11 +324,9 @@ export default {
 		},
     toggle_m(x) {
 			this.modern_list[x].isOn = !this.modern_list[x].isOn;
-      this.generate();
 		},
 		toggle_a(x) {
 			this.ancient_list[x].isOn = !this.ancient_list[x].isOn;
-      this.generate();
 		},
     deselect_all() {
 			for (const key in this.modern_list) {
@@ -329,7 +335,6 @@ export default {
 			for (const key in this.ancient_list) {
 				this.ancient_list[key].isOn = false;
 			}
-      this.generate();
 		},
     generateFull() {
       let p = this.generateDetailed(this.prim_g, 1, this.mappings);
