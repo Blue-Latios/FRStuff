@@ -54,7 +54,7 @@ function buildString(r) {
 	//data extraction
 	const currency_pattern = /icon_([^]*?)\.png/;
 	
-	const rowPattern = /<div class="ah-listing-row"([^]*?)<\/div>\s*<\/div>\s*<\/div>/g;
+	const rowPattern = /<div class="ah-listing-row"([^]*?)\/span>\s*<\/div>\s*<\/div>/g;
   let matches = r.matchAll(rowPattern);
   
   let str = '';
@@ -80,13 +80,13 @@ function buildString(r) {
 			quantity = data.match(/data-quantity="([^]*?)"/)[1];
     }
     
-    let sale_desc = data.match(/<b>(\w+)<\/b> on ([^]*?)\s*<\/div>/);
+    let sale_desc = data.match(/<b[^>]*>(\w+)<\/b> on ([^]*?)\s*<\/div>/);
     sale_type = sale_desc[1];
     date = sale_desc[2];
     
     currency = data.match(/www1.flightrising.com\/static\/layout\/icon_(\w+)\.png/)[1];
     currency = currency[0].toUpperCase() + currency.slice(1);
-    amount = data.match(/ah-listing-cost">(\d+)</)[1];
+    amount = data.match(/ah-listing-cost"[^>]*>(\d+)</)[1];
     
     let row_str = type;
 		row_str += '\t' +  name;
@@ -124,7 +124,6 @@ export default {
 				} else if (e.clipboardData && e.clipboardData.getData) {
 					pastedText = e.clipboardData.getData('text/html');
 				}
-				
 				this.processInput(pastedText);
 			} catch(e) {
 				alert('Error! Not valid pasted data.');

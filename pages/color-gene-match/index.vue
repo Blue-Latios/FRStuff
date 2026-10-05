@@ -22,6 +22,10 @@
   Click breeds to fade out genes unavailable for selected breeds.<br>
   Press the R buttons to randomize colors.<br><br>
   
+  Notes:<ul>
+  <li>Rabicano/Roan's first accent is for Male pose, second accent is for Female pose.</li>
+  </ul><br>
+  
   Paste page/link here:<br>
   <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste"></textarea><br><br>
   
