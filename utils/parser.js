@@ -57,18 +57,19 @@ function buildLairString(t, i, cTime) {
 	let id = data[6];
 	//let age = data[9];
 	let gen = (data[12] == "First Generation" ? "1" : "2+");
+	let offset = (gen == "1");
 	
-	let prim = data[15].split(" ");
+	let prim = data[15 + offset].split(" ");
 	let primaryColor = prim[0];
 	let primaryGene = prim[1];
-	let sec = data[18].split(" ");
+	let sec = data[18 + offset].split(" ");
 	let secondaryColor = sec[0];
 	let secondaryGene = sec[1];
-	let tert = data[21].split(" ");
+	let tert = data[21 + offset].split(" ");
 	let tertiaryColor = tert[0];
 	let tertiaryGene = tert[1];
 	
-	let eye_type = data[24].split(" ");
+	let eye_type = data[24 + offset].split(" ");
 	let element = eye_type[0];
 	let eyes = eye_type[1];
 	
