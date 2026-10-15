@@ -15,7 +15,8 @@
   This tool also allows you to see which breeds have desired gene<br>
   combos. To select breed links to show, click on the buttons.<br>
   Orange buttons mean the gene combo selected is not available<br>
-  on those breeds. Press the R buttons to randomize options.<br><br>
+  on those breeds. Press the <b>R</b> buttons to randomize options.<br>
+  Press the <b>-</b> buttons to randomize options upon opening scry links.<br><br>
   
   Optionally, you can go to a dragon's page and select all (Ctrl+A),<br>
   copy (Ctrl+C), then click on the box below and paste (Ctrl+V)<br>
@@ -26,33 +27,41 @@
   Predict Morphology links that shows the scry images.<br><br>
   
   Paste page/link here:<br>
-  <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste" style="width:90%;"></textarea><br>
+  <textarea class="ta" placeholder="Copy Paste here." @paste="htmlPaste"></textarea><br>
   
   <div class="cols">
 	<div class="col">
+	  <button :class="rand_class('gender')" @click="toggle_r('gender')">-</button>
 		<label>Gender</label>
-		<button class="r" @click="r_gender()">R</button><br>
+		<button class="button_r" @click="r_gender()">R</button>
+		<br>
 		<select class="dropdown" id="gender" v-model="gender">
 			<option v-for="(val, key) in gender_list" :value="val">{{ key }}</option>
 		</select>
 	</div>
 	<div class="col">
+	  <button :class="rand_class('age')" @click="toggle_r('age')">-</button>
 		<label>Age</label>
-		<button class="r" @click="r_age()">R</button><br>
+		<button class="button_r" @click="r_age()">R</button>
+		<br>
 		<select class="dropdown" id="age" v-model="age">
 			<option v-for="(val, key) in age_list" :value="val">{{ key }}</option>
 		</select>
 	</div>
 	<div class="col">
+	  <button :class="rand_class('element')" @click="toggle_r('element')">-</button>
 		<label>Element</label>
-		<button class="r" @click="r_element()">R</button><br>
+		<button class="button_r" @click="r_element()">R</button>
+		<br>
 		<select class="dropdown" id="element" v-model="element">
 			<option v-for="(val, key) in element_list" :value="val">{{ key }}</option>
 		</select>
 	</div>
 	<div class="col">
+	  <button :class="rand_class('eye')" @click="toggle_r('eye')">-</button>
 		<label>Eye Type</label>
-		<button class="r" @click="r_eye()">R</button><br>
+		<button class="button_r" @click="r_eye()">R</button>
+		<br>
 		<select class="dropdown" id="eye" v-model="eye">
 			<option v-for="(val, key) in eye_list" :value="val">{{ key }}</option>
 		</select>
@@ -60,37 +69,43 @@
   </div>
   <div class="cols">
 	<div class="col">
+	  <button :class="rand_class('prim_c')" @click="toggle_r('prim_c')">-</button>
 		<label>Primary Color</label>
-		<button class="r" @click="r_pc()">R</button><br>
+		<button class="button_r" @click="r_pc()">R</button>
 		<select class="dropdown" id="prim_c" v-model="prim_c">
 			<option v-for="(val, key) in colors" :value="val">{{ key }}</option>
 		</select><br><br>
+		<button :class="rand_class('prim_g')" @click="toggle_r('prim_g')">-</button>
 		<label>Primary Gene</label>
-		<button class="r" @click="r_pg()">R</button><br>
+		<button class="button_r" @click="r_pg()">R</button>
 		<select class="dropdown" id="prim_g" v-model="prim_g">
 			<option v-for="val in prim_genes" :value="val" :disabled="check_gene_disabled(val, 1)">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
+	  <button :class="rand_class('sec_c')" @click="toggle_r('sec_c')">-</button>
 		<label>Secondary Color</label>
-		<button class="r" @click="r_sc()">R</button><br>
+		 <button class="button_r" @click="r_sc()">R</button>
 		<select class="dropdown" id="sec_c" v-model="sec_c">
 			<option v-for="(val, key) in colors" :value="val">{{ key }}</option>
 		</select><br><br>
-		<label>Secondary Gene</label>
-		<button class="r" @click="r_sg()">R</button><br>
+		<button :class="rand_class('sec_g')" @click="toggle_r('sec_g')">-</button>
+		 <label>Secondary Gene</label>
+		<button class="button_r" @click="r_sg()">R</button>
 		<select class="dropdown" id="sec_g" v-model="sec_g">
 			<option v-for="val in sec_genes" :value="val" :disabled="check_gene_disabled(val, 2)">{{ val }}</option>
 		</select>
 	</div>
 	<div class="col">
+	  <button :class="rand_class('tert_c')" @click="toggle_r('tert_c')">-</button>
 		<label>Tertiary Color</label>
-		<button class="r" @click="r_tc()">R</button><br>
+		<button class="button_r" @click="r_tc()">R</button>
 		<select class="dropdown" id="tert_c" v-model="tert_c">
 			<option v-for="(val, key) in colors" :value="val">{{ key }}</option>
 		</select><br><br>
+		<button :class="rand_class('tert_g')" @click="toggle_r('tert_g')">-</button>
 		<label>Tertiary Gene:</label>
-		<button class="r" @click="r_tg()">R</button><br>
+		<button class="button_r" @click="r_tg()">R</button>
 		<select class="dropdown" id="tert_g" v-model="tert_g">
 			<option v-for="val in tert_genes" :value="val" :disabled="check_gene_disabled(val, 3)">{{ val }}</option>
 		</select>
@@ -141,14 +156,26 @@
 	padding-bottom: 20px;
 }
 .col {
-	padding: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: center;
+}
+label {
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .results {
 	white-space: pre-line;
-	line-height:1.0;
+	line-height: 1.0;
 }
 .dropdown {
-	width: 125px;
+	width: 86%;
+	height: 25px;
+	text-align: center;
+	margin-top: 5px;
 }
 ul {
 	margin-bottom: 0;
@@ -158,7 +185,7 @@ ul {
 	color: white;
 }
 .off {
-	background-color: white;
+	background-color: #f7f7f7;
 	color: black;
 }
 .disabled {
@@ -166,14 +193,21 @@ ul {
 	color: white;
 	cursor: not-allowed;
 }
-.r {
+.button_r {
 	background-color: gray;
 	color: #b3c2fd;
+	font-weight: bold;
+}
+.button_x {
+	background-color: #f1a34b;
+	color: white;
 	font-weight: bold;
 }
 .ta {
 	background-color: transparent;
 	color: transparent;
+	width: 100%;
+	margin-bottom: 12px;
 }
 </style>
 
@@ -230,6 +264,18 @@ export default {
 			})),
 			
 			limit: false,
+			rand_check: {
+		    "gender": true,
+		    "age": true,
+		    "element": true,
+		    "eye": true,
+		    "prim_g": true,
+		    "sec_g": true,
+		    "tert_g": true,
+		    "prim_c": true,
+		    "sec_c": true,
+		    "tert_c": true
+			},
 		};
 	},
 	head() {
@@ -254,6 +300,15 @@ export default {
 				  }
 				  if (!item.isOn) return 'off';
 				  return 'on';
+			  };
+		},
+		rand_class() {
+			  return (x) => {
+				  if (!this.rand_check[x]) {
+					  return 'button_x';
+				  } else {
+				    return 'off';
+				  }
 			  };
 		},
 		limit_class() {
@@ -308,6 +363,9 @@ export default {
 			this.ancient_list[x].isOn = !this.ancient_list[x].isOn;
 		  }
 		},
+		toggle_r(x) {
+		  this.rand_check[x] = !this.rand_check[x];
+		},
 		select_all() {
 			for (const x in this.modern_list) {
 				if (!this.check_disabled(this.modern_list[x])) this.modern_list[x].isOn = true;
@@ -353,13 +411,13 @@ export default {
 		generate() {
 			try {
 				
-				let gender = "gender=" + this.gender;
-				let age = "&age=" + this.age;
-				let element = "&element=" + this.element;
-				let eyetype = "&eyetype=" + this.eye;
-				let body = "&body=" + this.prim_c.toString();
-				let wings = "&wings=" + this.sec_c.toString();
-				let tert = "&tert=" + this.tert_c.toString();
+				let gender = (this.rand_check["gender"] ? "&gender=" + this.gender : "");
+				let age = (this.rand_check["age"] ? "&age=" + this.age : "");
+				let element = (this.rand_check["element"] ? "&element=" + this.element : "");
+				let eyetype = (this.rand_check["eye"] ? "&eyetype=" + this.eye : "");
+				let body = (this.rand_check["prim_c"] ? "&body=" + this.prim_c.toString() : "");
+				let wings = (this.rand_check["sec_c"] ? "&wings=" + this.sec_c.toString() : "");
+				let tert = (this.rand_check["tert_c"] ? "&tert=" + this.tert_c.toString() : "");
 				
 				let breeds = [...this.modern_list.filter(x => x.isOn).map(x => [x.name, x.value]),
 				...this.ancient_list.filter(x => x.isOn).map(x => [x.name, x.value])];
@@ -370,9 +428,9 @@ export default {
 					let name = x[0];
 					
 					let breed = "&breed=" + x[1];
-					let bodygene = "&bodygene=" + this.get_id(name, this.prim_g);
-					let winggene = "&winggene=" + this.get_id(name, this.sec_g);
-					let tertgene = "&tertgene=" + this.get_id(name, this.tert_g);
+					let bodygene = (this.rand_check["prim_g"] ? "&bodygene=" + this.get_id(name, this.prim_g) : "");
+					let winggene = (this.rand_check["sec_g"] ? "&winggene=" + this.get_id(name, this.sec_g) : "");
+					let tertgene = (this.rand_check["tert_g"] ? "&tertgene=" + this.get_id(name, this.tert_g) : "");
 					
 					let k = start_s + gender + age + element + eyetype + body + wings + tert + breed + bodygene + winggene + tertgene;
 					s += "\n\n<b><font size=4>" + name + '</font></b>\n<font size=1><a target="_blank" rel="noopener noreferrer" href=' + k + ">" + k + "</a></font>";

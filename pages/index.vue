@@ -1,45 +1,45 @@
 <template><div>
 	<ul>
-		<li><NuxtLink to="/wishlist-generator/">Simple Wishlist Generator</NuxtLink></li>
+		<li><a href="/wishlist-generator/">Simple Wishlist Generator</a></li>
 	</ul>
 <!--	<ul>
-		<li><NuxtLink to="/database-shortcut/">Database Shortcut</NuxtLink></li>
+		<li><a href="/database-shortcut/">Database Shortcut</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/baldwin-calculator/">Baldwin Calculator</NuxtLink></li>
+		<li><a href="/baldwin-calculator/">Baldwin Calculator</a></li>
 	</ul> -->
 	<ul>
-		<li><NuxtLink to="/dragon-to-sheets/">Dragon to Sheets</NuxtLink></li>
+		<li><a href="/dragon-to-sheets/">Dragon to Sheets</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/lair-to-sheets/">Lair to Sheets</NuxtLink></li>
+		<li><a href="/lair-to-sheets/">Lair to Sheets</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/history-to-sheets/">Recent History to Sheets</NuxtLink></li>
+		<li><a href="/history-to-sheets/">Recent History to Sheets</a></li>
 	</ul>
 		<ul>
-		<li><NuxtLink to="/hoard-to-sheets/">Hoard to Sheets</NuxtLink></li>
+		<li><a href="/hoard-to-sheets/">Hoard to Sheets</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/color-range-finder/">Color Range Finder</NuxtLink></li>
+		<li><a href="/color-range-finder/">Color Range Finder</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/sheets-columns-sorter/">Sheets Columns Sorter</NuxtLink></li>
+		<li><a href="/sheets-columns-sorter/">Sheets Columns Sorter</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/gene-format-updater/">Gene Format Updater</NuxtLink></li>
+		<li><a href="/gene-format-updater/">Gene Format Updater</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/predict-lite/">Predict Morphology Lite</NuxtLink></li>
+		<li><a href="/predict-lite/" external>Predict Morphology Lite</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/hue-sort/">Hue Sort</NuxtLink></li>
+		<li><a href="/hue-sort/">Hue Sort</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/colors-data/">Colors Data</NuxtLink></li>
+		<li><a href="/colors-data/">Colors Data</a></li>
 	</ul>
 	<ul>
-		<li><NuxtLink to="/color-gene-match/">FR Color Match</NuxtLink></li>
+		<li><a href="/color-gene-match/">FR Color Match</a></li>
 	</ul>
 	<NuxtChild />
 </div></template>
