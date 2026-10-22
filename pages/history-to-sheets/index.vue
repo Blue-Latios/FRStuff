@@ -80,7 +80,7 @@ function buildString(r) {
 			quantity = data.match(/data-quantity="([^]*?)"/)[1];
     }
     
-    let sale_desc = data.match(/<b[^>]*>(\w+)<\/b> on ([^]*?)\s*<\/div>/);
+    let sale_desc = data.match(/<b[^>]*>(\w+)<\/b>\s*on\s*([^]*?)\s*<\/div>/);
     sale_type = sale_desc[1];
     date = sale_desc[2];
     
